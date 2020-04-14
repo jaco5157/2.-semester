@@ -36,9 +36,6 @@ public class User {
         } catch (FileNotFoundException ex) {
             System.out.println("Password file not found");
         }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
         return false;
     }
 }
