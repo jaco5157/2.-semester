@@ -69,6 +69,13 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         makeDragable();
-        largeLogo.setImage(new Image("\\src\\main\\resources\\dk\\sdu\\tek\\presentation\\TV2_Denmark_logo_2017.png"));
+        setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
+        setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
+        setImageForImageView(exit, "red-x-mark.png");
+    }
+
+    private void setImageForImageView(ImageView view, String s) {
+        Image i = new Image(getClass().getResourceAsStream(s));
+        view.setImage(i);
     }
 }
