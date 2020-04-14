@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.PrimaryController">
+   <children>
+      <VBox prefHeight="648.0" prefWidth="479.0" />
+      <ImageView fx:id="largeLogo" fitHeight="648.0" fitWidth="505.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <Label layoutX="140.0" layoutY="397.0" prefHeight="26.0" prefWidth="199.0" text="Krediteringssystem" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="smallLogo" fitHeight="45.0" fitWidth="116.0" layoutX="530.0" layoutY="57.0" opacity="0.94" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <Label layoutX="530.0" layoutY="115.0" text="Velkommen" textFill="#545454">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="531.0" layoutY="369.0" text="Eller log ind med bruger" textFill="#a3a3a3">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="username" layoutX="531.0" layoutY="398.0" prefHeight="25.0" prefWidth="212.0" promptText="Username" />
+      <Button fx:id="logind" layoutX="531.0" layoutY="477.0" mnemonicParsing="false" onAction="#Login" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: D21E1E;" text="Log ind" textFill="#f2f2f2">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="696.0" layoutY="592.0" prefHeight="25.0" prefWidth="227.0" text="Glemt brugernavn eller password?" textFill="#a3a3a3">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorlabel" layoutX="533.0" layoutY="310.0" prefHeight="29.0" prefWidth="111.0">
+         <font>
+            <Font name="Ebrima Bold" size="18.0" />
+         </font></Label>
+      <TextField layoutX="527.0" layoutY="22.0" visible="false" />
+      <PasswordField fx:id="password" layoutX="531.0" layoutY="438.0" prefHeight="25.0" prefWidth="212.0" promptText="Password" />
+      <ImageView fx:id="exit" fitHeight="18.0" fitWidth="20.0" layoutX="911.0" layoutY="20.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <RadioButton fx:id="adminbutton" layoutX="630.0" layoutY="481.0" mnemonicParsing="false" text="Admin" />
+      <Button fx:id="logind1" layoutX="532.0" layoutY="219.0" mnemonicParsing="false" onAction="#Login" prefHeight="67.0" prefWidth="318.0" style="-fx-background-color: D21E1E;" text="Log ind uden bruger" textFill="#f2f2f2">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
