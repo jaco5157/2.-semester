@@ -1,5 +1,6 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.presentation.Menu;
 import javafx.scene.control.TextField;
 
 import java.io.File;

@@ -5,8 +5,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -15,23 +13,14 @@
 <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.PrimaryController">
    <children>
       <VBox prefHeight="648.0" prefWidth="479.0" />
-      <ImageView fitHeight="648.0" fitWidth="505.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/soulb/IdeaProjects/LoginSystem/TV2_Denmark_logo_2017.png" />
-         </image>
+      <ImageView fx:id="largeLogo" fitHeight="648.0" fitWidth="505.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <Label layoutX="140.0" layoutY="397.0" prefHeight="26.0" prefWidth="199.0" text="Krediteringssystem" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="45.0" fitWidth="116.0" layoutX="530.0" layoutY="57.0" opacity="0.94" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/soulb/IdeaProjects/LoginSystem/Danish_TV_2_logo.png" />
-         </image>
-         <effect>
-            <ColorAdjust saturation="-1.0" />
-         </effect>
+      <ImageView fx:id="smallLogo" fitHeight="45.0" fitWidth="116.0" layoutX="530.0" layoutY="57.0" opacity="0.94" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <Label layoutX="530.0" layoutY="115.0" text="Velkommen" textFill="#545454">
          <font>
@@ -60,9 +49,6 @@
       <TextField layoutX="527.0" layoutY="22.0" visible="false" />
       <PasswordField fx:id="password" layoutX="531.0" layoutY="438.0" prefHeight="25.0" prefWidth="212.0" promptText="Password" />
       <ImageView fx:id="exit" fitHeight="18.0" fitWidth="20.0" layoutX="911.0" layoutY="20.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/soulb/IdeaProjects/LoginSystem/red-x-mark.png" />
-         </image>
       </ImageView>
       <RadioButton fx:id="adminbutton" layoutX="630.0" layoutY="481.0" mnemonicParsing="false" text="Admin" />
       <Button fx:id="logind1" layoutX="532.0" layoutY="219.0" mnemonicParsing="false" onAction="#Login" prefHeight="67.0" prefWidth="318.0" style="-fx-background-color: D21E1E;" text="Log ind uden bruger" textFill="#f2f2f2">

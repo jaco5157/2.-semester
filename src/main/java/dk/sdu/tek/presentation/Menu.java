@@ -1,4 +1,4 @@
-package dk.sdu.tek.domain;
+package dk.sdu.tek.presentation;
 
 import java.io.IOException;
 

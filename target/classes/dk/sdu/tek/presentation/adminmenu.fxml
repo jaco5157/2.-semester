@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
@@ -14,5 +15,6 @@
       <TextField layoutX="88.0" layoutY="70.0" prefHeight="25.0" prefWidth="204.0" />
       <Label layoutX="88.0" layoutY="42.0" text="Søg efter produktion" />
       <Button layoutX="88.0" layoutY="549.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
