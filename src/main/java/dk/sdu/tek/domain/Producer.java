@@ -8,4 +8,8 @@ public class Producer extends User {
     public Menu getMenu() {
         return new ProducerMenu();
     }
+
+    public Producer(String username, String password){
+        super(username, password);
+    }
 }
