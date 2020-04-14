@@ -2,13 +2,15 @@ package dk.sdu.tek.domain;
 
 import java.util.UUID;
 
-public class Credit  {
+public class Credit {
     private String role;
-    private Production production;
     private Person person;
+    private Production production;
 
     public Credit (Person person, String role, Production production){
         this.role = role;
+        this.person = person;
+
     }
 
     public String getRole() {
