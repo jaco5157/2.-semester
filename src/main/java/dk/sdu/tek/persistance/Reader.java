@@ -1,9 +1,20 @@
 package dk.sdu.tek.persistance;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Scanner;
+import dk.sdu.tek.domain.*;
+
+import java.util.List;
 
 public class Reader {
+    public List<Production> readProductions() throws UnsupportedOperationException{
+
+    }
+    public List<Person> readPeople() throws UnsupportedOperationException{
+
+    }
+    public List<Producer> readProductions() throws UnsupportedOperationException{
+
+    }
+    public List<Credit> readCredits() throws UnsupportedOperationException{
+
+    }
 }
