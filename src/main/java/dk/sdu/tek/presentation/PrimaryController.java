@@ -2,7 +2,6 @@ package dk.sdu.tek.presentation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import dk.sdu.tek.domain.Admin;
 import dk.sdu.tek.domain.Producer;
 import dk.sdu.tek.domain.User;
@@ -69,13 +68,10 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         makeDragable();
-        setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
-        setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
-        setImageForImageView(exit, "red-x-mark.png");
+        App.setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
+        App.setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
+        App.setImageForImageView(exit, "red-x-mark.png");
     }
 
-    private void setImageForImageView(ImageView view, String s) {
-        Image i = new Image(getClass().getResourceAsStream(s));
-        view.setImage(i);
-    }
+
 }

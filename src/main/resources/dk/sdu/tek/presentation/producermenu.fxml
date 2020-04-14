@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
    <children>
       <Button layoutX="322.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
       <TextField layoutX="89.0" layoutY="202.0" prefHeight="25.0" prefWidth="219.0" />
@@ -32,7 +32,7 @@
          </items>
       </MenuButton>
       <ListView layoutX="470.0" layoutY="56.0" prefHeight="476.0" prefWidth="444.0" />
-      <ImageView fitHeight="94.0" fitWidth="137.0" layoutX="89.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="890.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="logo" fitHeight="94.0" fitWidth="137.0" layoutX="89.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="exit" fitHeight="20.0" fitWidth="20.0" layoutX="890.0" layoutY="14.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
