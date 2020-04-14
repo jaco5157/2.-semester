@@ -1,0 +1,16 @@
+# General
+/build/
+
+# Netbeans
+/target/
+nbproject/private/private.xml
+nbproject/private/private.properties
+target/
+
+# VS Code
+.vscode/
+/dist/
+
+# Mac
+.DS_Store
+scoreboard.txt
