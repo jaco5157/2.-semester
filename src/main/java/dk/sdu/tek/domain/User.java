@@ -5,13 +5,11 @@ import javafx.scene.control.TextField;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class User {
 
-    private URL url = getClass().getResource("members.txt");
-    private String filepath = "members.txt";
+    private String filepath = "src/main/java/dk/sdu/tek/domain/members.txt";
 
     public Menu getMenu() {
         return null;
