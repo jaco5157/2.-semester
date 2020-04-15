@@ -16,6 +16,10 @@ public class Admin extends User{
         super(username, password);
     }
 
+    public void createProducer (String username, String password) {
+        Producer producer1 = new Producer ("producer1", "pass123");
+    }
+    /*
     public void createProducer(String username, String password) throws FileNotFoundException {
         username = "";
         password = "";
@@ -37,4 +41,5 @@ public class Admin extends User{
             e.printStackTrace();
         }
     }
+  */
 }
