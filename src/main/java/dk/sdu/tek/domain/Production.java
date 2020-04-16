@@ -15,4 +15,8 @@ public class Production {
         this.productionName = productionName;
     }
 
+    @Override
+    public String toString() {
+        return this.productionName;
+    }
 }
