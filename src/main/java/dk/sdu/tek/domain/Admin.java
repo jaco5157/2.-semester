@@ -1,14 +1,10 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistance.*;
+import dk.sdu.tek.persistance.ObjectWriter;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
 
-import java.io.*;
-import java.util.List;
-import java.util.Scanner;
-
-public class Admin extends User implements IO{
+public class Admin extends User implements Writeable {
     @Override
     public Menu getMenu() {
         return new AdminMenu();
@@ -20,11 +16,6 @@ public class Admin extends User implements IO{
 
     public void createProducer (String username, String password) {
         Producer producer1 = new Producer ("producer1", "pass123");
-    }
-
-    @Override
-    public List read() {
-        return null;
     }
 
     @Override
