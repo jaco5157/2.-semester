@@ -5,10 +5,12 @@ import java.util.ResourceBundle;
 import dk.sdu.tek.domain.Admin;
 import dk.sdu.tek.domain.Producer;
 import dk.sdu.tek.domain.User;
+import dk.sdu.tek.domain.Visitor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -27,6 +29,7 @@ public class PrimaryController implements Initializable {
     @FXML private ImageView largeLogo;
     @FXML private ImageView smallLogo;
     @FXML private ImageView exit;
+    @FXML private Button visitorloginbutton;
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -44,6 +47,15 @@ public class PrimaryController implements Initializable {
             else {
             errorlabel.setText("Login Error");
             }
+    }
+
+    @FXML
+    public void VisitorLogin(ActionEvent actionEvent) throws IOException {
+        Visitor visitor = new Visitor();
+
+        if (visitorloginbutton.isPressed()) {
+            visitor.getMenu().show();
+        }
     }
 
     @FXML
