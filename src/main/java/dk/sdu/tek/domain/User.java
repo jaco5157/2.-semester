@@ -9,10 +9,27 @@ import java.util.Scanner;
 
 public class User {
 
+    private String username;
+    private String password;
+
+    //private URL url = getClass().getResource("members.txt");
     private String filepath = "src/main/java/dk/sdu/tek/domain/members.txt";
 
     public Menu getMenu() {
         return null;
+    }
+
+    public User (String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public void createProduction() {
+
+    }
+
+    public void createPerson(String name) {
+
     }
 
     public boolean authenticate(TextField one, TextField two) {
