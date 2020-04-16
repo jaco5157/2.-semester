@@ -1,6 +1,8 @@
 package dk.sdu.tek.domain;
 
-public class Person {
+import dk.sdu.tek.persistence.ObjectWriter;
+
+public class Person implements Writeable{
     private String name;
     private int personID;
     private String contactInfo;
@@ -38,5 +40,10 @@ public class Person {
     @Override
     public String toString() {
         return this.name + "," + this.personID + "," + this.contactInfo;
+    }
+
+    @Override
+    public void write() {
+        ObjectWriter.writeToFile("people.txt", this);
     }
 }

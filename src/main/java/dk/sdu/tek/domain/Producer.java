@@ -1,5 +1,6 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.presentation.Menu;
 import dk.sdu.tek.presentation.ProducerMenu;
 
@@ -14,6 +15,11 @@ public class Producer extends User {
 
     public Producer(String username, String password){
         super(username, password);
+    }
+
+    @Override
+    public void write() {
+        ObjectWriter.writeToFile("producers.txt", this);
     }
 
 
