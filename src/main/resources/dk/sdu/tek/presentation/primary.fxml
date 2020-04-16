@@ -51,7 +51,7 @@
       <ImageView fx:id="exit" fitHeight="18.0" fitWidth="20.0" layoutX="911.0" layoutY="20.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <RadioButton fx:id="adminbutton" layoutX="630.0" layoutY="481.0" mnemonicParsing="false" text="Admin" />
-      <Button fx:id="logind1" layoutX="532.0" layoutY="219.0" mnemonicParsing="false" onAction="#Login" prefHeight="67.0" prefWidth="318.0" style="-fx-background-color: D21E1E;" text="Log ind uden bruger" textFill="#f2f2f2">
+      <Button fx:id="visitorloginbutton" layoutX="532.0" layoutY="219.0" mnemonicParsing="false" onAction="#VisitorLogin" prefHeight="67.0" prefWidth="318.0" style="-fx-background-color: D21E1E;" text="Log ind uden bruger" textFill="#f2f2f2">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
