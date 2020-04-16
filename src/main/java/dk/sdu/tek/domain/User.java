@@ -32,6 +32,11 @@ public class User {
 
     }
 
+    @Override
+    public String toString() {
+        return this.username + "," + this.password;
+    }
+
     public boolean authenticate(TextField one, TextField two) {
         Scanner scan;
         String tempUsername = "";

@@ -1,18 +1,22 @@
 package dk.sdu.tek.persistance;
 
-import dk.sdu.tek.domain.*;
 
 import java.io.*;
-import java.util.Scanner;
 
-public class Writer {
+public class ObjectWriter {
 
-    public void writeToFile(String fileName, String object) {
+    private String fileName;
+
+    public ObjectWriter(String fileName) {
+        this.fileName = "src/main/java/dk/sdu/tek/domain/" + fileName;
+    }
+
+    public void writeToFile(String object) {
         FileWriter fileWriter = null;
         PrintWriter printWriter = null;
-        String directory = "src/main/java/dk/sdu/tek/domain/";
+
         try {
-            fileWriter = new FileWriter(directory+=fileName, true);
+            fileWriter = new FileWriter(this.fileName, true);
             printWriter = new PrintWriter(fileWriter);
             String textToAppend = object;
             printWriter.println(textToAppend);
