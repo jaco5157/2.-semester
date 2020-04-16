@@ -11,13 +11,9 @@ import java.util.Scanner;
 
 public class ObjectReader {
 
-    private Scanner scan;
+    private static Scanner scan;
 
-    public ObjectReader () {
-
-    }
-
-    public ArrayList<Production> readProductions() throws UnsupportedOperationException{
+    public static ArrayList<Production> readProductions() throws UnsupportedOperationException{
         String filepath = "src/main/java/dk/sdu/tek/domain/productions.txt";
         ArrayList<Production> productions = new ArrayList<>();
 
@@ -36,7 +32,7 @@ public class ObjectReader {
         }
     }
 
-    public ArrayList<Person> readPeople() throws UnsupportedOperationException{
+    public static ArrayList<Person> readPeople() throws UnsupportedOperationException{
         String filepath = "src/main/java/dk/sdu/tek/domain/people.txt";
         ArrayList<Person> people = new ArrayList<>();
 
@@ -55,7 +51,7 @@ public class ObjectReader {
         }
     }
 
-    public ArrayList<Producer> readProducers() throws UnsupportedOperationException{
+    public static ArrayList<Producer> readProducers() throws UnsupportedOperationException{
         String filepath = "src/main/java/dk/sdu/tek/domain/producers.txt";
         ArrayList<Producer> producers = new ArrayList<>();
 
@@ -74,7 +70,7 @@ public class ObjectReader {
         }
     }
 
-    public ArrayList<Admin> readAdmins() throws UnsupportedOperationException{
+    public static ArrayList<Admin> readAdmins() throws UnsupportedOperationException{
         String filepath = "src/main/java/dk/sdu/tek/domain/admins.txt";
         ArrayList<Admin> admins = new ArrayList<>();
 
@@ -93,7 +89,7 @@ public class ObjectReader {
         }
     }
 
-    public List<Credit> readCredits() throws UnsupportedOperationException{
+    public static List<Credit> readCredits() throws UnsupportedOperationException{
         String filepath = "src/main/java/dk/sdu/tek/domain/credits.txt";
         ArrayList<Credit> credits = new ArrayList<>();
 
