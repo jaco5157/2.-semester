@@ -1,14 +1,10 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistance.*;
+import dk.sdu.tek.persistance.ObjectWriter;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
 
-import java.io.*;
-import java.util.List;
-import java.util.Scanner;
-
-public class Admin extends User implements IO{
+public class Admin extends User implements Writeable {
     @Override
     public Menu getMenu() {
         return new AdminMenu();
@@ -23,13 +19,8 @@ public class Admin extends User implements IO{
     }
 
     @Override
-    public List read() {
-        return null;
-    }
-
-    @Override
     public void write() {
-        ObjectWriter.writeToFile("admins.txt", this.toString());
+        ObjectWriter.writeToFile("admins.txt", this);
     }
 
     /*

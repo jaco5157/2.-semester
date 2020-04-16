@@ -5,7 +5,7 @@ import dk.sdu.tek.presentation.ProducerMenu;
 
 public class Producer extends User {
 
-    private List<Production> productionList;
+    //private List<Production> productionList;
 
     @Override
     public Menu getMenu() {
@@ -17,7 +17,7 @@ public class Producer extends User {
     }
 
 
-    public List<Production> getProductionList() {
-        return productionList;
-    }
+//    public List<Production> getProductionList() {
+//        return productionList;
+//    }
 }
