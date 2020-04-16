@@ -1,23 +1,22 @@
 package dk.sdu.tek.domain;
 
 public class Person {
-    private String person;
+    private String name;
     private int personID;
     private String contactInfo;
 
     public Person(String person, int personID, String contactInfo){
-        this.person = person;
+        this.name = person;
         this.personID = personID;
         this.contactInfo = contactInfo;
     }
 
     public String getPerson() {
-
-        return person;
+        return name;
     }
 
     public void setPerson(String person) {
-        this.person = person;
+        this.name = person;
     }
 
     public String getContactInfo() {
@@ -38,7 +37,6 @@ public class Person {
 
     @Override
     public String toString() {
-        System.out.println(person + personID + contactInfo);
-        return null;
+        return this.name + "," + this.personID + "," + this.contactInfo;
     }
 }
