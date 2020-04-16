@@ -2,6 +2,14 @@ package dk.sdu.tek.domain;
 
 public class Credit {
     private String role;
+    private int personID;
+    private int productionId;
+
+    public Credit (int personID, int productionID, String role) {
+        this.personID = personID;
+        this.productionId = productionID;
+        this.role = role;
+    }
 
     public String getRole() {
         return role;
@@ -11,10 +19,20 @@ public class Credit {
         this.role = role;
     }
 
-    public Credit (Person person, Production production, String role) {
-        person.getPerson();
+    public int getPersonID() {
+        return personID;
+    }
 
-        this.role = role;
+    public void setPersonID(int personID) {
+        this.personID = personID;
+    }
+
+    public int getProductionId() {
+        return productionId;
+    }
+
+    public void setProductionId(int productionId) {
+        this.productionId = productionId;
     }
 
     @Override

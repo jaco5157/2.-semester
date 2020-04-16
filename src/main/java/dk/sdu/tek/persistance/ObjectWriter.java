@@ -5,18 +5,15 @@ import java.io.*;
 
 public class ObjectWriter {
 
-    private String fileName;
+    private static String path;
 
-    public ObjectWriter(String fileName) {
-        this.fileName = "src/main/java/dk/sdu/tek/domain/" + fileName;
-    }
-
-    public void writeToFile(String object) {
+    public static void writeToFile(String fileName, String object) {
         FileWriter fileWriter = null;
         PrintWriter printWriter = null;
+        path = "src/main/java/dk/sdu/tek/domain/" + fileName;
 
         try {
-            fileWriter = new FileWriter(this.fileName, true);
+            fileWriter = new FileWriter(fileName, true);
             printWriter = new PrintWriter(fileWriter);
             String textToAppend = object;
             printWriter.println(textToAppend);
