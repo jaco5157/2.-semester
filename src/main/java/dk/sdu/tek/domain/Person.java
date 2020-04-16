@@ -1,38 +1,24 @@
 package dk.sdu.tek.domain;
 
-import java.util.UUID;
-
 public class Person {
-    private String name;
+    private String person;
+    private int personID;
     private String contactInfo;
-    private UUID personID;
 
-
-    public Person(String name, UUID personID, String contactInfo) {
-        this.name = name;
+    public Person(String person, int personID, String contactInfo){
+        this.person = person;
         this.personID = personID;
         this.contactInfo = contactInfo;
     }
 
-    public UUID getPersonID() {
-        return personID;
+    public String getPerson() {
+
+        return person;
     }
 
-    public UUID setPersonID() {
-        //this.personID = personID;
-        personID = UUID.randomUUID();
-        return personID;
+    public void setPerson(String person) {
+        this.person = person;
     }
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     public String getContactInfo() {
         return contactInfo;
@@ -42,4 +28,17 @@ public class Person {
         this.contactInfo = contactInfo;
     }
 
+    public int getPersonID() {
+        return personID;
+    }
+
+    public void setPersonID(int personID) {
+        this.personID = personID;
+    }
+
+    @Override
+    public String toString() {
+        System.out.println(person + personID + contactInfo);
+        return null;
+    }
 }
