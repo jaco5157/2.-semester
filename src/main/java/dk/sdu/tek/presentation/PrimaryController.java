@@ -33,21 +33,21 @@ public class PrimaryController implements Initializable {
     private Stage stage;
     private double x = 0, y = 0;
 
-    @FXML
-    public void Login(ActionEvent actionEvent) throws IOException {
-        User user = new User();
-        Admin admin = new Admin();
-        Producer producer = new Producer();
-
-            if (user.authenticate(username, password) && adminbutton.isSelected() && username.getText().equals("admin")) {
-                admin.getMenu().show();
-            } else if(user.authenticate(username, password) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
-                producer.getMenu().show();
-            }
-            else {
-            errorlabel.setText("Login Error");
-            }
-    }
+//    @FXML
+//    public void Login(ActionEvent actionEvent) throws IOException {
+//        User user = new User();
+//        Admin admin = new Admin();
+//        Producer producer = new Producer();
+//
+//            if (user.authenticate(username, password) && adminbutton.isSelected() && username.getText().equals("admin")) {
+//                admin.getMenu().show();
+//            } else if(user.authenticate(username, password) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
+//                producer.getMenu().show();
+//            }
+//            else {
+//            errorlabel.setText("Login Error");
+//            }
+//    }
 
     @FXML
     public void VisitorLogin(ActionEvent actionEvent) throws IOException {

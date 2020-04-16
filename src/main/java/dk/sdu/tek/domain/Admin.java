@@ -29,7 +29,7 @@ public class Admin extends User implements IO{
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("admins.txt", this.toString());
+        ObjectWriter.writeToFile("admins.txt", this);
     }
 
     /*
