@@ -1,6 +1,8 @@
 package dk.sdu.tek.domain;
 
-public class Production {
+import dk.sdu.tek.persistence.ObjectWriter;
+
+public class Production implements Writeable{
     private String productionName;
     private int productionID;
 
@@ -27,6 +29,11 @@ public class Production {
 
     @Override
     public String toString() {
-        return this.productionName;
+        return this.productionName + "," + this.productionID;
+    }
+
+    @Override
+    public void write() {
+        ObjectWriter.writeToFile("productions.txt", this);
     }
 }

@@ -1,4 +1,4 @@
-package dk.sdu.tek.persistance;
+package dk.sdu.tek.persistence;
 
 import dk.sdu.tek.domain.*;
 
@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class ObjectReader {
 
+    private static String directory = "src/main/java/dk/sdu/tek/persistence/";
     public enum Type {
         PRODUCTION,
         PERSON,
@@ -18,16 +19,16 @@ public class ObjectReader {
         CREDIT
     }
 
-    public static ArrayList<Object> readObject(Type type) throws UnsupportedOperationException{
-        HashMap<Type,String> pathMap = new HashMap<>(){};
-        pathMap.put(Type.PRODUCTION, "src/main/java/dk/sdu/tek/domain/productions.txt");
-        pathMap.put(Type.PERSON, "src/main/java/dk/sdu/tek/domain/people.txt");
-        pathMap.put(Type.PRODUCER, "src/main/java/dk/sdu/tek/domain/producers.txt");
-        pathMap.put(Type.ADMIN, "src/main/java/dk/sdu/tek/domain/admins.txt");
-        pathMap.put(Type.CREDIT, "src/main/java/dk/sdu/tek/domain/credits.txt");
+    public static ArrayList<Object> readObject(Type type) {
+        HashMap<Type,String> file = new HashMap<>(){};
+        file.put(Type.PRODUCTION, "productions.txt");
+        file.put(Type.PERSON, "people.txt");
+        file.put(Type.PRODUCER, "producers.txt");
+        file.put(Type.ADMIN, "admins.txt");
+        file.put(Type.CREDIT, "credits.txt");
         ArrayList<Object> objects = new ArrayList<>();
 
-        try (Scanner objectScanner = new Scanner(new File(pathMap.get(type)))) {
+        try (Scanner objectScanner = new Scanner(new File(directory+file.get(type)))) {
             objectScanner.useDelimiter("[,\n]");
 
             switch (type) {
@@ -59,7 +60,7 @@ public class ObjectReader {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Person file not found");
+            System.out.println(file.get(type) + " not found");
         } finally {
             return objects;
         }

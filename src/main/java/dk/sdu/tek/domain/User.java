@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class User {
+public abstract class User implements Writeable {
 
     private String username;
     private String password;

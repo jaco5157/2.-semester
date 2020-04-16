@@ -1,6 +1,8 @@
 package dk.sdu.tek.domain;
 
-public class Credit {
+import dk.sdu.tek.persistence.ObjectWriter;
+
+public class Credit implements Writeable{
     private String role;
     private int personID;
     private int productionId;
@@ -37,6 +39,11 @@ public class Credit {
 
     @Override
     public String toString() {
-        return this.role;
+        return this.personID + "," + this.productionId + "," + this.role;
+    }
+
+    @Override
+    public void write() {
+        ObjectWriter.writeToFile("credits.txt", this);
     }
 }
