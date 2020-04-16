@@ -2,6 +2,7 @@ package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistance.ObjectReader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class main {
@@ -14,11 +15,11 @@ public class main {
         admin1.write();
         admin2.write();
         admin3.write();
-        List<Admin> adminList = ObjectReader.readAdmins();
+        ArrayList<Object> adminList = ObjectReader.readObject(ObjectReader.Type.ADMIN);
         System.out.println("Read from file using ObjectReader");
         System.out.println(adminList);
         System.out.println("Print single admin object");
         System.out.println(adminList.get(0));
-        System.out.println(adminList.get(4));
+        System.out.println(adminList.get(2));
     }
 }
