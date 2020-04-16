@@ -4,7 +4,7 @@ import dk.sdu.tek.domain.*;
 
 import java.util.List;
 
-public class Reader {
+public class ObjectReader {
 //    public List<Production> readProductions() throws UnsupportedOperationException{
 //
 //    }

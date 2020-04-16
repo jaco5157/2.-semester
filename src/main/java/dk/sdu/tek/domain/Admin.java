@@ -1,12 +1,14 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistance.*;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
 
 import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
-public class Admin extends User{
+public class Admin extends User implements IO{
     @Override
     public Menu getMenu() {
         return new AdminMenu();
@@ -19,6 +21,17 @@ public class Admin extends User{
     public void createProducer (String username, String password) {
         Producer producer1 = new Producer ("producer1", "pass123");
     }
+
+    @Override
+    public List read() {
+        return null;
+    }
+
+    @Override
+    public void write() {
+        new ObjectWriter("admins.txt").writeToFile(this.toString());
+    }
+
     /*
     public void createProducer(String username, String password) throws FileNotFoundException {
         username = "";
