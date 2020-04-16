@@ -1,0 +1,15 @@
+# General
+/build/
+
+# IntelliJ
+/target/
+nbproject/private/private.xml
+nbproject/private/private.properties
+target/
+
+# VS Code
+.vscode/
+/dist/
+
+# Mac
+.DS_Store

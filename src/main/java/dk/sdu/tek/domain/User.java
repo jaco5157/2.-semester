@@ -5,7 +5,6 @@ import javafx.scene.control.TextField;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class User {
@@ -13,7 +12,7 @@ public class User {
     private String username;
     private String password;
 
-    private URL url = getClass().getResource("members.txt");
+    //private URL url = getClass().getResource("members.txt");
     private String filepath = "src/main/java/dk/sdu/tek/domain/members.txt";
 
     public Menu getMenu() {
@@ -53,9 +52,6 @@ public class User {
             scan.close();
         } catch (FileNotFoundException ex) {
             System.out.println("Password file not found");
-        }
-        catch(Exception e) {
-            e.printStackTrace();
         }
         return false;
     }
