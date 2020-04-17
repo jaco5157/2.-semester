@@ -2,10 +2,8 @@ package dk.sdu.tek.presentation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import dk.sdu.tek.domain.Admin;
-import dk.sdu.tek.domain.Producer;
-import dk.sdu.tek.domain.User;
-import dk.sdu.tek.domain.Visitor;
+
+import dk.sdu.tek.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,9 +37,9 @@ public class PrimaryController implements Initializable {
 //        Admin admin = new Admin();
 //        Producer producer = new Producer();
 //
-//            if (user.authenticate(username, password) && adminbutton.isSelected() && username.getText().equals("admin")) {
+//            if (user.authenticate(username, password, adminbutton.isSelected()) && adminbutton.isSelected() && username.getText().equals("admin")) {
 //                admin.getMenu().show();
-//            } else if(user.authenticate(username, password) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
+//            } else if(user.authenticate(username, password, adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
 //                producer.getMenu().show();
 //            }
 //            else {
@@ -50,19 +48,11 @@ public class PrimaryController implements Initializable {
 //    }
 
     @FXML
-    public void VisitorLogin(ActionEvent actionEvent) throws IOException {
+    public void visitorLogin(ActionEvent actionEvent) throws IOException {
         Visitor visitor = new Visitor();
 
         if (visitorloginbutton.isPressed()) {
-            visitor.getMenu().show();
-        }
-    }
-
-    @FXML
-    public void VisitorLogin(ActionEvent actionEvent) throws IOException {
-        Visitor visitor = new Visitor();
-
-        if (visitorloginbutton.isPressed()) {
+            Singleton.getInstance().setCurrentUser(visitor);
             visitor.getMenu().show();
         }
     }
