@@ -14,9 +14,10 @@ import java.util.Scanner;
 public class CreditSystem {
     private Visitor currentUser;
 
-    public boolean authenticate(TextField username, TextField password, Boolean isAdmin) {
+    public boolean authenticate(String username, String password, Boolean isAdmin) {
         ArrayList<User> userList;
 
+        System.out.println(isAdmin);
         if(isAdmin) {
             userList = ObjectReader.readObject(ADMIN);
         } else {

@@ -33,19 +33,19 @@ public class PrimaryController implements Initializable {
 
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
-//        User user = new User();
-//        Admin admin = new Admin();
-//        Producer producer = new Producer();
-
+        Admin admin = null;
+        Producer producer = null;
 //            if (Singleton.getInstance().authenticate(username, password, adminbutton.isSelected()) && adminbutton.isSelected() && username.getText().equals("admin")) {
 //                Singleton.getInstance().getCurrentUser().getMenu().show();
 //            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
 //                Singleton.getInstance().getCurrentUser().getMenu().show();
 //            }
-            if (Singleton.getInstance().authenticate(username, password, adminbutton.isSelected())) {
-                Singleton.getInstance().getCurrentUser().getMenu().show();
-            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected())) {
-                Singleton.getInstance().getCurrentUser().getMenu().show();
+            if (Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
+                admin = (Admin)Singleton.getInstance().getCurrentUser();
+                admin.getMenu().show();
+            } else if(Singleton.getInstance().authenticate(username.getText(), password.getText(), !adminbutton.isSelected()) && !adminbutton.isSelected()) {
+                producer = (Producer) Singleton.getInstance().getCurrentUser();
+                producer.getMenu().show();
             }
             else {
             errorlabel.setText("Login Error");
