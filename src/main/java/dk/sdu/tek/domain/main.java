@@ -47,9 +47,9 @@ public class main {
 //        System.out.println(ObjectReader.readObject(ObjectReader.Type.PERSON));
 //        System.out.println(ObjectReader.readObject(ObjectReader.Type.CREDIT));
 
-        Production production1 = new Production("production1", 1);
-        Production production2 = new Production("production2", 2);
-        Production production3 = new Production("production3", 3);
+        Production production1 = new Production("production1", 1,1);
+        Production production2 = new Production("production2", 2,1);
+        Production production3 = new Production("production3", 3,1);
         System.out.println("Printing credits for production 1:");
         ArrayList<Credit> production1credits = production1.getCredits();
         for (Credit credit : production1credits) {

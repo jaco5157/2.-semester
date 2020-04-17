@@ -34,7 +34,7 @@ public class ObjectReader {
             switch (type) {
                 case PRODUCTION:
                     while (objectScanner.hasNext()) {
-                        objects.add(new Production(objectScanner.next(), objectScanner.nextInt()));
+                        objects.add(new Production(objectScanner.next(), objectScanner.nextInt(), objectScanner.nextInt()));
                     }
                     break;
                 case PERSON:
@@ -44,7 +44,7 @@ public class ObjectReader {
                     break;
                 case PRODUCER:
                     while (objectScanner.hasNext()) {
-                        objects.add(new Producer(objectScanner.next(), objectScanner.next()));
+                        objects.add(new Producer(objectScanner.next(), objectScanner.next(), objectScanner.nextInt()));
                     }
                     break;
                 case ADMIN:
