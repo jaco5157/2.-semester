@@ -36,4 +36,9 @@ public class Production implements Writeable{
     public void write() {
         ObjectWriter.writeToFile("productions.txt", this);
     }
+
+    public void addCredit(Person person, String role) {
+        Credit credit = new Credit(person, this, role);
+        credit.write();
+    }
 }

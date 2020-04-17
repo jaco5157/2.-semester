@@ -47,27 +47,4 @@ public abstract class User extends Visitor implements Writeable {
         return this.username + "," + this.password;
     }
 
-//    public boolean authenticate(TextField one, TextField two) {
-//        Scanner scan;
-//        String tempUsername = "";
-//        String tempPassword = "";
-//
-//        try {
-//            scan = new Scanner(new File(filepath));
-//            scan.useDelimiter("[,\n]");
-//
-//            while(scan.hasNext()) {
-//                tempUsername = scan.next();
-//                tempPassword = scan.next();
-//
-//                if(tempUsername.trim().equals(one.getText()) && tempPassword.trim().equals(two.getText())) {
-//                    return true;
-//                }
-//            }
-//            scan.close();
-//        } catch (FileNotFoundException ex) {
-//            System.out.println("Password file not found");
-//        }
-//        return false;
-//    }
 }
