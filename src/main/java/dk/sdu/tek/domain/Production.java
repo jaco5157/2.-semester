@@ -8,10 +8,20 @@ import java.util.ArrayList;
 public class Production implements Writeable{
     private String productionName;
     private int productionID;
+    private int producerID;
 
-    public Production(String productionName, int productionID){
+    public Production(String productionName, int productionID, int producerID){
         this.productionName = productionName;
         this.productionID = productionID;
+        this.producerID = producerID;
+    }
+
+    public String getProductionName() {
+        return this.productionName;
+    }
+
+    public void setProductionName(String productionName) {
+        this.productionName = productionName;
     }
 
     public int getProductionID () {
@@ -22,12 +32,12 @@ public class Production implements Writeable{
         this.productionID = productionID;
     }
 
-    public String getProductionName() {
-        return this.productionName;
+    public int getProducerID () {
+        return this.producerID;
     }
 
-    public void setProductionName(String productionName) {
-        this.productionName = productionName;
+    public void setProducerID (int producerID) {
+        this.producerID = producerID;
     }
 
     @Override
