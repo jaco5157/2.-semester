@@ -40,16 +40,26 @@ public class PrimaryController implements Initializable {
 //            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
 //                Singleton.getInstance().getCurrentUser().getMenu().show();
 //            }
+        //
+        //
+        try {
             if (Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
                 admin = (Admin)Singleton.getInstance().getCurrentUser();
-                admin.getMenu().show();
-            } else if(Singleton.getInstance().authenticate(username.getText(), password.getText(), !adminbutton.isSelected()) && !adminbutton.isSelected()) {
+                AdminMenu menu = (AdminMenu)admin.getMenu();
+                menu.show();
+            } else if(Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && !adminbutton.isSelected()) {
                 producer = (Producer) Singleton.getInstance().getCurrentUser();
-                producer.getMenu().show();
+                ProducerMenu menu = (ProducerMenu)producer.getMenu();
+                menu.show();
             }
             else {
-            errorlabel.setText("Login Error");
+                errorlabel.setText("Login Error");
             }
+        }
+        catch (ClassCastException ex) {
+            errorlabel.setText("Login Error");
+        }
+
     }
 
     @FXML
