@@ -31,4 +31,5 @@ public class CreditSystem {
     public Visitor getCurrentUser() {
         return currentUser;
     }
+
 }
