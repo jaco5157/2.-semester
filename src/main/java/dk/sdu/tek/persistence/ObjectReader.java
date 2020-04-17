@@ -19,14 +19,14 @@ public class ObjectReader {
         CREDIT
     }
 
-    public static ArrayList<Object> readObject(Type type) {
+    public static ArrayList readObject(Type type) {
         HashMap<Type,String> file = new HashMap<>(){};
         file.put(Type.PRODUCTION, "productions.txt");
         file.put(Type.PERSON, "people.txt");
         file.put(Type.PRODUCER, "producers.txt");
         file.put(Type.ADMIN, "admins.txt");
         file.put(Type.CREDIT, "credits.txt");
-        ArrayList<Object> objects = new ArrayList<>();
+        ArrayList objects = new ArrayList<>();
 
         try (Scanner objectScanner = new Scanner(new File(directory+file.get(type)))) {
             objectScanner.useDelimiter("[,\n]");

@@ -31,21 +31,26 @@ public class PrimaryController implements Initializable {
     private Stage stage;
     private double x = 0, y = 0;
 
-//    @FXML
-//    public void Login(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void Login(ActionEvent actionEvent) throws IOException {
 //        User user = new User();
 //        Admin admin = new Admin();
 //        Producer producer = new Producer();
-//
-//            if (user.authenticate(username, password, adminbutton.isSelected()) && adminbutton.isSelected() && username.getText().equals("admin")) {
-//                admin.getMenu().show();
-//            } else if(user.authenticate(username, password, adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
-//                producer.getMenu().show();
+
+//            if (Singleton.getInstance().authenticate(username, password, adminbutton.isSelected()) && adminbutton.isSelected() && username.getText().equals("admin")) {
+//                Singleton.getInstance().getCurrentUser().getMenu().show();
+//            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
+//                Singleton.getInstance().getCurrentUser().getMenu().show();
 //            }
-//            else {
-//            errorlabel.setText("Login Error");
-//            }
-//    }
+            if (Singleton.getInstance().authenticate(username, password, adminbutton.isSelected())) {
+                Singleton.getInstance().getCurrentUser().getMenu().show();
+            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected())) {
+                Singleton.getInstance().getCurrentUser().getMenu().show();
+            }
+            else {
+            errorlabel.setText("Login Error");
+            }
+    }
 
     @FXML
     public void visitorLogin(ActionEvent actionEvent) throws IOException {
