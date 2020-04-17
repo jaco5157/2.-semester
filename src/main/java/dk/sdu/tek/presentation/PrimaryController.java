@@ -35,13 +35,6 @@ public class PrimaryController implements Initializable {
     public void Login(ActionEvent actionEvent) throws IOException {
         Admin admin = null;
         Producer producer = null;
-//            if (Singleton.getInstance().authenticate(username, password, adminbutton.isSelected()) && adminbutton.isSelected() && username.getText().equals("admin")) {
-//                Singleton.getInstance().getCurrentUser().getMenu().show();
-//            } else if(Singleton.getInstance().authenticate(username, password, !adminbutton.isSelected()) && !adminbutton.isSelected() && !username.getText().equals("admin")) {
-//                Singleton.getInstance().getCurrentUser().getMenu().show();
-//            }
-        //
-        //
         try {
             if (Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
                 admin = (Admin)Singleton.getInstance().getCurrentUser();
@@ -66,10 +59,10 @@ public class PrimaryController implements Initializable {
     public void visitorLogin(ActionEvent actionEvent) throws IOException {
         Visitor visitor = new Visitor();
 
-        if (visitorloginbutton.isPressed()) {
-            Singleton.getInstance().setCurrentUser(visitor);
-            visitor.getMenu().show();
-        }
+        Singleton.getInstance().setCurrentUser(visitor);
+        VisitorMenu menu = (VisitorMenu)visitor.getMenu();
+        menu.show();
+        
     }
 
     @FXML
