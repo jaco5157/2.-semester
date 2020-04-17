@@ -1,5 +1,6 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.ObjectReader;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -13,7 +14,7 @@ public class CreditSystem {
         String tempUsername = "";
         String tempPassword = "";
 
-
+        ObjectReader.readObject()
 
         if(tempUsername.trim().equals(one.getText()) && tempPassword.trim().equals(two.getText())) {
             return true;
