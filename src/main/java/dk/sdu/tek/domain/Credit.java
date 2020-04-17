@@ -4,12 +4,12 @@ import dk.sdu.tek.persistence.ObjectWriter;
 
 public class Credit implements Writeable{
     private String role;
-    private Person person;
-    private Production production;
+    private int personID;
+    private int productionID;
 
-    public Credit (Person person, Production production, String role) {
-        this.production = production;
-        this.person = person;
+    public Credit (int personID, int productionID, String role) {
+        this.productionID = productionID;
+        this.personID = personID;
         this.role = role;
     }
 
@@ -21,25 +21,25 @@ public class Credit implements Writeable{
         this.role = role;
     }
 
-    public Person getPerson() {
-        return this.person;
+    public int getPersonID() {
+        return this.personID;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersonID(int personID) {
+        this.personID = personID;
     }
 
-    public Production getProduction() {
-        return this.production;
+    public int getProductionID() {
+        return this.productionID;
     }
 
-    public void setProduction(Production production) {
-        this.production = production;
+    public void setProductionID(int productionID) {
+        this.productionID = productionID;
     }
 
     @Override
     public String toString() {
-        return this.person.getPersonID() + "," + this.production.getProductionID() + "," + this.role;
+        return this.personID + "," + this.productionID + "," + this.role;
     }
 
     @Override
