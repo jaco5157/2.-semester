@@ -16,8 +16,6 @@ public class CreditSystem {
 
     public boolean authenticate(String username, String password, Boolean isAdmin) {
         ArrayList<User> userList;
-
-        System.out.println(isAdmin);
         if(isAdmin) {
             userList = ObjectReader.readObject(ADMIN);
         } else {

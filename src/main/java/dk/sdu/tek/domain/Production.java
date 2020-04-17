@@ -1,6 +1,9 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.ObjectWriter;
+
+import java.util.ArrayList;
 
 public class Production implements Writeable{
     private String productionName;
@@ -35,5 +38,23 @@ public class Production implements Writeable{
     @Override
     public void write() {
         ObjectWriter.writeToFile("productions.txt", this);
+    }
+
+    public void addCredit(int personID, String role) {
+        Credit credit = new Credit(personID, this.getProductionID(), role);
+        credit.write();
+    }
+
+    public ArrayList<Credit> getCredits () {
+        ArrayList<Credit> credits = new ArrayList<>();
+        ArrayList<Credit> fullList = ObjectReader.readObject(ObjectReader.Type.CREDIT);
+
+        for (Credit credit : fullList) {
+            if(credit.getProductionID() == this.getProductionID()) {
+                credits.add(credit);
+            }
+        }
+
+        return credits;
     }
 }
