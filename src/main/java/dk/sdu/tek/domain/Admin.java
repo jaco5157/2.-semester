@@ -14,8 +14,9 @@ public class Admin extends User {
         super(username, password);
     }
 
-    public void createProducer (String username, String password) {
-        Producer producer1 = new Producer ("producer1", "pass123");
+    public void createProducer (String username, String password, int Production) {
+        Producer producer = new Producer (username, password, Production);
+        producer.write();
     }
 
     @Override
