@@ -24,27 +24,4 @@ public class Admin extends User {
         ObjectWriter.writeToFile("admins.txt", this);
     }
 
-    /*
-    public void createProducer(String username, String password) throws FileNotFoundException {
-        username = "";
-        password = "";
-        try {
-            Scanner in = new Scanner(System.in);
-            in.useDelimiter("[,\n]");
-            FileWriter outFile = new FileWriter("members.txt", true);
-            BufferedWriter bw = new BufferedWriter(outFile);
-            PrintWriter out = new PrintWriter(outFile);
-
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                out.println(line);
-            }
-            System.out.println("Producer has been added");
-            out.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-  */
 }
