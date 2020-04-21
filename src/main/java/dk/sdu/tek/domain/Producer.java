@@ -39,6 +39,7 @@ public class Producer extends User {
         return this.getUsername() + "," + this.getPassword() + "," + this.getProducerID();
     }
 
+    @Override
     public ArrayList<Production> getProductions () {
         ArrayList<Production> productions = new ArrayList<>();
         ArrayList<Production> fullList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);

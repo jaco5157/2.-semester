@@ -1,6 +1,9 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.presentation.Menu;
+
+import java.util.ArrayList;
 
 public abstract class User extends Visitor implements Writeable {
 
@@ -36,5 +39,7 @@ public abstract class User extends Visitor implements Writeable {
     public String toString() {
         return this.username + "," + this.password;
     }
+
+    public abstract ArrayList<Production> getProductions ();
 
 }
