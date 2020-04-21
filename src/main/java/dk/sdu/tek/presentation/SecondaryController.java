@@ -116,7 +116,6 @@ public class SecondaryController implements Initializable {
         admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
-
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
         producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
