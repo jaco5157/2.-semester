@@ -4,6 +4,8 @@ import dk.sdu.tek.persistence.ObjectReader;
 
 import java.util.ArrayList;
 
+import static dk.sdu.tek.persistence.ObjectReader.Type.*;
+
 public class main {
     //Test class
     public static void main(String[] args) {
@@ -47,14 +49,45 @@ public class main {
 //        System.out.println(ObjectReader.readObject(ObjectReader.Type.PERSON));
 //        System.out.println(ObjectReader.readObject(ObjectReader.Type.CREDIT));
 
-        Production production1 = new Production("production1", 1,1);
-        Production production2 = new Production("production2", 2,1);
-        Production production3 = new Production("production3", 3,1);
-        System.out.println("Printing credits for production 1:");
-        ArrayList<Credit> production1credits = production1.getCredits();
-        for (Credit credit : production1credits) {
-            System.out.println(credit);
-        }
+//        Production production1 = new Production("production1", 1,1);
+//        Production production2 = new Production("production2", 2,1);
+//        Production production3 = new Production("production3", 3,1);
+//        System.out.println("Printing credits for production 1:");
+//        ArrayList<Credit> production1credits = production1.getCredits();
+//        for (Credit credit : production1credits) {
+//            System.out.println(credit);
+//        }
+
+//        Person person = new Person("person", 1, "person@person.dk");
+//        Producer producer = new Producer("username", "password",1);
+//        Production production = new Production("prodname", 1, 1);
+//        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole");
+//        producer.write();
+//        production.write();
+//        person.write();
+//        credit.write();
+//        Admin admin = new Admin("admin","password");
+//        Admin admin2 = new Admin("admin2","password2");
+//        Admin admin3 = new Admin("admin3","password3");
+//        admin.write();
+//        admin2.write();
+//        admin3.write();
+
+        System.out.println("Admins: ");
+        System.out.println(ObjectReader.readObject(ADMIN));
+
+        System.out.println("\nProducers: ");
+        System.out.println(ObjectReader.readObject(PRODUCER));
+
+        System.out.println("\nProductions: ");
+        System.out.println(ObjectReader.readObject(PRODUCTION));
+
+        System.out.println("\nCredits: ");
+        System.out.println(ObjectReader.readObject(CREDIT));
+
+        System.out.println("\nPeople: ");
+        System.out.println(ObjectReader.readObject(PERSON));
+
 
     }
 }

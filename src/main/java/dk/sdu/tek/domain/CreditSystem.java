@@ -10,11 +10,13 @@ public class CreditSystem {
 
     public boolean authenticate(String username, String password, Boolean isAdmin) {
         ArrayList<User> userList;
+        System.out.println("Is admin: " + isAdmin);
         if(isAdmin) {
             userList = ObjectReader.readObject(ADMIN);
         } else {
             userList = ObjectReader.readObject(PRODUCER);
         }
+        System.out.println(userList);
         for (User user : userList) {
             if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                 setCurrentUser(user);
