@@ -98,6 +98,5 @@ public class SecondaryController implements Initializable {
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
-
     }
 }
