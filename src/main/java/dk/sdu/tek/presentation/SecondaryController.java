@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dk.sdu.tek.domain.Admin;
-import dk.sdu.tek.domain.Producer;
-import dk.sdu.tek.domain.Singleton;
-import dk.sdu.tek.domain.Visitor;
+import dk.sdu.tek.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -106,19 +103,23 @@ public class SecondaryController implements Initializable {
         admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
     }
 
-    public void adminCreatePerson(ActionEvent event) {
-        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
-    }
-
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
-
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
         producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
+    }
+
+    public void producerCreateCredit(ActionEvent event) {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
+    }
+
+    public void createPerson(ActionEvent event) {
+        User user = (User)Singleton.getInstance().getCurrentUser();
+        user.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
     }
 }
