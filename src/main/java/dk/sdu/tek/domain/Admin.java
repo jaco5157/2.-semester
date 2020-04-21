@@ -22,8 +22,8 @@ public class Admin extends User {
         return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
     }
 
-    public void createProducer (String username, String password, int Production) {
-        Producer producer = new Producer (username, password, Production);
+    public void createProducer (String username, String password, int producerID) {
+        Producer producer = new Producer (username, password, producerID);
         producer.write();
     }
 
