@@ -8,6 +8,7 @@ import dk.sdu.tek.domain.Admin;
 import dk.sdu.tek.domain.Producer;
 import dk.sdu.tek.domain.Singleton;
 import dk.sdu.tek.domain.Visitor;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -95,38 +96,26 @@ public class SecondaryController implements Initializable {
         App.setImageForImageView(exit, "red-x-mark.png");
     }
 
-    //Admin functionality
-//    public void adminEventHandler (ActionEvent event) {
-//        if (event.getSource() == adminCreateProducerButton) {
-//
-//        } else if (event.getSource() == adminCreateProductionButton) {
-//
-//        } else if (event.getSource() == createPersonButton) {
-//
-//        } else if (event.getSource() == adminCreateCreditButton) {
-//
-//        }
-//    }
-
-    public void adminCreateProducer() {
+    public void adminCreateProducer(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
     }
 
-    public void adminCreateProduction() {
+    public void adminCreateProduction(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
     }
 
-    public void adminCreatePerson() {
+    public void adminCreatePerson(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
     }
 
-    public void adminCreateCredit() {
+    public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.get
+        admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
+
 
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
