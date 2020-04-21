@@ -40,7 +40,17 @@ public class Producer extends User {
     }
 
     @Override
-    public ArrayList<Production> getProductions () {
+    public Production getProduction(int productionID) {
+        for(Production production : this.getProductions()) {
+            if(production.getProductionID() == productionID) {
+                return production;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Production> getProductions() {
         ArrayList<Production> productions = new ArrayList<>();
         ArrayList<Production> fullList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
 

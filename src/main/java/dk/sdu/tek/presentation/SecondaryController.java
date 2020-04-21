@@ -104,11 +104,12 @@ public class SecondaryController implements Initializable {
 
     public void adminCreatePerson() {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+        admin.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
     }
 
-    public void adminCreateProduction() {
+    public void adminCreateCredit() {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+        admin.get
+
     }
 }
