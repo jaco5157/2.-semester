@@ -109,7 +109,7 @@ public class SecondaryController implements Initializable {
 
     public void adminCreateCredit() {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.get
+        admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
 
     }
 }
