@@ -1,19 +1,11 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.presentation.Menu;
-import javafx.scene.control.TextField;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public abstract class User extends Visitor implements Writeable {
 
     private String username;
     private String password;
-
-    //private URL url = getClass().getResource("members.txt");
-    private String filepath = "src/main/java/dk/sdu/tek/domain/members.txt";
 
     public Menu getMenu() {
         return null;

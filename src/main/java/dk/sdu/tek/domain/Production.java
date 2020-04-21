@@ -1,14 +1,27 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.ObjectWriter;
+
+import java.util.ArrayList;
 
 public class Production implements Writeable{
     private String productionName;
     private int productionID;
+    private int producerID;
 
-    public Production(String productionName, int productionID){
+    public Production(String productionName, int productionID, int producerID){
         this.productionName = productionName;
         this.productionID = productionID;
+        this.producerID = producerID;
+    }
+
+    public String getProductionName() {
+        return this.productionName;
+    }
+
+    public void setProductionName(String productionName) {
+        this.productionName = productionName;
     }
 
     public int getProductionID () {
@@ -19,12 +32,12 @@ public class Production implements Writeable{
         this.productionID = productionID;
     }
 
-    public String getProductionName() {
-        return this.productionName;
+    public int getProducerID () {
+        return this.producerID;
     }
 
-    public void setProductionName(String productionName) {
-        this.productionName = productionName;
+    public void setProducerID (int producerID) {
+        this.producerID = producerID;
     }
 
     @Override
@@ -37,8 +50,21 @@ public class Production implements Writeable{
         ObjectWriter.writeToFile("productions.txt", this);
     }
 
-    public void addCredit(Person person, String role) {
-        Credit credit = new Credit(person, this, role);
+    public void addCredit(int personID, String role) {
+        Credit credit = new Credit(personID, this.getProductionID(), role);
         credit.write();
+    }
+
+    public ArrayList<Credit> getCredits () {
+        ArrayList<Credit> credits = new ArrayList<>();
+        ArrayList<Credit> fullList = ObjectReader.readObject(ObjectReader.Type.CREDIT);
+
+        for (Credit credit : fullList) {
+            if(credit.getProductionID() == this.getProductionID()) {
+                credits.add(credit);
+            }
+        }
+
+        return credits;
     }
 }
