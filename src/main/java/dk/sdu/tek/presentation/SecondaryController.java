@@ -46,6 +46,22 @@ public class SecondaryController implements Initializable {
     @FXML private TextField adminCreateCreditProductionID;
     @FXML private Button adminCreateCreditButton;
 
+    //Producer fields
+    @FXML private TextField producerCreateProductionName;
+    @FXML private TextField producerCreateProductionID;
+    @FXML private TextField producerCreateProductionProdID;
+    @FXML private Button producerCreateProductionButton;
+
+    @FXML private TextField producerCreatePersonName;
+    @FXML private TextField producerCreatePersonInfo;
+    @FXML private TextField producerCreatePersonID;
+    @FXML private Button producercreatePersonButton;
+
+    @FXML private TextField producerCreateCreditID;
+    @FXML private TextField producerCreateCreditRole;
+    @FXML private TextField producerCreateCreditProductionID;
+    @FXML private Button producerCreateCreditButton;
+
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -98,5 +114,10 @@ public class SecondaryController implements Initializable {
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
+    }
+
+    public void producerCreateProduction() {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
     }
 }
