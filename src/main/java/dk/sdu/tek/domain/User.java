@@ -16,8 +16,8 @@ public abstract class User extends Visitor implements Writeable {
         this.password = password;
     }
 
-    public void createProduction(String productionName, int productionID) {
-        Production production = new Production(productionName, productionID);
+    public void createProduction(String productionName, int productionID, int producerID) {
+        Production production = new Production(productionName, productionID, producerID);
         production.write();
     }
 
