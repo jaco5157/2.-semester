@@ -1,2 +1,3 @@
-prodname,1,1,
-prodname,1,1,
+prodname,1,1
+prodname,1,1
+testproduction,2,2

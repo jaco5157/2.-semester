@@ -51,26 +51,26 @@
          <content>
             <AnchorPane fx:id="anchorpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                <children>
-                  <TextField fx:id="createPrroducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Username" />
+                  <TextField fx:id="createProducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Username" />
                   <Text layoutX="90.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret producer" wrappingWidth="117.13671875" />
-                  <TextField fx:id="createPrroducerPassword" layoutX="73.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Password" />
+                  <TextField fx:id="createProducerPassword" layoutX="73.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Password" />
                   <Text layoutX="293.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
                   <Text layoutX="525.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
                   <Text layoutX="756.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
                   <TextField fx:id="adminCreateProductionName" layoutX="293.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
                   <TextField fx:id="adminCreatePersonName" layoutX="525.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
                   <TextField fx:id="adminCreateCreditID" layoutX="756.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
-                  <TextField fx:id="createPrroducerID" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
-                  <Button fx:id="adminCreateProducerButton" layoutX="73.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <TextField fx:id="createProducerID" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
+                  <Button fx:id="adminCreateProducerButton" layoutX="73.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProducer" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                   <TextField fx:id="adminCreateProductionID" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
                   <TextField fx:id="adminCreateProductionProdID" layoutX="293.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
                   <TextField fx:id="adminCreatePersonInfo" layoutX="525.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
                   <TextField fx:id="adminCreatePersonID" layoutX="525.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
                   <TextField fx:id="adminCreateCreditRole" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
                   <TextField fx:id="adminCreateCreditProductionID" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                  <Button fx:id="adminCreateCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <Button fx:id="adminCreateCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreatePerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                </children></AnchorPane>
          </content>
       </Tab>
