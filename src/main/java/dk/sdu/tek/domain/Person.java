@@ -7,8 +7,8 @@ public class Person implements Writeable{
     private int personID;
     private String contactInfo;
 
-    public Person(String person, int personID, String contactInfo){
-        this.name = person;
+    public Person(String name, int personID, String contactInfo){
+        this.name = name;
         this.personID = personID;
         this.contactInfo = contactInfo;
     }

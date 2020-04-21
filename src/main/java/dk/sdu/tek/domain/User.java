@@ -16,12 +16,14 @@ public abstract class User extends Visitor implements Writeable {
         this.password = password;
     }
 
-    public void createProduction() {
-
+    public void createProduction(String productionName, int productionID) {
+        Production production = new Production(productionName, productionID);
+        production.write();
     }
 
-    public void createPerson(String name) {
-
+    public void createPerson(String name, int personID, String contactInfo) {
+        Person person = new Person(name, personID, contactInfo);
+        person.write();
     }
 
     public String getUsername () {
