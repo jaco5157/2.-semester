@@ -24,6 +24,8 @@ public abstract class User extends Visitor implements Writeable {
         person.write();
     }
 
+    public abstract Production getProduction(int productionID);
+
     public String getUsername () {
         return this.username;
     }
