@@ -56,6 +56,5 @@ public class main {
             System.out.println(credit);
         }
 
-
     }
 }
