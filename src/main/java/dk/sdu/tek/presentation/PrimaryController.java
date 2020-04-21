@@ -29,27 +29,6 @@ public class PrimaryController implements Initializable {
     @FXML private ImageView exit;
     @FXML private Button visitorloginbutton;
 
-    //Admin fields
-    @FXML private TextField createProducerUsername;
-    @FXML private TextField createProducerPassword;
-    @FXML private TextField createProducerID;
-    @FXML private Button adminCreateProducerButton;
-
-    @FXML private TextField adminCreateProductionName;
-    @FXML private TextField adminCreateProductionID;
-    @FXML private TextField adminCreateProductionProdID;
-    @FXML private Button adminCreateProductionButton;
-
-    @FXML private TextField adminCreatePersonName;
-    @FXML private TextField adminCreatePersonInfo;
-    @FXML private TextField adminCreatePersonID;
-    @FXML private Button createPersonButton;
-
-    @FXML private TextField adminCreateCreditID;
-    @FXML private TextField adminCreateCreditRole;
-    @FXML private TextField adminCreateCreditProductionID;
-    @FXML private Button adminCreateCreditButton;
-
     private Stage stage;
     private double x = 0, y = 0;
     private Admin admin = null;
@@ -113,23 +92,6 @@ public class PrimaryController implements Initializable {
         App.setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
         App.setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
-    }
-
-    //Admin functionality
-//    public void adminEventHandler (ActionEvent event) {
-//        if (event.getSource() == adminCreateProducerButton) {
-//
-//        } else if (event.getSource() == adminCreateProductionButton) {
-//
-//        } else if (event.getSource() == createPersonButton) {
-//
-//        } else if (event.getSource() == adminCreateCreditButton) {
-//
-//        }
-//    }
-
-    public void adminCreateProducer() {
-        admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
     }
 
 }
