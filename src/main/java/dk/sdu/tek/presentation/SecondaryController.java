@@ -108,6 +108,11 @@ public class SecondaryController implements Initializable {
         admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
+    public void adminCreatePerson(ActionEvent event) {
+        User user = (User)Singleton.getInstance().getCurrentUser();
+        user.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
+    }
+
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
         producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
@@ -115,11 +120,11 @@ public class SecondaryController implements Initializable {
 
     public void producerCreateCredit(ActionEvent event) {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
+        producer.getProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
     }
 
-    public void createPerson(ActionEvent event) {
-        User user = (User)Singleton.getInstance().getCurrentUser();
-        user.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
+    public void producerCreatePerson(ActionEvent event) {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.createPerson(producerCreatePersonName.getText(),Integer.parseInt(producerCreatePersonID.getText()),producerCreatePersonInfo.getText());
     }
 }
