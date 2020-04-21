@@ -61,7 +61,7 @@
                   <TextField fx:id="producerCreateCreditRole" layoutX="511.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
                   <TextField fx:id="producerCreateCreditProductionID" layoutX="511.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
                   <Button fx:id="producerCreateCreditButton" layoutX="509.0" layoutY="237.0" mnemonicParsing="false" onAction="#producerCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="producercreatePersonButton" layoutX="288.0" layoutY="237.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <Button fx:id="producercreatePersonButton" layoutX="288.0" layoutY="237.0" mnemonicParsing="false" onAction="#producerCreatePerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                   <Button fx:id="producerCreateProductionButton" layoutX="79.0" layoutY="237.0" mnemonicParsing="false" onAction="#producerCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                </children></AnchorPane>
          </content>

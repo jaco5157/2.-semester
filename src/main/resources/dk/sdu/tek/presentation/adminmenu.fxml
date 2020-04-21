@@ -69,7 +69,7 @@
                   <TextField fx:id="adminCreateCreditRole" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
                   <TextField fx:id="adminCreateCreditProductionID" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
                   <Button fx:id="adminCreateCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                  <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreatePerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                   <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                </children></AnchorPane>
          </content>
