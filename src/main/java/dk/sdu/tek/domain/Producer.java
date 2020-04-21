@@ -52,4 +52,9 @@ public class Producer extends User {
 
         return productions;
     }
+
+    public void createProduction(String productionName, int productionID) {
+        Production production = new Production(productionName, productionID, this.getProducerID());
+        production.write();
+    }
 }

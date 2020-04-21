@@ -27,6 +27,11 @@ public class Admin extends User {
         producer.write();
     }
 
+    public void createProduction(String productionName, int productionID, int producerID) {
+        Production production = new Production(productionName, productionID, producerID);
+        production.write();
+    }
+
     @Override
     public void write() {
         ObjectWriter.writeToFile("admins.txt", this);

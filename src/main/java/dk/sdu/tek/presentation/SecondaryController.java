@@ -3,9 +3,15 @@ package dk.sdu.tek.presentation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dk.sdu.tek.domain.Admin;
+import dk.sdu.tek.domain.Producer;
+import dk.sdu.tek.domain.Singleton;
+import dk.sdu.tek.domain.Visitor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -17,6 +23,28 @@ public class SecondaryController implements Initializable {
     @FXML private AnchorPane anchorpane;
     @FXML private ImageView logo;
     @FXML private ImageView exit;
+
+    //Admin fields
+    @FXML private TextField createProducerUsername;
+    @FXML private TextField createProducerPassword;
+    @FXML private TextField createProducerID;
+    @FXML private Button adminCreateProducerButton;
+
+    @FXML private TextField adminCreateProductionName;
+    @FXML private TextField adminCreateProductionID;
+    @FXML private TextField adminCreateProductionProdID;
+    @FXML private Button adminCreateProductionButton;
+
+    @FXML private TextField adminCreatePersonName;
+    @FXML private TextField adminCreatePersonInfo;
+    @FXML private TextField adminCreatePersonID;
+    @FXML private Button createPersonButton;
+
+    @FXML private TextField adminCreateCreditID;
+    @FXML private TextField adminCreateCreditRole;
+    @FXML private TextField adminCreateCreditProductionID;
+    @FXML private Button adminCreateCreditButton;
+
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -51,4 +79,36 @@ public class SecondaryController implements Initializable {
         App.setImageForImageView(exit, "red-x-mark.png");
     }
 
+    //Admin functionality
+//    public void adminEventHandler (ActionEvent event) {
+//        if (event.getSource() == adminCreateProducerButton) {
+//
+//        } else if (event.getSource() == adminCreateProductionButton) {
+//
+//        } else if (event.getSource() == createPersonButton) {
+//
+//        } else if (event.getSource() == adminCreateCreditButton) {
+//
+//        }
+//    }
+
+    public void adminCreateProducer() {
+        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+        admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
+    }
+
+    public void adminCreateProduction() {
+        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+    }
+
+    public void adminCreatePerson() {
+        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+    }
+
+    public void adminCreateProduction() {
+        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+    }
 }

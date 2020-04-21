@@ -28,13 +28,15 @@ public class PrimaryController implements Initializable {
     @FXML private ImageView smallLogo;
     @FXML private ImageView exit;
     @FXML private Button visitorloginbutton;
+
     private Stage stage;
     private double x = 0, y = 0;
+    private Admin admin = null;
+    private Producer producer = null;
+    private Visitor visitor = null;
 
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
-        Admin admin = null;
-        Producer producer = null;
         try {
             if (Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
                 admin = (Admin)Singleton.getInstance().getCurrentUser();
@@ -57,7 +59,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     public void visitorLogin(ActionEvent actionEvent) throws IOException {
-        Visitor visitor = new Visitor();
+        visitor = new Visitor();
 
         Singleton.getInstance().setCurrentUser(visitor);
         VisitorMenu menu = (VisitorMenu)visitor.getMenu();
@@ -91,6 +93,5 @@ public class PrimaryController implements Initializable {
         App.setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
     }
-
 
 }
