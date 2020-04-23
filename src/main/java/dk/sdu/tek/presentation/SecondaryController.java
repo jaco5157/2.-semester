@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -22,7 +21,7 @@ public class SecondaryController implements Initializable {
     @FXML private AnchorPane anchorpane;
     @FXML private ImageView logo;
     @FXML private ImageView exit;
-    @FXML private TabPane Wrapper;
+    @FXML private TabPane wrapper;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -76,12 +75,12 @@ public class SecondaryController implements Initializable {
 
     @FXML
     public void makeDragable() {
-        Wrapper.setOnMousePressed(((mouseEvent) -> {
+        wrapper.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
         }));
 
-        Wrapper.setOnMouseDragged(((mouseEvent) -> {
+        wrapper.setOnMouseDragged(((mouseEvent) -> {
             stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setX(mouseEvent.getScreenX() - x);
             stage.setY(mouseEvent.getScreenY() - y);
