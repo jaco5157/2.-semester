@@ -12,67 +12,72 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="wrapper" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
-   <tabs>
-      <Tab text="TV2">
-         <content>
-            <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-               <children>
-                  <Button layoutX="322.0" layoutY="202.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
-                  <TextField layoutX="89.0" layoutY="202.0" prefHeight="25.0" prefWidth="219.0" />
-                  <Label layoutX="89.0" layoutY="177.0" text="Søg efter indhold" />
-                  <Button layoutX="864.0" layoutY="559.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
-                  <Button layoutX="470.0" layoutY="559.0" mnemonicParsing="false" text="Rediger" />
-                  <Button layoutX="548.0" layoutY="559.0" mnemonicParsing="false" text="Slet" />
-                  <MenuButton layoutX="308.0" layoutY="559.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Opret" visible="false">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Kreditering" />
-                        <MenuItem mnemonicParsing="false" text="Produktion" />
-                        <MenuItem mnemonicParsing="false" text="Bruger" />
-                        <MenuItem mnemonicParsing="false" text="Medvirkende" />
-                     </items>
-                  </MenuButton>
-                  <MenuButton layoutX="89.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Se alle">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Krediteringer" />
-                        <MenuItem mnemonicParsing="false" text="Produktioner" />
-                        <MenuItem mnemonicParsing="false" text="Brugere" />
-                        <MenuItem mnemonicParsing="false" text="Medvirkende" />
-                     </items>
-                  </MenuButton>
-                  <ListView layoutX="470.0" layoutY="56.0" prefHeight="476.0" prefWidth="444.0" />
-                  <ImageView fx:id="logo" fitHeight="94.0" fitWidth="137.0" layoutX="89.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="exit" fitHeight="20.0" fitWidth="20.0" layoutX="890.0" layoutY="14.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Opret">
-         <content>
-            <AnchorPane fx:id="anchorpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-               <children>
-                  <TextField fx:id="createProducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Username" />
-                  <Text layoutX="90.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret producer" wrappingWidth="117.13671875" />
-                  <TextField fx:id="createProducerPassword" layoutX="73.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Password" />
-                  <Text layoutX="293.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
-                  <Text layoutX="525.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
-                  <Text layoutX="756.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
-                  <TextField fx:id="adminCreateProductionName" layoutX="293.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
-                  <TextField fx:id="adminCreatePersonName" layoutX="525.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
-                  <TextField fx:id="adminCreateCreditID" layoutX="756.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
-                  <TextField fx:id="createProducerID" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
-                  <Button fx:id="adminCreateProducerButton" layoutX="73.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProducer" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <TextField fx:id="adminCreateProductionID" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                  <TextField fx:id="adminCreateProductionProdID" layoutX="293.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
-                  <TextField fx:id="adminCreatePersonInfo" layoutX="525.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
-                  <TextField fx:id="adminCreatePersonID" layoutX="525.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
-                  <TextField fx:id="adminCreateCreditRole" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
-                  <TextField fx:id="adminCreateCreditProductionID" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                  <Button fx:id="adminCreateCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreatePerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                  <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-               </children></AnchorPane>
-         </content>
-      </Tab>
-   </tabs>
-</TabPane>
+<AnchorPane fx:id="wrapper" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
+   <children>
+      <TabPane fx:id="mainTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="954.0" style="-fx-background-color: #fff;" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="TV2">
+               <content>
+                  <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                     <children>
+                        <Button layoutX="33.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
+                        <TextField layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
+                        <Label layoutX="33.0" layoutY="25.0" text="Søg efter indhold" />
+                        <Button layoutX="440.0" layoutY="559.0" mnemonicParsing="false" text="Rediger" />
+                        <Button layoutX="394.0" layoutY="559.0" mnemonicParsing="false" text="Slet" />
+                        <MenuButton layoutX="308.0" layoutY="559.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Opret" visible="false">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Kreditering" />
+                              <MenuItem mnemonicParsing="false" text="Produktion" />
+                              <MenuItem mnemonicParsing="false" text="Bruger" />
+                              <MenuItem mnemonicParsing="false" text="Medvirkende" />
+                           </items>
+                        </MenuButton>
+                        <MenuButton fx:id="seeAll" layoutX="99.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Se alle...">
+                           <items>
+                              <MenuItem fx:id="seeCredits" mnemonicParsing="false" text="Krediteringer" />
+                              <MenuItem fx:id="seeProductions" mnemonicParsing="false" text="Produktioner" />
+                              <MenuItem fx:id="seeUsers" mnemonicParsing="false" text="Brugere" />
+                              <MenuItem fx:id="seePeople" mnemonicParsing="false" text="Medvirkende" />
+                           </items>
+                        </MenuButton>
+                        <ListView fx:id="resultList" layoutX="33.0" layoutY="116.0" prefHeight="470.0" prefWidth="345.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Opret">
+               <content>
+                  <AnchorPane fx:id="anchorpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                     <children>
+                        <TextField fx:id="createProducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Username" />
+                        <Text layoutX="90.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret producer" wrappingWidth="117.13671875" />
+                        <TextField fx:id="createProducerPassword" layoutX="73.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Password" />
+                        <Text layoutX="293.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
+                        <Text layoutX="525.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
+                        <Text layoutX="756.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
+                        <TextField fx:id="adminCreateProductionName" layoutX="293.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
+                        <TextField fx:id="adminCreatePersonName" layoutX="525.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
+                        <TextField fx:id="adminCreateCreditID" layoutX="756.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
+                        <TextField fx:id="createProducerID" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
+                        <Button fx:id="adminCreateProducerButton" layoutX="73.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProducer" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <TextField fx:id="adminCreateProductionID" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
+                        <TextField fx:id="adminCreateProductionProdID" layoutX="293.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
+                        <TextField fx:id="adminCreatePersonInfo" layoutX="525.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
+                        <TextField fx:id="adminCreatePersonID" layoutX="525.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
+                        <TextField fx:id="adminCreateCreditRole" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
+                        <TextField fx:id="adminCreateCreditProductionID" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
+                        <Button fx:id="adminCreateCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreatePerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <ImageView fx:id="logo" fitHeight="63.0" fitWidth="140.0" layoutX="790.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="exit" fitHeight="20.0" fitWidth="20.0" layoutX="928.0" layoutY="5.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="860.0" layoutY="2.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+   </children>
+</AnchorPane>

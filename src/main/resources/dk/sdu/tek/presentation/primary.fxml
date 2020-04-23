@@ -48,7 +48,7 @@
          </font></Label>
       <TextField layoutX="527.0" layoutY="22.0" visible="false" />
       <PasswordField fx:id="password" layoutX="531.0" layoutY="438.0" prefHeight="25.0" prefWidth="212.0" promptText="Password" />
-      <ImageView fx:id="exit" fitHeight="18.0" fitWidth="20.0" layoutX="911.0" layoutY="20.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit" fitHeight="20.0" fitWidth="20.0" layoutX="928.0" layoutY="5.0" onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <RadioButton fx:id="adminbutton" layoutX="630.0" layoutY="481.0" mnemonicParsing="false" text="Admin" />
       <Button fx:id="visitorloginbutton" layoutX="532.0" layoutY="219.0" mnemonicParsing="false" onAction="#visitorLogin" prefHeight="67.0" prefWidth="318.0" style="-fx-background-color: D21E1E;" text="Log ind uden bruger" textFill="#f2f2f2">

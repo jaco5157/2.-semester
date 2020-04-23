@@ -2,6 +2,7 @@ package dk.sdu.tek.presentation;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dk.sdu.tek.domain.*;
@@ -9,19 +10,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class SecondaryController implements Initializable {
 
-    @FXML private AnchorPane anchorpane;
     @FXML private ImageView logo;
     @FXML private ImageView exit;
-    @FXML private TabPane wrapper;
+    @FXML private AnchorPane wrapper;
+
+    @FXML private MenuButton seeAll;
+    @FXML private MenuItem seeCredits;
+    @FXML private MenuItem seeProductions;
+    @FXML private MenuItem seeUsers;
+    @FXML private MenuItem seePeople;
+    @FXML private ListView resultList;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -74,7 +80,7 @@ public class SecondaryController implements Initializable {
     }
 
     @FXML
-    public void makeDragable() {
+    public void makeDraggable() {
         wrapper.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
@@ -89,10 +95,21 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        makeDragable();
+        makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        al.add(1);
+        al.add(2);
+        al.add(3);
+        resultList.setCellFactory((Callback<ListView, ListCell>) al);
     }
+
+//    public void setResultList (ActionEvent event) {
+//        if (event.getSource() == seeCredits) {
+//            resultList.set
+//        }
+//    }
 
     public void adminCreateProducer(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
