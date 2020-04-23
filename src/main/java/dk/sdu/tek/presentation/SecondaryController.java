@@ -2,10 +2,12 @@ package dk.sdu.tek.presentation;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.ObjectReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +16,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class SecondaryController implements Initializable {
 
@@ -98,18 +99,17 @@ public class SecondaryController implements Initializable {
         makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
-        ArrayList<Integer> al = new ArrayList<Integer>();
-        al.add(1);
-        al.add(2);
-        al.add(3);
-        resultList.setCellFactory((Callback<ListView, ListCell>) al);
+        System.out.println(ObjectReader.readObject(ObjectReader.Type.PRODUCTION));
     }
 
-//    public void setResultList (ActionEvent event) {
-//        if (event.getSource() == seeCredits) {
-//            resultList.set
-//        }
-//    }
+    public void setResultList (ActionEvent event) {
+        ObservableList<String> result = FXCollections.observableArrayList();
+        System.out.println("This is working!");
+        for (Production production : Singleton.getInstance().getProductions()) {
+            result.add(production.toString());
+        }
+        resultList.setItems(result);
+    }
 
     public void adminCreateProducer(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
@@ -123,7 +123,7 @@ public class SecondaryController implements Initializable {
 
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
+        admin.getOwnedProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
     public void adminCreatePerson(ActionEvent event) {
@@ -138,7 +138,7 @@ public class SecondaryController implements Initializable {
 
     public void producerCreateCredit(ActionEvent event) {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.getProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
+        producer.getOwnedProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
     }
 
     public void producerCreatePerson(ActionEvent event) {
