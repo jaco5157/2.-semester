@@ -40,27 +40,26 @@ public class Producer extends User {
     }
 
     @Override
-    public Production getProduction(int productionID) {
-        for(Production production : this.getProductions()) {
-            if(production.getProductionID() == productionID) {
-                return production;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Production> getProductions() {
+    public ArrayList<Production> getOwnedProductions() {
         ArrayList<Production> productions = new ArrayList<>();
-        ArrayList<Production> fullList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
 
-        for (Production production : fullList) {
+        for (Production production : Singleton.getInstance().getProductions()) {
             if(production.getProducerID() == this.getProducerID()) {
                 productions.add(production);
             }
         }
 
         return productions;
+    }
+
+    @Override
+    public Production getOwnedProduction(int productionID) {
+        for(Production production : this.getOwnedProductions()) {
+            if(production.getProductionID() == productionID) {
+                return production;
+            }
+        }
+        return null;
     }
 
     public void createProduction(String productionName, int productionID) {

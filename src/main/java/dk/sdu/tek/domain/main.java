@@ -59,7 +59,7 @@ public class main {
 //        }
 
 //        Person person = new Person("person", 1, "person@person.dk");
-          Producer producer = new Producer("username", "password",1);
+//        Producer producer = new Producer("username", "password",1);
 //        Production production = new Production("prodname", 1, 1);
 //        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole");
 //        producer.write();

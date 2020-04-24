@@ -24,7 +24,9 @@ public abstract class User extends Visitor implements Writeable {
         person.write();
     }
 
-    public abstract Production getProduction(int productionID);
+    public abstract ArrayList<Production> getOwnedProductions();
+
+    public abstract Production getOwnedProduction(int productionID);
 
     public String getUsername () {
         return this.username;
@@ -38,7 +40,5 @@ public abstract class User extends Visitor implements Writeable {
     public String toString() {
         return this.username + "," + this.password;
     }
-
-    public abstract ArrayList<Production> getProductions ();
 
 }

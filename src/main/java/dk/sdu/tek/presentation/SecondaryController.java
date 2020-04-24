@@ -2,27 +2,32 @@ package dk.sdu.tek.presentation;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.ObjectReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SecondaryController implements Initializable {
 
-    @FXML private AnchorPane anchorpane;
     @FXML private ImageView logo;
     @FXML private ImageView exit;
-    @FXML private TabPane Wrapper;
+    @FXML private AnchorPane wrapper;
+
+    @FXML private ListView<Production> resultList;
+    @FXML private TextField productionNameTextField;
+    @FXML private TextField productionIDTextField;
+    @FXML private TextField thisProducerTextField;
+    @FXML private TextField thisProducerIDTextField;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -75,13 +80,13 @@ public class SecondaryController implements Initializable {
     }
 
     @FXML
-    public void makeDragable() {
-        Wrapper.setOnMousePressed(((mouseEvent) -> {
+    public void makeDraggable() {
+        wrapper.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
         }));
 
-        Wrapper.setOnMouseDragged(((mouseEvent) -> {
+        wrapper.setOnMouseDragged(((mouseEvent) -> {
             stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setX(mouseEvent.getScreenX() - x);
             stage.setY(mouseEvent.getScreenY() - y);
@@ -90,9 +95,26 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        makeDragable();
+        makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
+        setResultList();
+    }
+
+    public void setResultList () {
+        ObservableList<Production> result = FXCollections.observableArrayList();
+        for (Production production : Singleton.getInstance().getProductions()) {
+            result.add(production);
+        }
+        resultList.setItems(result);
+    }
+
+    public void getSelectedItem () {
+        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        productionNameTextField.setText(selectedProduction.getProductionName());
+        productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
+        thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
+        thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
     }
 
     public void adminCreateProducer(ActionEvent event) {
@@ -107,7 +129,7 @@ public class SecondaryController implements Initializable {
 
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.getProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
+        admin.getOwnedProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
     public void adminCreatePerson(ActionEvent event) {
@@ -122,7 +144,7 @@ public class SecondaryController implements Initializable {
 
     public void producerCreateCredit(ActionEvent event) {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.getProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
+        producer.getOwnedProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
     }
 
     public void producerCreatePerson(ActionEvent event) {

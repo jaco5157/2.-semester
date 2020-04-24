@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -73,7 +72,7 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    public void makeDragable() {
+    public void makeDraggable() {
         anchorpane.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
@@ -88,7 +87,7 @@ public class PrimaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        makeDragable();
+        makeDraggable();
         App.setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
         App.setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");

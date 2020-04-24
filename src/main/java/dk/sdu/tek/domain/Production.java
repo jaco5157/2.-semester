@@ -40,6 +40,15 @@ public class Production implements Writeable{
         this.producerID = producerID;
     }
 
+    public Producer getProducer() {
+        for(Producer producer : Singleton.getInstance().getProducers()) {
+            if(producer.getProducerID() == productionID) {
+                return producer;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return this.productionName + "," + this.productionID + "," + this.producerID;
