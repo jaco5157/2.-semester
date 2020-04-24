@@ -88,6 +88,5 @@ public class main {
         System.out.println("\nPeople: ");
         System.out.println(ObjectReader.readObject(PERSON));
 
-
     }
 }
