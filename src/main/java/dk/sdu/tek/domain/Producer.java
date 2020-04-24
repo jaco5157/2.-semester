@@ -36,7 +36,7 @@ public class Producer extends User {
 
     @Override
     public String toString() {
-        return this.getUsername() + "," + this.getPassword() + "," + this.getProducerID();
+        return this.getUsername() + "," + this.getPassword() + "," + this.getProducerID() + ",";
     }
 
     @Override
