@@ -1,2 +1,0 @@
-person2,2,person2@person.dk
-person1,1,person1@person.dk
