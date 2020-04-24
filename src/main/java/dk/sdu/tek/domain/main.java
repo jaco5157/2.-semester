@@ -58,20 +58,20 @@ public class main {
 //            System.out.println(credit);
 //        }
 
-//        Person person = new Person("person", 1, "person@person.dk");
-//        Producer producer = new Producer("username", "password",1);
-//        Production production = new Production("prodname", 1, 1);
-//        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole");
-//        producer.write();
-//        production.write();
-//        person.write();
-//        credit.write();
-//        Admin admin = new Admin("admin","password");
-//        Admin admin2 = new Admin("admin2","password2");
-//        Admin admin3 = new Admin("admin3","password3");
-//        admin.write();
-//        admin2.write();
-//        admin3.write();
+        Person person = new Person("person2", 2, "person2@person.dk");
+        Producer producer = new Producer("username2", "password2",2);
+        Production production = new Production("prodname2", 2, 2);
+        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole2");
+        producer.write();
+        production.write();
+        person.write();
+        credit.write();
+        Admin admin = new Admin("admin","password");
+        Admin admin2 = new Admin("admin2","password2");
+        Admin admin3 = new Admin("admin3","password3");
+        admin.write();
+        admin2.write();
+        admin3.write();
 
         System.out.println("Admins: ");
         System.out.println(ObjectReader.readObject(ADMIN));

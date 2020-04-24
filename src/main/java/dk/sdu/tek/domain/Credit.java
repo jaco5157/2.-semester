@@ -39,7 +39,7 @@ public class Credit implements Writeable{
 
     @Override
     public String toString() {
-        return this.personID + "," + this.productionID + "," + this.role + ",";
+        return this.personID + "," + this.productionID + "," + this.role;
     }
 
     @Override
