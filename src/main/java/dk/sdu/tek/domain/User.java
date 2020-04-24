@@ -38,7 +38,7 @@ public abstract class User extends Visitor implements Writeable {
 
     @Override
     public String toString() {
-        return this.username + "," + this.password + ","s;
+        return this.username + "," + this.password + ",";
     }
 
 }
