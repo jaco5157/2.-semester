@@ -29,6 +29,7 @@ public class SecondaryController implements Initializable {
     @FXML private TextField productionIDTextField;
     @FXML private TextField thisProducerTextField;
     @FXML private TextField thisProducerIDTextField;
+    @FXML private ListView<Credit> productionCreditList;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -116,6 +117,11 @@ public class SecondaryController implements Initializable {
         productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
         thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
+        ObservableList<Credit> result = FXCollections.observableArrayList();
+        for (Credit credit : selectedProduction.getCredits()) {
+            result.add(credit);
+        }
+        productionCreditList.setItems(result);
     }
 
     public void adminCreateProducer(ActionEvent event) {
