@@ -38,6 +38,10 @@ public class CreditSystem {
         return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
     }
 
+    public ArrayList<Producer> getProducers() {
+        return ObjectReader.readObject(ObjectReader.Type.PRODUCER);
+    }
+
     public Production getProduction(int productionID) {
         for(Production production : this.getProductions()) {
             if(production.getProductionID() == productionID) {
