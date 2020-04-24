@@ -28,7 +28,7 @@ public class SecondaryController implements Initializable {
     @FXML private MenuItem seeProductions;
     @FXML private MenuItem seeUsers;
     @FXML private MenuItem seePeople;
-    @FXML private ListView resultList;
+    @FXML private ListView<Production> resultList;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -103,10 +103,9 @@ public class SecondaryController implements Initializable {
     }
 
     public void setResultList (ActionEvent event) {
-        ObservableList<String> result = FXCollections.observableArrayList();
-        System.out.println("This is working!");
+        ObservableList<Production> result = FXCollections.observableArrayList();
         for (Production production : Singleton.getInstance().getProductions()) {
-            result.add(production.toString());
+            result.add(production);
         }
         resultList.setItems(result);
     }
