@@ -21,7 +21,7 @@
                         <Label layoutX="33.0" layoutY="25.0" text="Søg efter indhold" />
                         <TextField layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
                         <Button disable="true" layoutX="260.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
-                        <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" prefHeight="507.0" prefWidth="346.0" />
+                        <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
                         <TextField fx:id="productionNameTextField" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="155.0" />
                         <TextField fx:id="productionIDTextField" layoutX="663.0" layoutY="123.0" prefHeight="26.0" prefWidth="90.0" />
                         <TextField fx:id="thisProducerTextField" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="155.0" />

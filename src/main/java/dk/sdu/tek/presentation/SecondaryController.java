@@ -23,12 +23,11 @@ public class SecondaryController implements Initializable {
     @FXML private ImageView exit;
     @FXML private AnchorPane wrapper;
 
-    @FXML private MenuButton seeAll;
-    @FXML private MenuItem seeCredits;
-    @FXML private MenuItem seeProductions;
-    @FXML private MenuItem seeUsers;
-    @FXML private MenuItem seePeople;
     @FXML private ListView<Production> resultList;
+    @FXML private TextField productionNameTextField;
+    @FXML private TextField productionIDTextField;
+    @FXML private TextField thisProducerTextField;
+    @FXML private TextField thisProducerIDTextField;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -99,15 +98,23 @@ public class SecondaryController implements Initializable {
         makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
-        System.out.println(ObjectReader.readObject(ObjectReader.Type.PRODUCTION));
+        setResultList();
     }
 
-    public void setResultList (ActionEvent event) {
+    public void setResultList () {
         ObservableList<Production> result = FXCollections.observableArrayList();
         for (Production production : Singleton.getInstance().getProductions()) {
             result.add(production);
         }
         resultList.setItems(result);
+    }
+
+    public void getSelectedItem () {
+        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        productionNameTextField.setText(selectedProduction.getProductionName());
+        productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
+        thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
+        thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
     }
 
     public void adminCreateProducer(ActionEvent event) {
