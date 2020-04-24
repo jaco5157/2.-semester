@@ -2,27 +2,32 @@ package dk.sdu.tek.presentation;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
-import dk.sdu.tek.domain.Admin;
-import dk.sdu.tek.domain.Producer;
-import dk.sdu.tek.domain.Singleton;
-import dk.sdu.tek.domain.Visitor;
+import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.ObjectReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SecondaryController implements Initializable {
 
-    @FXML private AnchorPane anchorpane;
     @FXML private ImageView logo;
     @FXML private ImageView exit;
+    @FXML private AnchorPane wrapper;
+
+    @FXML private ListView<Production> resultList;
+    @FXML private TextField productionNameTextField;
+    @FXML private TextField productionIDTextField;
+    @FXML private TextField thisProducerTextField;
+    @FXML private TextField thisProducerIDTextField;
 
     //Admin fields
     @FXML private TextField createProducerUsername;
@@ -45,6 +50,22 @@ public class SecondaryController implements Initializable {
     @FXML private TextField adminCreateCreditProductionID;
     @FXML private Button adminCreateCreditButton;
 
+    //Producer fields
+    @FXML private TextField producerCreateProductionName;
+    @FXML private TextField producerCreateProductionID;
+    @FXML private TextField producerCreateProductionProdID;
+    @FXML private Button producerCreateProductionButton;
+
+    @FXML private TextField producerCreatePersonName;
+    @FXML private TextField producerCreatePersonInfo;
+    @FXML private TextField producerCreatePersonID;
+    @FXML private Button producercreatePersonButton;
+
+    @FXML private TextField producerCreateCreditID;
+    @FXML private TextField producerCreateCreditRole;
+    @FXML private TextField producerCreateCreditProductionID;
+    @FXML private Button producerCreateCreditButton;
+
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -59,13 +80,13 @@ public class SecondaryController implements Initializable {
     }
 
     @FXML
-    public void makeDragable() {
-        anchorpane.setOnMousePressed(((mouseEvent) -> {
+    public void makeDraggable() {
+        wrapper.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
         }));
 
-        anchorpane.setOnMouseDragged(((mouseEvent) -> {
+        wrapper.setOnMouseDragged(((mouseEvent) -> {
             stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setX(mouseEvent.getScreenX() - x);
             stage.setY(mouseEvent.getScreenY() - y);
@@ -74,42 +95,60 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        makeDragable();
+        makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
+        setResultList();
     }
 
-    //Admin functionality
-//    public void adminEventHandler (ActionEvent event) {
-//        if (event.getSource() == adminCreateProducerButton) {
-//
-//        } else if (event.getSource() == adminCreateProductionButton) {
-//
-//        } else if (event.getSource() == createPersonButton) {
-//
-//        } else if (event.getSource() == adminCreateCreditButton) {
-//
-//        }
-//    }
+    public void setResultList () {
+        ObservableList<Production> result = FXCollections.observableArrayList();
+        for (Production production : Singleton.getInstance().getProductions()) {
+            result.add(production);
+        }
+        resultList.setItems(result);
+    }
 
-    public void adminCreateProducer() {
+    public void getSelectedItem () {
+        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        productionNameTextField.setText(selectedProduction.getProductionName());
+        productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
+        thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
+        thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
+    }
+
+    public void adminCreateProducer(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
     }
 
-    public void adminCreateProduction() {
+    public void adminCreateProduction(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
         admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
     }
 
-    public void adminCreatePerson() {
+    public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
+        admin.getOwnedProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
     }
 
-    public void adminCreateCredit() {
-        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.get
+    public void adminCreatePerson(ActionEvent event) {
+        User user = (User)Singleton.getInstance().getCurrentUser();
+        user.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
+    }
 
+    public void producerCreateProduction() {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
+    }
+
+    public void producerCreateCredit(ActionEvent event) {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.getOwnedProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
+    }
+
+    public void producerCreatePerson(ActionEvent event) {
+        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        producer.createPerson(producerCreatePersonName.getText(),Integer.parseInt(producerCreatePersonID.getText()),producerCreatePersonInfo.getText());
     }
 }
