@@ -39,7 +39,7 @@ public class Person implements Writeable{
 
     @Override
     public String toString() {
-        return this.name + "," + this.personID + "," + this.contactInfo;
+        return this.name + "," + this.personID + "," + this.contactInfo + ",";
     }
 
     @Override

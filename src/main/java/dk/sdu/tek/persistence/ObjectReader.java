@@ -30,7 +30,7 @@ public class ObjectReader {
         ArrayList objects = new ArrayList<>();
 
         try (Scanner objectScanner = new Scanner(new File(directory+file.get(type)))) {
-            objectScanner.useDelimiter("[,\n]");
+            objectScanner.useDelimiter("[,]");
 
             switch (type) {
                 case PRODUCTION:
