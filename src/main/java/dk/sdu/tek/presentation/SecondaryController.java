@@ -36,36 +36,36 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createProducerID;
     @FXML private Button adminCreateProducerButton;
 
-    @FXML private TextField adminCreateProductionName;
-    @FXML private TextField adminCreateProductionID;
-    @FXML private TextField adminCreateProductionProdID;
+    @FXML private TextField createProductionName;
+    @FXML private TextField createProductionID;
+    @FXML private TextField createProductionProdID;
     @FXML private Button adminCreateProductionButton;
 
-    @FXML private TextField adminCreatePersonName;
-    @FXML private TextField adminCreatePersonInfo;
-    @FXML private TextField adminCreatePersonID;
+    @FXML private TextField createPersonName;
+    @FXML private TextField createPersonInfo;
+    @FXML private TextField createPersonID;
     @FXML private Button createPersonButton;
 
-    @FXML private TextField adminCreateCreditID;
-    @FXML private TextField adminCreateCreditRole;
-    @FXML private TextField adminCreateCreditProductionID;
+    @FXML private TextField createCreditID;
+    @FXML private TextField createCreditRole;
+    @FXML private TextField createCreditProductionID;
     @FXML private Button adminCreateCreditButton;
 
-    //Producer fields
-    @FXML private TextField producerCreateProductionName;
-    @FXML private TextField producerCreateProductionID;
-    @FXML private TextField producerCreateProductionProdID;
-    @FXML private Button producerCreateProductionButton;
-
-    @FXML private TextField producerCreatePersonName;
-    @FXML private TextField producerCreatePersonInfo;
-    @FXML private TextField producerCreatePersonID;
-    @FXML private Button producercreatePersonButton;
-
-    @FXML private TextField producerCreateCreditID;
-    @FXML private TextField producerCreateCreditRole;
-    @FXML private TextField producerCreateCreditProductionID;
-    @FXML private Button producerCreateCreditButton;
+//    //Producer fields
+//    @FXML private TextField producerCreateProductionName;
+//    @FXML private TextField producerCreateProductionID;
+//    @FXML private TextField producerCreateProductionProdID;
+//    @FXML private Button producerCreateProductionButton;
+//
+//    @FXML private TextField producerCreatePersonName;
+//    @FXML private TextField producerCreatePersonInfo;
+//    @FXML private TextField producerCreatePersonID;
+//    @FXML private Button producercreatePersonButton;
+//
+//    @FXML private TextField producerCreateCreditID;
+//    @FXML private TextField producerCreateCreditRole;
+//    @FXML private TextField producerCreateCreditProductionID;
+//    @FXML private Button producerCreateCreditButton;
 
     private Stage stage;
     private double x = 0, y = 0;
@@ -125,31 +125,27 @@ public class SecondaryController implements Initializable {
 
     public void adminCreateProduction(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createProduction(adminCreateProductionName.getText(),Integer.parseInt(adminCreateProductionID.getText()),Integer.parseInt(adminCreateProductionProdID.getText()));
+        admin.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()),Integer.parseInt(createProductionProdID.getText()));
     }
 
     public void adminCreateCredit(ActionEvent event) {
         Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.getOwnedProduction(Integer.parseInt(adminCreateCreditProductionID.getText())).addCredit(Integer.parseInt(adminCreateCreditID.getText()),adminCreateCreditRole.getText());
-    }
-
-    public void adminCreatePerson(ActionEvent event) {
-        User user = (User)Singleton.getInstance().getCurrentUser();
-        user.createPerson(adminCreatePersonName.getText(),Integer.parseInt(adminCreatePersonID.getText()),adminCreatePersonInfo.getText());
+        admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.createProduction(producerCreateProductionName.getText(),Integer.parseInt(producerCreateProductionID.getText()));
+        producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
     }
 
     public void producerCreateCredit(ActionEvent event) {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.getOwnedProduction(Integer.parseInt(producerCreateCreditProductionID.getText())).addCredit(Integer.parseInt(producerCreateCreditID.getText()),producerCreateCreditRole.getText());
+        producer.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
-    public void producerCreatePerson(ActionEvent event) {
-        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.createPerson(producerCreatePersonName.getText(),Integer.parseInt(producerCreatePersonID.getText()),producerCreatePersonInfo.getText());
+    public void createPerson(ActionEvent event) {
+        User user = (User)Singleton.getInstance().getCurrentUser();
+        user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
     }
+
 }
