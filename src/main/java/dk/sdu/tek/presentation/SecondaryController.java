@@ -22,6 +22,7 @@ public class SecondaryController implements Initializable {
     @FXML private ImageView logo;
     @FXML private ImageView exit;
     @FXML private AnchorPane wrapper;
+    @FXML private TabPane mainTab;
 
     @FXML private ListView<Production> resultList;
     @FXML private TextField productionNameTextField;
@@ -81,12 +82,12 @@ public class SecondaryController implements Initializable {
 
     @FXML
     public void makeDraggable() {
-        wrapper.setOnMousePressed(((mouseEvent) -> {
+        mainTab.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
         }));
 
-        wrapper.setOnMouseDragged(((mouseEvent) -> {
+        mainTab.setOnMouseDragged(((mouseEvent) -> {
             stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             stage.setX(mouseEvent.getScreenX() - x);
             stage.setY(mouseEvent.getScreenY() - y);
