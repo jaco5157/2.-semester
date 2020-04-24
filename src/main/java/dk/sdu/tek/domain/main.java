@@ -66,12 +66,12 @@ public class main {
         production.write();
         person.write();
         credit.write();
-//        Admin admin = new Admin("admin","password");
-//        Admin admin2 = new Admin("admin2","password2");
-//        Admin admin3 = new Admin("admin3","password3");
-//        admin.write();
-//        admin2.write();
-//        admin3.write();
+        Admin admin = new Admin("admin","password");
+        Admin admin2 = new Admin("admin2","password2");
+        Admin admin3 = new Admin("admin3","password3");
+        admin.write();
+        admin2.write();
+        admin3.write();
 
         System.out.println("Admins: ");
         System.out.println(ObjectReader.readObject(ADMIN));
