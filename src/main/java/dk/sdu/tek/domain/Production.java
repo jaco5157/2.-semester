@@ -51,7 +51,7 @@ public class Production implements Writeable{
 
     @Override
     public String toString() {
-        return this.productionName + "," + this.productionID + "," + this.producerID + ",";
+        return this.productionName + "," + this.productionID + "," + this.producerID;
     }
 
     @Override

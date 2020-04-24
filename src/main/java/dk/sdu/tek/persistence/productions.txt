@@ -1,1 +1,2 @@
-test,1,1,
+prodname,1,1
+prodname2,2,2

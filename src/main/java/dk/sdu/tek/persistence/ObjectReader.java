@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class ObjectReader {
 
     private static String directory = "src/main/java/dk/sdu/tek/persistence/";
@@ -30,42 +32,62 @@ public class ObjectReader {
         ArrayList objects = new ArrayList<>();
 
         try (Scanner objectScanner = new Scanner(new File(directory+file.get(type)))) {
-            objectScanner.useDelimiter("[,]");
-
-            switch (type) {
-                case PRODUCTION:
-                    while (objectScanner.hasNext()) {
-                        objects.add(new Production(objectScanner.next(), objectScanner.nextInt(), objectScanner.nextInt()));
-                    }
-                    break;
-                case PERSON:
-                    while (objectScanner.hasNext()) {
-                        objects.add(new Person(objectScanner.next(), objectScanner.nextInt(), objectScanner.next()));
-                    }
-                    break;
-                case PRODUCER:
-                    while (objectScanner.hasNext()) {
-                        objects.add(new Producer(objectScanner.next(), objectScanner.next(), objectScanner.nextInt()));
-                    }
-                    break;
-                case ADMIN:
-                    while (objectScanner.hasNext()) {
-                        objects.add(new Admin(objectScanner.next(), objectScanner.next()));
-                    }
-                    break;
-                case CREDIT:
-                    while (objectScanner.hasNext()) {
-                        objects.add(new Credit(objectScanner.nextInt(), objectScanner.nextInt(), objectScanner.next()));
-                    }
-                    break;
+            objectScanner.useDelimiter("[\n]");
+            while (objectScanner.hasNext()) {
+                String[] line = objectScanner.next().split(",");
+                switch (type) {
+                    case PRODUCTION:
+                        objects.add(new Production(line[0], parseInt(line[1]), parseInt(line[2])));
+                        break;
+                    case PERSON:
+                        objects.add(new Person(line[0], parseInt(line[1]), line[2]));
+                        break;
+                    case PRODUCER:
+                        objects.add(new Producer(line[0], line[1], parseInt(line[2])));
+                        break;
+                    case ADMIN:
+                        objects.add(new Admin(line[0], line[1]));
+                        break;
+                    case CREDIT:
+                        objects.add(new Credit(parseInt(line[0]), parseInt(line[1]), line[2]));
+                        break;
+                }
             }
-
         } catch (FileNotFoundException ex) {
             System.out.println(file.get(type) + " not found");
         } finally {
             return objects;
         }
     }
+
+
+//    switch (type) {
+//        case PRODUCTION:
+//            while (objectScanner.hasNext()) {
+//                objects.add(new Production(objectScanner.next(), objectScanner.nextInt(), objectScanner.nextInt()));
+//            }
+//            break;
+//        case PERSON:
+//            while (objectScanner.hasNext()) {
+//                objects.add(new Person(objectScanner.next(), objectScanner.nextInt(), objectScanner.next()));
+//            }
+//            break;
+//        case PRODUCER:
+//            while (objectScanner.hasNext()) {
+//                objects.add(new Producer(objectScanner.next(), objectScanner.next(), objectScanner.nextInt()));
+//            }
+//            break;
+//        case ADMIN:
+//            while (objectScanner.hasNext()) {
+//                objects.add(new Admin(objectScanner.next(), objectScanner.next()));
+//            }
+//            break;
+//        case CREDIT:
+//            while (objectScanner.hasNext()) {
+//                objects.add(new Credit(objectScanner.nextInt(), objectScanner.nextInt(), objectScanner.next()));
+//            }
+//            break;
+//    }
 
 //    public static ArrayList<Production> readProductions() {
 //        String filepath = directory += "productions.txt";
