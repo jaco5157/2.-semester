@@ -34,17 +34,26 @@ public class CreditSystem {
         return currentUser;
     }
 
-    public ArrayList<Production> getProductions() {
-        return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
-    }
-
     public ArrayList<Producer> getProducers() {
         return ObjectReader.readObject(ObjectReader.Type.PRODUCER);
+    }
+
+    public ArrayList<Production> getProductions() {
+        return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
     }
 
     public Production getProduction(int productionID) {
         for(Production production : this.getProductions()) {
             if(production.getProductionID() == productionID) {
+                return production;
+            }
+        }
+        return null;
+    }
+
+    public Production getProduction(String name) {
+        for(Production production : this.getProductions()) {
+            if(production.getProductionName() == name) {
                 return production;
             }
         }
