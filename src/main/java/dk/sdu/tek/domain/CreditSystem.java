@@ -51,4 +51,14 @@ public class CreditSystem {
         return null;
     }
 
+    public ArrayList<Person> getPersons(){return ObjectReader.readObject(ObjectReader.Type.PERSON);}
+
+    public Person getPerson(String personName){
+        for(Person person : this.getPersons()){
+            if(person.getPerson() == personName){
+                return person;
+            }
+        }
+        return null;
+    }
 }
