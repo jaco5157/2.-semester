@@ -2,6 +2,7 @@ package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.presentation.Menu;
+import dk.sdu.tek.domain.*;
 
 import java.util.ArrayList;
 

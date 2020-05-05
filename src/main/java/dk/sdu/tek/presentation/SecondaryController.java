@@ -23,6 +23,7 @@ public class SecondaryController implements Initializable {
     @FXML private ImageView exit;
     @FXML private AnchorPane wrapper;
     @FXML private TabPane mainTab;
+    @FXML private TextField searchField;
 
     @FXML private ListView<Production> resultList;
     @FXML private TextField productionNameTextField;
@@ -100,7 +101,7 @@ public class SecondaryController implements Initializable {
         makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
-        setResultList();
+        //setResultList();
     }
 
     public void setResultList () {
@@ -109,6 +110,20 @@ public class SecondaryController implements Initializable {
             result.add(production);
         }
         resultList.setItems(result);
+    }
+
+    public void searchForProduction() {
+        ArrayList<Production> productionArrayList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
+        for (Production production : productionArrayList) {
+            if (production.getProductionName().equals(searchField.getText())) {
+                resultList.getItems().add(production);
+            }
+        }
+//        Boolean doescontain = productionArrayList.toString().contains(searchField.getText());
+//        if (doescontain == true) {
+//            System.out.println("yes");
+//        } else
+//            System.out.println("no");
     }
 
     public void getSelectedItem () {
