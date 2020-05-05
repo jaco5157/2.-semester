@@ -3,11 +3,14 @@ package dk.sdu.tek.domain;
 import dk.sdu.tek.persistence.ObjectWriter;
 
 public class Credit implements Writeable{
+
+    private int id;
     private String role;
     private int personID;
     private int productionID;
 
-    public Credit (int personID, int productionID, String role) {
+    public Credit (int id, int personID, int productionID, String role) {
+        this.id = id;
         this.productionID = productionID;
         this.personID = personID;
         this.role = role;
@@ -35,6 +38,14 @@ public class Credit implements Writeable{
 
     public void setProductionID(int productionID) {
         this.productionID = productionID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

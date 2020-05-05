@@ -3,21 +3,22 @@ package dk.sdu.tek.domain;
 import dk.sdu.tek.persistence.ObjectWriter;
 
 public class Person implements Writeable{
+
+    private int id;
     private String name;
-    private int personID;
     private String contactInfo;
 
-    public Person(String name, int personID, String contactInfo){
+    public Person(int id, String name, String contactInfo){
+        this.id = id;
         this.name = name;
-        this.personID = personID;
         this.contactInfo = contactInfo;
     }
 
-    public String getPerson() {
+    public String getName() {
         return name;
     }
 
-    public void setPerson(String person) {
+    public void setName(String person) {
         this.name = person;
     }
 
@@ -29,17 +30,17 @@ public class Person implements Writeable{
         this.contactInfo = contactInfo;
     }
 
-    public int getPersonID() {
-        return personID;
+    public int getId() {
+        return this.id;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return this.name + "," + this.personID + "," + this.contactInfo;
+        return this.name + "," + this.id + "," + this.contactInfo;
     }
 
     @Override

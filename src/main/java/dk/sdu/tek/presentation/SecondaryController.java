@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.*;
 
 import dk.sdu.tek.domain.*;
-import dk.sdu.tek.persistence.ObjectReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +31,7 @@ public class SecondaryController implements Initializable {
     @FXML private TextField thisProducerIDTextField;
     @FXML private ListView<Credit> productionCreditList;
 
-    //Admin fields
+    //TextFields
     @FXML private TextField createProducerUsername;
     @FXML private TextField createProducerPassword;
     @FXML private TextField createProducerID;
@@ -52,22 +51,6 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditRole;
     @FXML private TextField createCreditProductionID;
     @FXML private Button adminCreateCreditButton;
-
-//    //Producer fields
-//    @FXML private TextField producerCreateProductionName;
-//    @FXML private TextField producerCreateProductionID;
-//    @FXML private TextField producerCreateProductionProdID;
-//    @FXML private Button producerCreateProductionButton;
-//
-//    @FXML private TextField producerCreatePersonName;
-//    @FXML private TextField producerCreatePersonInfo;
-//    @FXML private TextField producerCreatePersonID;
-//    @FXML private Button producercreatePersonButton;
-//
-//    @FXML private TextField producerCreateCreditID;
-//    @FXML private TextField producerCreateCreditRole;
-//    @FXML private TextField producerCreateCreditProductionID;
-//    @FXML private Button producerCreateCreditButton;
 
     private Stage stage;
     private double x = 0, y = 0;
@@ -113,23 +96,18 @@ public class SecondaryController implements Initializable {
     }
 
     public void searchForProduction() {
-        ArrayList<Production> productionArrayList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
+        ArrayList<Production> productionArrayList = Singleton.getInstance().getProductions();
         for (Production production : productionArrayList) {
-            if (production.getProductionName().equals(searchField.getText())) {
+            if (productionArrayList.toString().contains(searchField.getText())) {
                 resultList.getItems().add(production);
             }
         }
-//        Boolean doescontain = productionArrayList.toString().contains(searchField.getText());
-//        if (doescontain == true) {
-//            System.out.println("yes");
-//        } else
-//            System.out.println("no");
     }
 
     public void getSelectedItem () {
         Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
         productionNameTextField.setText(selectedProduction.getProductionName());
-        productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
+        productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
         thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
         ObservableList<Credit> result = FXCollections.observableArrayList();
