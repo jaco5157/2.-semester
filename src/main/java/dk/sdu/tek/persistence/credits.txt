@@ -1,4 +1,1 @@
-2,2,somerole2
-1,1,somerole1
-1,1,somerole2
-2,2,somerole2
+1,1,somerole

@@ -1,3 +1,1 @@
-username2,password2,2
-username,password,1
-username2,password2,2
+2,2,1
