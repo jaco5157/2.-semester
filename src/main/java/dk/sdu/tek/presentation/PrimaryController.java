@@ -63,7 +63,6 @@ public class PrimaryController implements Initializable {
         Singleton.getInstance().setCurrentUser(visitor);
         VisitorMenu menu = (VisitorMenu)visitor.getMenu();
         menu.show();
-        
     }
 
     @FXML

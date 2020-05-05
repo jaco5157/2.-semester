@@ -59,6 +59,7 @@ public class Production implements Writeable{
         ObjectWriter.writeToFile("productions.txt", this);
     }
 
+
     public void addCredit(int personID, String role) {
         Credit credit = new Credit(personID, this.getProductionID(), role);
         credit.write();
@@ -76,4 +77,18 @@ public class Production implements Writeable{
 
         return credits;
     }
+
+    public ArrayList<Production> getProductions () {
+        ArrayList<Production> productions = new ArrayList<>();
+        ArrayList<Production> fullListList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
+
+        for (Production production : fullListList) {
+            if(production.getProductionName() == this.getProductionName()) {
+                productions.add(production);
+            }
+        }
+        return productions;
+    }
+
+
 }
