@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectReader;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 import java.util.ArrayList;
 
@@ -58,35 +59,41 @@ public class main {
 //            System.out.println(credit);
 //        }
 
-//        Person person = new Person("person2", 2, "person2@person.dk");
-//        Producer producer = new Producer("username2", "password2",2);
-//        Production production = new Production("prodname2", 2, 2);
-//        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole2");
+//        Person person = new Person("person", 1, "person@person.dk");
+//        Producer producer = new Producer("2", "2",1);
+//        Production production = new Production("prodname", 1, 1);
+//        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole");
+//        Admin admin = new Admin("1","1", 1);
 //        producer.write();
 //        production.write();
 //        person.write();
 //        credit.write();
-//        Admin admin = new Admin("admin","password");
-//        Admin admin2 = new Admin("admin2","password2");
-//        Admin admin3 = new Admin("admin3","password3");
 //        admin.write();
-//        admin2.write();
-//        admin3.write();
 
-        System.out.println("Admins: ");
-        System.out.println(ObjectReader.readObject(ADMIN));
 
-        System.out.println("\nProducers: ");
-        System.out.println(ObjectReader.readObject(PRODUCER));
+//        System.out.println("Admins: ");
+//        System.out.println(ObjectReader.readObject(ADMIN));
+//
+//        System.out.println("\nProducers: ");
+//        System.out.println(ObjectReader.readObject(PRODUCER));
+//
+//        System.out.println("\nProductions: ");
+//        System.out.println(ObjectReader.readObject(PRODUCTION));
+//
+//        System.out.println("\nCredits: ");
+//        System.out.println(ObjectReader.readObject(CREDIT));
+//
+//        System.out.println("\nPeople: ");
+//        System.out.println(ObjectReader.readObject(PERSON));
+//
+//        ArrayList<Person> peoplesssss = ObjectReader.readObject(PERSON);
+//        for (Person people : peoplesssss) {
+//            System.out.println(people);
+//        }
 
-        System.out.println("\nProductions: ");
-        System.out.println(ObjectReader.readObject(PRODUCTION));
+//        PersistenceHandler.getInstance().createAdmin(admin);
+//        PersistenceHandler.getInstance().getAdmins();
 
-        System.out.println("\nCredits: ");
-        System.out.println(ObjectReader.readObject(CREDIT));
-
-        System.out.println("\nPeople: ");
-        System.out.println(ObjectReader.readObject(PERSON));
 
     }
 }

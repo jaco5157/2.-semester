@@ -46,7 +46,7 @@ public class ObjectReader {
                         objects.add(new Producer(line[0], line[1], parseInt(line[2])));
                         break;
                     case ADMIN:
-                        objects.add(new Admin(line[0], line[1]));
+        //                objects.add(new Admin(line[0], line[1]));
                         break;
                     case CREDIT:
                         objects.add(new Credit(parseInt(line[0]), parseInt(line[1]), line[2]));
