@@ -35,6 +35,25 @@
                   </AnchorPane>
                </content>
             </Tab>
+             <Tab text="Personer">
+                 <content>
+                     <AnchorPane fx:id="anchorpanePersoner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                         <children>
+                             <Button layoutX="260.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
+                             <Label layoutX="33.0" layoutY="26.0" text="Søg efter person" />
+                             <TextField layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
+                             <ListView fx:id="resultPersonList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
+                             <TextField fx:id="productionNameTextField1" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="155.0" />
+                             <Label layoutX="477.0" layoutY="105.0" text="Navn" />
+                             <TextField fx:id="productionIDTextField1" layoutX="663.0" layoutY="123.0" prefHeight="26.0" prefWidth="90.0" />
+                             <Label layoutX="663.0" layoutY="105.0" text="ID" />
+                             <TextField fx:id="thisProducerTextField1" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="276.0" />
+                             <Label layoutX="477.0" layoutY="179.0" text="Kontakt oplysninger" />
+                             <ListView fx:id="productionCreditList1" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
+                             <Label layoutX="477.0" layoutY="253.0" text="Krediteringer" />
+                         </children></AnchorPane>
+                 </content>
+             </Tab>
          </tabs>
       </TabPane>
       <ImageView fx:id="logo" fitHeight="63.0" fitWidth="140.0" layoutX="790.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
