@@ -34,12 +34,12 @@ public class CreditSystem {
         return currentUser;
     }
 
-    public ArrayList<Production> getProductions() {
-        return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
-    }
-
     public ArrayList<Producer> getProducers() {
         return ObjectReader.readObject(ObjectReader.Type.PRODUCER);
+    }
+
+    public ArrayList<Production> getProductions() {
+        return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
     }
 
     public Production getProduction(int productionID) {
@@ -51,14 +51,14 @@ public class CreditSystem {
         return null;
     }
 
-    public ArrayList<Person> getPersons(){return ObjectReader.readObject(ObjectReader.Type.PERSON);}
 
-    public Person getPerson(String personName){
-        for(Person person : this.getPersons()){
-            if(person.getPerson() == personName){
-                return person;
+    public Production getProduction(String name) {
+        for(Production production : this.getProductions()) {
+            if(production.getProductionName() == name) {
+                return production;
             }
         }
         return null;
     }
+
 }
