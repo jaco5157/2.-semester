@@ -1,14 +1,10 @@
 package dk.sdu.tek.persistence;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import dk.sdu.tek.domain.*;
 import org.bson.Document;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -41,15 +37,27 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public ArrayList<Admin> getAdmins() {
-//        MongoCollection adminCollection = database.getCollection("Admins");
-//        return adminCollection.find().into(new ArrayList());
-        return null;
+        ArrayList<Admin> adminArrayList = new ArrayList();
+        FindIterable<Document> fi = database.getCollection("Admins").find();
+        MongoCursor<Document> cursor = fi.iterator();
+        try {
+            while(cursor.hasNext()) {
+                JSONObject obj = new JSONObject(cursor.next().toJson());
+                adminArrayList.add(new Admin(obj.getInt("_id"),obj.getString("username"), obj.getString("password")));
+            }
+        } finally {
+            cursor.close();
+            return adminArrayList;
+        }
     }
 
     @Override
     public Admin getAdmin(int id) {
-//        MongoCollection adminCollection = database.getCollection("Admins");
-//        return adminCollection.find(Filters.eq("_id", id)).first();
+        for (Admin admin : this.getAdmins()) {
+            if (admin.getId() == id) {
+                return admin;
+            }
+        }
         return null;
     }
 
@@ -65,11 +73,27 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public ArrayList<Producer> getProducers() {
-        return null;
+        ArrayList<Producer> producerArrayList = new ArrayList();
+        FindIterable<Document> fi = database.getCollection("Producers").find();
+        MongoCursor<Document> cursor = fi.iterator();
+        try {
+            while(cursor.hasNext()) {
+                JSONObject obj = new JSONObject(cursor.next().toJson());
+                producerArrayList.add(new Producer(obj.getInt("_id"),obj.getString("username"), obj.getString("password")));
+            }
+        } finally {
+            cursor.close();
+            return producerArrayList;
+        }
     }
 
     @Override
     public Producer getProducer(int id) {
+        for (Producer producer : this.getProducers()) {
+            if (producer.getId() == id) {
+                return producer;
+            }
+        }
         return null;
     }
 
@@ -85,11 +109,27 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public ArrayList<Production> getProductions() {
-        return null;
+        ArrayList<Production> productionArrayList = new ArrayList();
+        FindIterable<Document> fi = database.getCollection("Productions").find();
+        MongoCursor<Document> cursor = fi.iterator();
+        try {
+            while(cursor.hasNext()) {
+                JSONObject obj = new JSONObject(cursor.next().toJson());
+                productionArrayList.add(new Production(obj.getInt("_id"),obj.getString("name"), obj.getInt("producer_ID")));
+            }
+        } finally {
+            cursor.close();
+            return productionArrayList;
+        }
     }
 
     @Override
     public Production getProduction(int id) {
+        for (Production production : this.getProductions()) {
+            if (production.getId() == id) {
+                return production;
+            }
+        }
         return null;
     }
 
@@ -105,11 +145,27 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public ArrayList<Person> getPeople() {
-        return null;
+        ArrayList<Person> peopleArrayList = new ArrayList();
+        FindIterable<Document> fi = database.getCollection("People").find();
+        MongoCursor<Document> cursor = fi.iterator();
+        try {
+            while(cursor.hasNext()) {
+                JSONObject obj = new JSONObject(cursor.next().toJson());
+                peopleArrayList.add(new Person(obj.getInt("_id"),obj.getString("name"), obj.getString("contact_info")));
+            }
+        } finally {
+            cursor.close();
+            return peopleArrayList;
+        }
     }
 
     @Override
     public Person getPerson(int id) {
+        for (Person person : this.getPeople()) {
+            if (person.getId() == id) {
+                return person;
+            }
+        }
         return null;
     }
 
@@ -125,11 +181,27 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public ArrayList<Credit> getCredits() {
-        return null;
+        ArrayList<Credit> creditArrayList = new ArrayList();
+        FindIterable<Document> fi = database.getCollection("Credits").find();
+        MongoCursor<Document> cursor = fi.iterator();
+        try {
+            while(cursor.hasNext()) {
+                JSONObject obj = new JSONObject(cursor.next().toJson());
+                creditArrayList.add(new Credit(obj.getInt("_id"),obj.getInt("production_ID"), obj.getInt("person_ID"), obj.getString("role")));
+            }
+        } finally {
+            cursor.close();
+            return creditArrayList;
+        }
     }
 
     @Override
     public Credit getCredit(int id) {
+        for (Credit credit : this.getCredits()) {
+            if (credit.getId() == id) {
+                return credit;
+            }
+        }
         return null;
     }
 
@@ -146,6 +218,7 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean deleteCredit(int id) {
-        return false;
+        database.getCollection("Credits").findOneAndDelete(Filters.eq("_id", id));
+        return true;
     }
 }

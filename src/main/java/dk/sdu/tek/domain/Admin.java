@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 
+    public Admin() {}
     public Admin(int id, String username, String password) {
         super(id, username, password);
     }
@@ -27,13 +28,13 @@ public class Admin extends User {
         return Singleton.getInstance().getProduction(productionID);
     }
 
-    public void createProducer (String username, String password, int producerID) {
-        Producer producer = new Producer (username, password, producerID);
+    public void createProducer (int id, String username, String password) {
+        Producer producer = new Producer (id, username, password);
         producer.write();
     }
 
-    public void createProduction(String productionName, int productionID, int producerID) {
-        Production production = new Production(productionName, productionID, producerID);
+    public void createProduction(int id, String productionName, int producerID) {
+        Production production = new Production(id, productionName, producerID);
         production.write();
     }
 

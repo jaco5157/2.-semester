@@ -90,9 +90,10 @@ public class main {
 //        for (Person people : peoplesssss) {
 //            System.out.println(people);
 //        }
-
+        Admin admin = new Admin(2,"2", "2");
 //        PersistenceHandler.getInstance().createAdmin(admin);
-//        PersistenceHandler.getInstance().getAdmins();
+        System.out.println(PersistenceHandler.getInstance().getAdmins());
+        //Credit credit = new Credit();
 
 
     }
