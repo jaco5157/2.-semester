@@ -32,6 +32,7 @@
                         <TextField fx:id="thisProducerIDTextField" layoutX="663.0" layoutY="197.0" prefHeight="26.0" prefWidth="90.0" />
                         <Label layoutX="477.0" layoutY="253.0" text="Krediteringer" />
                         <ListView fx:id="productionCreditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
+                        <Button fx:id="adminDeleteButton" layoutX="787.0" layoutY="198.0" mnemonicParsing="false" onAction="#adminDeleteCredit" text="Delete" />
                      </children>
                   </AnchorPane>
                </content>

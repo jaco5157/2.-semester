@@ -23,8 +23,6 @@ public abstract class User extends Visitor implements Writeable {
         this.password = password;
     }
 
-    public void createPerson(String name, int id, String contactInfo) {
-        Person person = new Person(id, name, contactInfo);
         person.write();
     }
 

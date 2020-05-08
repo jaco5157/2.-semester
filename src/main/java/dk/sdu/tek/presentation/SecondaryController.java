@@ -51,7 +51,7 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditRole;
     @FXML private TextField createCreditProductionID;
     @FXML private Button adminCreateCreditButton;
-
+    
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -132,6 +132,15 @@ public class SecondaryController implements Initializable {
 //        admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
+    public void adminDeleteCredit(ActionEvent event) {
+        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
+        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
+            productionCreditList.getItems().remove(selectedCredit);
+        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
+            resultList.getItems().remove(selectedProduction);
+    }
+
     public void producerCreateProduction() {
         Producer producer = (Producer)CreditSystem.getInstance().getCurrentUser();
         producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
@@ -146,5 +155,4 @@ public class SecondaryController implements Initializable {
         User user = (User)CreditSystem.getInstance().getCurrentUser();
         user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
     }
-
 }

@@ -59,16 +59,8 @@ public class main {
 //            System.out.println(credit);
 //        }
 
-//        Person person = new Person("person", 1, "person@person.dk");
-//        Producer producer = new Producer("2", "2",1);
-//        Production production = new Production("prodname", 1, 1);
-//        Credit credit = new Credit(person.getPersonID(), production.getProductionID(), "somerole");
-//        Admin admin = new Admin("1","1", 1);
-//        producer.write();
-//        production.write();
-//        person.write();
-//        credit.write();
-//        admin.write();
+
+
 
 
 //        System.out.println("Admins: ");
