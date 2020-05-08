@@ -54,7 +54,7 @@ public class CreditSystem {
     public ObservableList<ObservableObject> getProducers() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Producer producer : PersistenceHandler.getInstance().getProducers()) {
-            result.add(new ObservableObject(producer.getId(), producer.toString()));
+            result.add(new ObservableObject(producer.getId(),producer.getUsername(), producer.toString()));
         }
         return result;
     }
@@ -62,7 +62,7 @@ public class CreditSystem {
     public ObservableList<ObservableObject> getProductions() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Production production : PersistenceHandler.getInstance().getProductions()) {
-            result.add(new ObservableObject(production.getId(), production.toString()));
+            result.add(new ObservableObject(production.getId(),production.getName(), production.toString()));
         }
         return result;
     }
@@ -70,7 +70,7 @@ public class CreditSystem {
     public ObservableList<ObservableObject> getPeople() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Person person : PersistenceHandler.getInstance().getPeople()) {
-            result.add(new ObservableObject(person.getId(), person.toString()));
+            result.add(new ObservableObject(person.getId(),person.getName(), person.toString()));
         }
         return result;
     }
@@ -78,19 +78,20 @@ public class CreditSystem {
     public ObservableList<ObservableObject> getCredits() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
-            result.add(new ObservableObject(credit.getId(), credit.toString()));
+            result.add(new ObservableObject(credit.getId(), credit.getRole(), credit.toString()));
         }
         return result;
     }
 
     public ObservableObject getProduction(int productionID) {
-        return new ObservableObject(productionID, CreditSystem.getInstance().getProduction(productionID).toString());
+        Production production = PersistenceHandler.getInstance().getProduction(productionID);
+        return new ObservableObject(production.getId(),production.getName(), production.toString());
     }
 
     public ObservableObject getProduction(String name) {
         for(Production production : PersistenceHandler.getInstance().getProductions()) {
             if(production.getName() == name) {
-                return new ObservableObject(production.getId(), production.toString());
+                return new ObservableObject(production.getId(), production.getName(), production.toString());
             }
         }
         return null;

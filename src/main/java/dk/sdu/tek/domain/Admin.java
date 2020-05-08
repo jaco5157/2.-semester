@@ -5,8 +5,6 @@ import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class Admin extends User {
 
     public Admin(int id, String username, String password) {
