@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.*;
 
 import dk.sdu.tek.domain.*;
-import dk.sdu.tek.persistence.ObjectReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +31,7 @@ public class SecondaryController implements Initializable {
     @FXML private TextField thisProducerIDTextField;
     @FXML private ListView<Credit> productionCreditList;
 
-    //Admin fields
+    //TextFields
     @FXML private TextField createProducerUsername;
     @FXML private TextField createProducerPassword;
     @FXML private TextField createProducerID;
@@ -52,22 +51,6 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditRole;
     @FXML private TextField createCreditProductionID;
     @FXML private Button adminCreateCreditButton;
-
-//    //Producer fields
-//    @FXML private TextField producerCreateProductionName;
-//    @FXML private TextField producerCreateProductionID;
-//    @FXML private TextField producerCreateProductionProdID;
-//    @FXML private Button producerCreateProductionButton;
-//
-//    @FXML private TextField producerCreatePersonName;
-//    @FXML private TextField producerCreatePersonInfo;
-//    @FXML private TextField producerCreatePersonID;
-//    @FXML private Button producercreatePersonButton;
-//
-//    @FXML private TextField producerCreateCreditID;
-//    @FXML private TextField producerCreateCreditRole;
-//    @FXML private TextField producerCreateCreditProductionID;
-//    @FXML private Button producerCreateCreditButton;
 
     private Stage stage;
     private double x = 0, y = 0;
@@ -106,30 +89,25 @@ public class SecondaryController implements Initializable {
 
     public void setResultList () {
         ObservableList<Production> result = FXCollections.observableArrayList();
-        for (Production production : Singleton.getInstance().getProductions()) {
+        for (Production production : CreditSystem.getInstance().getProductions()) {
             result.add(production);
         }
         resultList.setItems(result);
     }
 
     public void searchForProduction() {
-        ArrayList<Production> productionArrayList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
+        ArrayList<Production> productionArrayList = CreditSystem.getInstance().getProductions();
         for (Production production : productionArrayList) {
-            if (production.getProductionName().equals(searchField.getText())) {
+            if (productionArrayList.toString().contains(searchField.getText())) {
                 resultList.getItems().add(production);
             }
         }
-//        Boolean doescontain = productionArrayList.toString().contains(searchField.getText());
-//        if (doescontain == true) {
-//            System.out.println("yes");
-//        } else
-//            System.out.println("no");
     }
 
     public void getSelectedItem () {
         Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
         productionNameTextField.setText(selectedProduction.getProductionName());
-        productionIDTextField.setText(String.valueOf(selectedProduction.getProductionID()));
+        productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
         thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
         ObservableList<Credit> result = FXCollections.observableArrayList();
@@ -140,32 +118,32 @@ public class SecondaryController implements Initializable {
     }
 
     public void adminCreateProducer(ActionEvent event) {
-        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
+//        admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
     }
 
     public void adminCreateProduction(ActionEvent event) {
-        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()),Integer.parseInt(createProductionProdID.getText()));
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
+//        admin.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()),Integer.parseInt(createProductionProdID.getText()));
     }
 
     public void adminCreateCredit(ActionEvent event) {
-        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
-        admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
+//        admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
     public void producerCreateProduction() {
-        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+        Producer producer = (Producer)CreditSystem.getInstance().getCurrentUser();
         producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
     }
 
     public void producerCreateCredit(ActionEvent event) {
-        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-        producer.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
+        Producer producer = (Producer)CreditSystem.getInstance().getCurrentUser();
+//        producer.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
     public void createPerson(ActionEvent event) {
-        User user = (User)Singleton.getInstance().getCurrentUser();
+        User user = (User)CreditSystem.getInstance().getCurrentUser();
         user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="CreditManagementSystem@localhost">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.18">
+    <root id="1">
+      <ServerVersion>4.2.6</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="CarDB"/>
+    <schema id="3" parent="1" name="CreditManagementSystem">
+      <Current>1</Current>
+    </schema>
+    <schema id="4" parent="1" name="HealthOS"/>
+    <schema id="5" parent="1" name="MyWebsite"/>
+    <schema id="6" parent="1" name="admin"/>
+    <schema id="7" parent="1" name="config"/>
+    <schema id="8" parent="1" name="database"/>
+    <schema id="9" parent="1" name="local"/>
+    <table id="10" parent="3" name="Admins"/>
+    <table id="11" parent="3" name="Credits"/>
+    <table id="12" parent="3" name="People"/>
+    <table id="13" parent="3" name="Producers"/>
+    <table id="14" parent="3" name="Productions"/>
+  </database-model>
+</dataSource>

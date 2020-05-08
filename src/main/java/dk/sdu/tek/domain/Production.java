@@ -2,17 +2,19 @@ package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 import java.util.ArrayList;
 
 public class Production implements Writeable{
+
+    private int id;
     private String productionName;
-    private int productionID;
     private int producerID;
 
-    public Production(String productionName, int productionID, int producerID){
+    public Production(int id, String productionName, int producerID){
+        this.id = id;
         this.productionName = productionName;
-        this.productionID = productionID;
         this.producerID = producerID;
     }
 
@@ -24,12 +26,12 @@ public class Production implements Writeable{
         this.productionName = productionName;
     }
 
-    public int getProductionID () {
-        return this.productionID;
+    public int getId () {
+        return this.id;
     }
 
     public void setProductionID (int productionID) {
-        this.productionID = productionID;
+        this.id = id;
     }
 
     public int getProducerID () {
@@ -41,8 +43,8 @@ public class Production implements Writeable{
     }
 
     public Producer getProducer() {
-        for(Producer producer : Singleton.getInstance().getProducers()) {
-            if(producer.getProducerID() == productionID) {
+        for(Producer producer : CreditSystem.getInstance().getProducers()) {
+            if(producer.getId() == id) {
                 return producer;
             }
         }
@@ -51,17 +53,17 @@ public class Production implements Writeable{
 
     @Override
     public String toString() {
-        return this.productionName + "," + this.productionID + "," + this.producerID;
+        return this.productionName + "," + this.getId() + "," + this.producerID;
     }
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("productions.txt", this);
+        PersistenceHandler.getInstance().createProduction(this);
     }
 
 
-    public void addCredit(int personID, String role) {
-        Credit credit = new Credit(personID, this.getProductionID(), role);
+    public void addCredit(int id, int personID, String role) {
+        Credit credit = new Credit(id, this.getId(), personID, role);
         credit.write();
     }
 
@@ -70,7 +72,7 @@ public class Production implements Writeable{
         ArrayList<Credit> fullList = ObjectReader.readObject(ObjectReader.Type.CREDIT);
 
         for (Credit credit : fullList) {
-            if(credit.getProductionID() == this.getProductionID()) {
+            if(credit.getProductionID() == this.getId()) {
                 credits.add(credit);
             }
         }

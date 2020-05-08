@@ -1,7 +1,7 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.Menu;
 import dk.sdu.tek.presentation.ProducerMenu;
 
@@ -9,42 +9,31 @@ import java.util.ArrayList;
 
 public class Producer extends User {
 
-    private int producerID;
+    public Producer(int id, String username, String password){
+        super(id, username, password);
+    }
 
     @Override
     public Menu getMenu() {
         return new ProducerMenu();
     }
 
-    public Producer(String username, String password, int producerID){
-        super(username, password);
-        this.producerID = producerID;
-    }
-
-    public int getProducerID () {
-        return this.producerID;
-    }
-
-    public void setProducerID (int producerID) {
-        this.producerID = producerID;
-    }
-
     @Override
     public void write() {
-        ObjectWriter.writeToFile("producers.txt", this);
+        PersistenceHandler.getInstance().createProducer(this);
     }
 
     @Override
     public String toString() {
-        return this.getUsername() + "," + this.getPassword() + "," + this.getProducerID();
+        return this.getUsername() + "," + this.getPassword() + "," + this.getId();
     }
 
     @Override
     public ArrayList<Production> getOwnedProductions() {
         ArrayList<Production> productions = new ArrayList<>();
 
-        for (Production production : Singleton.getInstance().getProductions()) {
-            if(production.getProducerID() == this.getProducerID()) {
+        for (Production production : CreditSystem.getInstance().getProductions()) {
+            if(production.getProducerID() == this.getId()) {
                 productions.add(production);
             }
         }
@@ -56,7 +45,7 @@ public class Producer extends User {
     @Override
     public Production getOwnedProduction(int productionID) {
         for(Production production : this.getOwnedProductions()) {
-            if(production.getProductionID() == productionID) {
+            if(production.getId() == productionID) {
                 return production;
             }
         }
@@ -64,7 +53,7 @@ public class Producer extends User {
     }
 
     public void createProduction(String productionName, int productionID) {
-        Production production = new Production(productionName, productionID, this.getProducerID());
+        Production production = new Production(productionID, productionName, this.getId());
         production.write();
     }
 }

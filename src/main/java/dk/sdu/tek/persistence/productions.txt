@@ -1,5 +1,1 @@
-prodname2,2,2
 prodname,1,1
-flint,5,5
-Castle,3,3
-
