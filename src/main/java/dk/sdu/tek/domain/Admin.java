@@ -37,6 +37,10 @@ public class Admin extends User {
         production.write();
     }
 
+    public void deleteProduction(Production production) {
+
+    }
+
     @Override
     public void write() {
         ObjectWriter.writeToFile("admins.txt", this);

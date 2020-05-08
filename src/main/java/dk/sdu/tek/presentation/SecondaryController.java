@@ -53,6 +53,8 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditProductionID;
     @FXML private Button adminCreateCreditButton;
 
+    @FXML private Button adminDeleteButton;
+
 //    //Producer fields
 //    @FXML private TextField producerCreateProductionName;
 //    @FXML private TextField producerCreateProductionID;
@@ -154,6 +156,15 @@ public class SecondaryController implements Initializable {
         admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
     }
 
+    public void adminDeleteCredit(ActionEvent event) {
+        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
+        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
+            productionCreditList.getItems().remove(selectedCredit);
+        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
+            resultList.getItems().remove(selectedProduction);
+    }
+
     public void producerCreateProduction() {
         Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
         producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
@@ -168,5 +179,4 @@ public class SecondaryController implements Initializable {
         User user = (User)Singleton.getInstance().getCurrentUser();
         user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
     }
-
 }
