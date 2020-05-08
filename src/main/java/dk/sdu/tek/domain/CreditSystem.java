@@ -1,9 +1,6 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.PersistenceHandler;
-
-import static dk.sdu.tek.persistence.ObjectReader.Type.ADMIN;
-import static dk.sdu.tek.persistence.ObjectReader.Type.PRODUCER;
 import java.util.ArrayList;
 
 public class CreditSystem {
@@ -19,17 +16,24 @@ public class CreditSystem {
     }
 
     public boolean authenticate(String username, String password, Boolean isAdmin) {
-        ArrayList userList;
+        ArrayList<Admin> userList = PersistenceHandler.getInstance().getAdmins();
         System.out.println("Is admin: " + isAdmin);
-        if(isAdmin) {
-            userList = PersistenceHandler.getInstance().getAdmins();
-        } else {
-            userList = PersistenceHandler.getInstance().getProducers();
-        }
         System.out.println(userList);
-        for (User user : userList) {
-            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                setCurrentUser(user);
+        for (Admin admin : userList) {
+            if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
+                setCurrentUser(admin);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean authenticate(String username, String password) {
+        ArrayList<Producer> userList = PersistenceHandler.getInstance().getProducers();
+        System.out.println(userList);
+        for (Producer producer : userList) {
+            if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
+                setCurrentUser(producer);
                 return true;
             }
         }
@@ -53,14 +57,8 @@ public class CreditSystem {
     }
 
     public Production getProduction(int productionID) {
-        for(Production production : this.getProductions()) {
-            if(production.getId() == productionID) {
-                return production;
-            }
-        }
-        return null;
+        return CreditSystem.getInstance().getProduction(productionID);
     }
-
 
     public Production getProduction(String name) {
         for(Production production : this.getProductions()) {

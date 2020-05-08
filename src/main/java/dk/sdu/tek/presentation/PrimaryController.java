@@ -37,11 +37,11 @@ public class PrimaryController implements Initializable {
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
         try {
-            if (CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
+            if (adminbutton.isSelected() && CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected())) {
                 admin = (Admin)CreditSystem.getInstance().getCurrentUser();
                 AdminMenu menu = (AdminMenu)admin.getMenu();
                 menu.show();
-            } else if(CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && !adminbutton.isSelected()) {
+            } else if(!adminbutton.isSelected() && CreditSystem.getInstance().authenticate(username.getText(), password.getText())) {
                 producer = (Producer) CreditSystem.getInstance().getCurrentUser();
                 ProducerMenu menu = (ProducerMenu)producer.getMenu();
                 menu.show();

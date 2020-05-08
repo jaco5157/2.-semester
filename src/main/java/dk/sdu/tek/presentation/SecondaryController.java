@@ -117,34 +117,34 @@ public class SecondaryController implements Initializable {
         productionCreditList.setItems(result);
     }
 
-//    public void adminCreateProducer(ActionEvent event) {
-//        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+    public void adminCreateProducer(ActionEvent event) {
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
 //        admin.createProducer(createProducerUsername.getText(),createProducerPassword.getText(),Integer.parseInt(createProducerID.getText()));
-//    }
-//
-//    public void adminCreateProduction(ActionEvent event) {
-//        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+    }
+
+    public void adminCreateProduction(ActionEvent event) {
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
 //        admin.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()),Integer.parseInt(createProductionProdID.getText()));
-//    }
-//
-//    public void adminCreateCredit(ActionEvent event) {
-//        Admin admin = (Admin)Singleton.getInstance().getCurrentUser();
+    }
+
+    public void adminCreateCredit(ActionEvent event) {
+        Admin admin = (Admin)CreditSystem.getInstance().getCurrentUser();
 //        admin.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
-//    }
-//
-//    public void producerCreateProduction() {
-//        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
-//        producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
-//    }
-//
-//    public void producerCreateCredit(ActionEvent event) {
-//        Producer producer = (Producer)Singleton.getInstance().getCurrentUser();
+    }
+
+    public void producerCreateProduction() {
+        Producer producer = (Producer)CreditSystem.getInstance().getCurrentUser();
+        producer.createProduction(createProductionName.getText(),Integer.parseInt(createProductionID.getText()));
+    }
+
+    public void producerCreateCredit(ActionEvent event) {
+        Producer producer = (Producer)CreditSystem.getInstance().getCurrentUser();
 //        producer.getOwnedProduction(Integer.parseInt(createCreditProductionID.getText())).addCredit(Integer.parseInt(createCreditID.getText()),createCreditRole.getText());
-//    }
-//
-//    public void createPerson(ActionEvent event) {
-//        User user = (User)Singleton.getInstance().getCurrentUser();
-//        user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
-//    }
+    }
+
+    public void createPerson(ActionEvent event) {
+        User user = (User)CreditSystem.getInstance().getCurrentUser();
+        user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
+    }
 
 }
