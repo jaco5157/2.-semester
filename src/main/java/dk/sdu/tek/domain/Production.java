@@ -1,6 +1,8 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.PersistenceHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -33,25 +35,17 @@ public class Production implements Writeable{
     }
 
     public Producer getProducer() {
-        for(Producer producer : CreditSystem.getInstance().getProducers()) {
-            if(producer.getId() == id) {
-                return producer;
-            }
-        }
-        return null;
+        return PersistenceHandler.getInstance().getProducer(this.getProducerID());
     }
 
-    public ArrayList<Credit> getCredits () {
-        ArrayList<Credit> credits = new ArrayList<>();
-        ArrayList<Credit> fullList = PersistenceHandler.getInstance().getCredits();
-
-        for (Credit credit : fullList) {
-            if(credit.getProductionID() == this.getId()) {
-                credits.add(credit);
+    public ObservableList<ObservableObject> getCredits () {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
+            if (credit.getId() == this.getId()) {
+                result.add(new ObservableObject(credit.getId(), credit.toString()));
             }
         }
-
-        return credits;
+        return result;
     }
 
     //Get and set attributes
