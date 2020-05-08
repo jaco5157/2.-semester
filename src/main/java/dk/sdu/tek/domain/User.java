@@ -1,6 +1,8 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.presentation.Menu;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public abstract class User extends Visitor implements Writeable {
@@ -24,9 +26,9 @@ public abstract class User extends Visitor implements Writeable {
         return this.username + "," + this.password;
     }
 
-    public abstract ArrayList<Production> getOwnedProductions();
+    public abstract ObservableList<ObservableObject> getOwnedProductions();
 
-    public abstract Production getOwnedProduction(int productionID);
+    public abstract ObservableObject getOwnedProduction(int productionID);
 
     //Get and set attributes
     public int getId () {return this.id;}

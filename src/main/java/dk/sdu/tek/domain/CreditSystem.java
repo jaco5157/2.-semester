@@ -83,14 +83,14 @@ public class CreditSystem {
         return result;
     }
 
-    public Production getProduction(int productionID) {
-        return CreditSystem.getInstance().getProduction(productionID);
+    public ObservableObject getProduction(int productionID) {
+        return new ObservableObject(productionID, CreditSystem.getInstance().getProduction(productionID).toString());
     }
 
-    public Production getProduction(String name) {
+    public ObservableObject getProduction(String name) {
         for(Production production : PersistenceHandler.getInstance().getProductions()) {
             if(production.getName() == name) {
-                return production;
+                return new ObservableObject(production.getId(), production.toString());
             }
         }
         return null;

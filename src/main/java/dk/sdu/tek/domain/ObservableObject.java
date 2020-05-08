@@ -1,19 +1,18 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.PersistenceHandler;
+
 public class ObservableObject {
     private int id;
     private String object;
-    public enum Type {
-        PRODUCTION,
-        PERSON,
-        PRODUCER,
-        ADMIN,
-        CREDIT
-    }
+    private String type;
 
-    public ObservableObject (int id, String object, Type type) {
+    public ObservableObject (int id, String object) {
         this.id = id;
         this.object = object;
-        this.type = type;
+    }
+
+    public int getId() {
+        return id;
     }
 }

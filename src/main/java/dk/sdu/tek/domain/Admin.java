@@ -3,6 +3,7 @@ package dk.sdu.tek.domain;
 import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -42,12 +43,13 @@ public class Admin extends User {
     }
 
     @Override
-    public ArrayList<Production> getOwnedProductions() {
+    public ObservableList<ObservableObject> getOwnedProductions() {
         return CreditSystem.getInstance().getProductions();
     }
 
     @Override
-    public Production getOwnedProduction(int productionID) {
+    public ObservableObject getOwnedProduction(int productionID) {
         return CreditSystem.getInstance().getProduction(productionID);
     }
+
 }

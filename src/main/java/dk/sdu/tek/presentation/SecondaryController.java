@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.*;
 
 import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -105,7 +106,7 @@ public class SecondaryController implements Initializable {
     }
 
     public void getSelectedItem () {
-        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+        Production selectedProduction = PersistenceHandler.getInstance().getProduction(resultList.getSelectionModel().getSelectedItem().getId());
         productionNameTextField.setText(selectedProduction.getName());
         productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());

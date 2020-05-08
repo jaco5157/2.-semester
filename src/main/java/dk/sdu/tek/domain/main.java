@@ -82,6 +82,5 @@ public class main {
         System.out.println(PersistenceHandler.getInstance().getAdmins());
         //Credit credit = new Credit();
 
-
     }
 }

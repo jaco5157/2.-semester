@@ -3,6 +3,8 @@ package dk.sdu.tek.domain;
 import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.Menu;
 import dk.sdu.tek.presentation.ProducerMenu;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -28,25 +30,24 @@ public class Producer extends User {
     }
 
     @Override
-    public ArrayList<Production> getOwnedProductions() {
-        ArrayList<Production> productions = new ArrayList<>();
+    public ObservableList<ObservableObject> getOwnedProductions() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
 
-        for (Production production : CreditSystem.getInstance().getProductions()) {
+        for (Production production : PersistenceHandler.getInstance().getProductions()) {
             if(production.getProducerID() == this.getId()) {
-                productions.add(production);
+                result.add(new ObservableObject(production.getId(), production.toString()));
             }
         }
 
-        return productions;
+        return result;
     }
 
 
     @Override
-    public Production getOwnedProduction(int productionID) {
-        for(Production production : this.getOwnedProductions()) {
-            if(production.getId() == productionID) {
-                return production;
-            }
+    public ObservableObject getOwnedProduction(int productionID) {
+        Production production = PersistenceHandler.getInstance().getProduction(productionID);
+        if(production.getProducerID() == this.getId()) {
+            return new ObservableObject(production.getId(), production.toString());
         }
         return null;
     }
