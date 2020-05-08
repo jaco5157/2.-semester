@@ -1,11 +1,6 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.PersistenceHandler;
-
-import java.util.ArrayList;
-
-import static dk.sdu.tek.persistence.ObjectReader.Type.*;
 
 public class main {
     //Test class

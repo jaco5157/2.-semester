@@ -1,13 +1,10 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.presentation.Menu;
-import org.bson.codecs.pojo.annotations.BsonProperty;
-
 import java.util.ArrayList;
 
 public abstract class User extends Visitor implements Writeable {
 
-    @BsonProperty("_id")
     private int id;
     private String username;
     private String password;

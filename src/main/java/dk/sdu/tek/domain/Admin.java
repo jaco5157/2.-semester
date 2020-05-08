@@ -1,6 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;

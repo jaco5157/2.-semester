@@ -1,7 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
 
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class Production implements Writeable{
 
     public ArrayList<Credit> getCredits () {
         ArrayList<Credit> credits = new ArrayList<>();
-        ArrayList<Credit> fullList = ObjectReader.readObject(ObjectReader.Type.CREDIT);
+        ArrayList<Credit> fullList = PersistenceHandler.getInstance().getCredits();
 
         for (Credit credit : fullList) {
             if(credit.getProductionID() == this.getId()) {

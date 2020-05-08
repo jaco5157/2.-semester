@@ -1,6 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
 
 public class Credit implements Writeable{
