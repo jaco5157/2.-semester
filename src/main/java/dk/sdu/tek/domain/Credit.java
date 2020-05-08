@@ -1,13 +1,17 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 public class Credit implements Writeable{
+
+    private int id;
     private String role;
     private int personID;
     private int productionID;
 
-    public Credit (int personID, int productionID, String role) {
+    public Credit (int id, int personID, int productionID, String role) {
+        this.id = id;
         this.productionID = productionID;
         this.personID = personID;
         this.role = role;
@@ -37,6 +41,14 @@ public class Credit implements Writeable{
         this.productionID = productionID;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return this.personID + "," + this.productionID + "," + this.role;
@@ -44,6 +56,6 @@ public class Credit implements Writeable{
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("credits.txt", this);
+        PersistenceHandler.getInstance().createCredit(this);
     }
 }

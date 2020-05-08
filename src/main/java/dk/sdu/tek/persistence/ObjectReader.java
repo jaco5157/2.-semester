@@ -36,21 +36,21 @@ public class ObjectReader {
             while (objectScanner.hasNext()) {
                 String[] line = objectScanner.next().split(",");
                 switch (type) {
-                    case PRODUCTION:
-                        objects.add(new Production(line[0], parseInt(line[1]), parseInt(line[2])));
-                        break;
-                    case PERSON:
-                        objects.add(new Person(line[0], parseInt(line[1]), line[2]));
-                        break;
-                    case PRODUCER:
-                        objects.add(new Producer(line[0], line[1], parseInt(line[2])));
-                        break;
-                    case ADMIN:
-                        objects.add(new Admin(line[0], line[1]));
-                        break;
-                    case CREDIT:
-                        objects.add(new Credit(parseInt(line[0]), parseInt(line[1]), line[2]));
-                        break;
+//                    case PRODUCTION:
+//                        objects.add(new Production(line[0], parseInt(line[1]), parseInt(line[2])));
+//                        break;
+//                    case PERSON:
+//                        objects.add(new Person(line[0], parseInt(line[1]), line[2]));
+//                        break;
+//                    case PRODUCER:
+//                        objects.add(new Producer(line[0], line[1], parseInt(line[2])));
+//                        break;
+//                    case ADMIN:
+//                        objects.add(new Admin(line[0], line[1]));
+//                        break;
+//                    case CREDIT:
+//                        objects.add(new Credit(parseInt(line[0]), parseInt(line[1]), line[2]));
+//                        break;
                 }
             }
         } catch (FileNotFoundException ex) {
