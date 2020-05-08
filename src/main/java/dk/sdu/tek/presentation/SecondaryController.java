@@ -89,14 +89,14 @@ public class SecondaryController implements Initializable {
 
     public void setResultList () {
         ObservableList<Production> result = FXCollections.observableArrayList();
-        for (Production production : Singleton.getInstance().getProductions()) {
+        for (Production production : CreditSystem.getInstance().getProductions()) {
             result.add(production);
         }
         resultList.setItems(result);
     }
 
     public void searchForProduction() {
-        ArrayList<Production> productionArrayList = Singleton.getInstance().getProductions();
+        ArrayList<Production> productionArrayList = CreditSystem.getInstance().getProductions();
         for (Production production : productionArrayList) {
             if (productionArrayList.toString().contains(searchField.getText())) {
                 resultList.getItems().add(production);

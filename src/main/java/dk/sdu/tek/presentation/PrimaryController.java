@@ -37,12 +37,12 @@ public class PrimaryController implements Initializable {
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
         try {
-            if (Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
-                admin = (Admin)Singleton.getInstance().getCurrentUser();
+            if (CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && adminbutton.isSelected()) {
+                admin = (Admin)CreditSystem.getInstance().getCurrentUser();
                 AdminMenu menu = (AdminMenu)admin.getMenu();
                 menu.show();
-            } else if(Singleton.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && !adminbutton.isSelected()) {
-                producer = (Producer) Singleton.getInstance().getCurrentUser();
+            } else if(CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected()) && !adminbutton.isSelected()) {
+                producer = (Producer) CreditSystem.getInstance().getCurrentUser();
                 ProducerMenu menu = (ProducerMenu)producer.getMenu();
                 menu.show();
             }
@@ -60,7 +60,7 @@ public class PrimaryController implements Initializable {
     public void visitorLogin(ActionEvent actionEvent) throws IOException {
         visitor = new Visitor();
 
-        Singleton.getInstance().setCurrentUser(visitor);
+        CreditSystem.getInstance().setCurrentUser(visitor);
         VisitorMenu menu = (VisitorMenu)visitor.getMenu();
         menu.show();
     }

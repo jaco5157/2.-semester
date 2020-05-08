@@ -2,6 +2,7 @@ package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class Production implements Writeable{
     }
 
     public Producer getProducer() {
-        for(Producer producer : Singleton.getInstance().getProducers()) {
+        for(Producer producer : CreditSystem.getInstance().getProducers()) {
             if(producer.getId() == id) {
                 return producer;
             }
@@ -57,7 +58,7 @@ public class Production implements Writeable{
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("productions.txt", this);
+        PersistenceHandler.getInstance().createProduction(this);
     }
 
 

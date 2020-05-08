@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 public class Credit implements Writeable{
 
@@ -55,6 +56,6 @@ public class Credit implements Writeable{
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("credits.txt", this);
+        PersistenceHandler.getInstance().createCredit(this);
     }
 }

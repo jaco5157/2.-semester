@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 
 public class Person implements Writeable{
 
@@ -45,6 +46,6 @@ public class Person implements Writeable{
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("people.txt", this);
+        PersistenceHandler.getInstance().createPerson(this);
     }
 }

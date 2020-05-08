@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
+import dk.sdu.tek.persistence.PersistenceHandler;
+
 import static dk.sdu.tek.persistence.ObjectReader.Type.ADMIN;
 import static dk.sdu.tek.persistence.ObjectReader.Type.PRODUCER;
 import java.util.ArrayList;
@@ -8,13 +9,22 @@ import java.util.ArrayList;
 public class CreditSystem {
     private Visitor currentUser;
 
+    public static CreditSystem instance;
+
+    public static CreditSystem getInstance() {
+        if (instance == null) {
+            instance = new CreditSystem();
+        }
+        return instance;
+    }
+
     public boolean authenticate(String username, String password, Boolean isAdmin) {
-        ArrayList<User> userList;
+        ArrayList userList;
         System.out.println("Is admin: " + isAdmin);
         if(isAdmin) {
-            userList = ObjectReader.readObject(ADMIN);
+            userList = PersistenceHandler.getInstance().getAdmins();
         } else {
-            userList = ObjectReader.readObject(PRODUCER);
+            userList = PersistenceHandler.getInstance().getProducers();
         }
         System.out.println(userList);
         for (User user : userList) {
@@ -35,11 +45,11 @@ public class CreditSystem {
     }
 
     public ArrayList<Producer> getProducers() {
-        return ObjectReader.readObject(ObjectReader.Type.PRODUCER);
+        return PersistenceHandler.getInstance().getProducers();
     }
 
     public ArrayList<Production> getProductions() {
-        return ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
+        return PersistenceHandler.getInstance().getProductions();
     }
 
     public Production getProduction(int productionID) {

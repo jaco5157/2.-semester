@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
 
@@ -20,12 +21,12 @@ public class Admin extends User {
 
     @Override
     public ArrayList<Production> getOwnedProductions() {
-        return Singleton.getInstance().getProductions();
+        return CreditSystem.getInstance().getProductions();
     }
 
     @Override
     public Production getOwnedProduction(int productionID) {
-        return Singleton.getInstance().getProduction(productionID);
+        return CreditSystem.getInstance().getProduction(productionID);
     }
 
     public void createProducer (int id, String username, String password) {
@@ -40,7 +41,7 @@ public class Admin extends User {
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("admins.txt", this);
+        PersistenceHandler.getInstance().createAdmin(this);
     }
 
     @Override

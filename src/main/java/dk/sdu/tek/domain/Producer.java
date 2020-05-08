@@ -1,6 +1,7 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.ObjectWriter;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.Menu;
 import dk.sdu.tek.presentation.ProducerMenu;
 
@@ -19,7 +20,7 @@ public class Producer extends User {
 
     @Override
     public void write() {
-        ObjectWriter.writeToFile("producers.txt", this);
+        PersistenceHandler.getInstance().createProducer(this);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class Producer extends User {
     public ArrayList<Production> getOwnedProductions() {
         ArrayList<Production> productions = new ArrayList<>();
 
-        for (Production production : Singleton.getInstance().getProductions()) {
+        for (Production production : CreditSystem.getInstance().getProductions()) {
             if(production.getProducerID() == this.getId()) {
                 productions.add(production);
             }

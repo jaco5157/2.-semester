@@ -1,7 +1,5 @@
 package dk.sdu.tek.domain;
 
-import org.bson.types.ObjectId;
-
 import java.util.ArrayList;
 
 public interface IPersistenceHandler {
