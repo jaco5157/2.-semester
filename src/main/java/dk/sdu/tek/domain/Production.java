@@ -1,8 +1,8 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -16,39 +16,6 @@ public class Production implements Writeable{
         this.id = id;
         this.productionName = productionName;
         this.producerID = producerID;
-    }
-
-    public String getProductionName() {
-        return this.productionName;
-    }
-
-    public void setProductionName(String productionName) {
-        this.productionName = productionName;
-    }
-
-    public int getId () {
-        return this.id;
-    }
-
-    public void setProductionID (int productionID) {
-        this.id = id;
-    }
-
-    public int getProducerID () {
-        return this.producerID;
-    }
-
-    public void setProducerID (int producerID) {
-        this.producerID = producerID;
-    }
-
-    public Producer getProducer() {
-        for(Producer producer : CreditSystem.getInstance().getProducers()) {
-            if(producer.getId() == id) {
-                return producer;
-            }
-        }
-        return null;
     }
 
     @Override
@@ -67,30 +34,43 @@ public class Production implements Writeable{
         credit.write();
     }
 
-    public ArrayList<Credit> getCredits () {
-        ArrayList<Credit> credits = new ArrayList<>();
-        ArrayList<Credit> fullList = ObjectReader.readObject(ObjectReader.Type.CREDIT);
-
-        for (Credit credit : fullList) {
-            if(credit.getProductionID() == this.getId()) {
-                credits.add(credit);
-            }
-        }
-
-        return credits;
+    public Producer getProducer() {
+        return PersistenceHandler.getInstance().getProducer(this.getProducerID());
     }
 
-    public ArrayList<Production> getProductions () {
-        ArrayList<Production> productions = new ArrayList<>();
-        ArrayList<Production> fullListList = ObjectReader.readObject(ObjectReader.Type.PRODUCTION);
-
-        for (Production production : fullListList) {
-            if(production.getProductionName() == this.getProductionName()) {
-                productions.add(production);
+    public ObservableList<ObservableObject> getCredits () {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
+            if (credit.getId() == this.getId()) {
+                result.add(new ObservableObject(credit.getId(), credit.toString()));
             }
         }
-        return productions;
+        return result;
     }
 
+    //Get and set attributes
+    public int getId () {
+        return this.id;
+    }
+
+    public void setId (int productionID) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.productionName;
+    }
+
+    public void setName(String productionName) {
+        this.productionName = productionName;
+    }
+
+    public int getProducerID () {
+        return this.producerID;
+    }
+
+    public void setProducerID (int producerID) {
+        this.producerID = producerID;
+    }
 
 }

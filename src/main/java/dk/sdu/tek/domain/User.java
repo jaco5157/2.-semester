@@ -1,13 +1,12 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.presentation.Menu;
-import org.bson.codecs.pojo.annotations.BsonProperty;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public abstract class User extends Visitor implements Writeable {
 
-    @BsonProperty("_id")
     private int id;
     private String username;
     private String password;
@@ -16,19 +15,26 @@ public abstract class User extends Visitor implements Writeable {
         return null;
     }
 
-    public User() {}
     public User (int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
 
-        person.write();
+    @Override
+    public String toString() { return this.username + "," + this.password;
     }
 
-    public abstract ArrayList<Production> getOwnedProductions();
+    public abstract ObservableList<ObservableObject> getOwnedProductions();
 
-    public abstract Production getOwnedProduction(int productionID);
+    public abstract ObservableObject getOwnedProduction(int productionID);
+
+    //Get and set attributes
+    public int getId () {return this.id;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername () {
         return this.username;
@@ -44,17 +50,6 @@ public abstract class User extends Visitor implements Writeable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getId () {return this.id;}
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return this.username + "," + this.password;
     }
 
 }

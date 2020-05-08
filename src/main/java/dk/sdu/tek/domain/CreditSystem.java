@@ -1,6 +1,9 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.PersistenceHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class CreditSystem {
@@ -48,22 +51,47 @@ public class CreditSystem {
         return currentUser;
     }
 
-    public ArrayList<Producer> getProducers() {
-        return PersistenceHandler.getInstance().getProducers();
+    public ObservableList<ObservableObject> getProducers() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Producer producer : PersistenceHandler.getInstance().getProducers()) {
+            result.add(new ObservableObject(producer.getId(),producer.getUsername(), producer.toString()));
+        }
+        return result;
     }
 
-    public ArrayList<Production> getProductions() {
-        return PersistenceHandler.getInstance().getProductions();
+    public ObservableList<ObservableObject> getProductions() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Production production : PersistenceHandler.getInstance().getProductions()) {
+            result.add(new ObservableObject(production.getId(),production.getName(), production.toString()));
+        }
+        return result;
     }
 
-    public Production getProduction(int productionID) {
-        return CreditSystem.getInstance().getProduction(productionID);
+    public ObservableList<ObservableObject> getPeople() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Person person : PersistenceHandler.getInstance().getPeople()) {
+            result.add(new ObservableObject(person.getId(),person.getName(), person.toString()));
+        }
+        return result;
     }
 
-    public Production getProduction(String name) {
-        for(Production production : this.getProductions()) {
-            if(production.getProductionName() == name) {
-                return production;
+    public ObservableList<ObservableObject> getCredits() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
+            result.add(new ObservableObject(credit.getId(), credit.getRole(), credit.toString()));
+        }
+        return result;
+    }
+
+    public ObservableObject getProduction(int productionID) {
+        Production production = PersistenceHandler.getInstance().getProduction(productionID);
+        return new ObservableObject(production.getId(),production.getName(), production.toString());
+    }
+
+    public ObservableObject getProduction(String name) {
+        for(Production production : PersistenceHandler.getInstance().getProductions()) {
+            if(production.getName() == name) {
+                return new ObservableObject(production.getId(), production.getName(), production.toString());
             }
         }
         return null;

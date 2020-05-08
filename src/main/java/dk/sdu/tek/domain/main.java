@@ -1,11 +1,6 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectReader;
 import dk.sdu.tek.persistence.PersistenceHandler;
-
-import java.util.ArrayList;
-
-import static dk.sdu.tek.persistence.ObjectReader.Type.*;
 
 public class main {
     //Test class
@@ -86,7 +81,6 @@ public class main {
 //        PersistenceHandler.getInstance().createAdmin(admin);
         System.out.println(PersistenceHandler.getInstance().getAdmins());
         //Credit credit = new Credit();
-
 
     }
 }

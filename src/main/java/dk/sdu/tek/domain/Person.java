@@ -1,6 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
 
 public class Person implements Writeable{
@@ -15,6 +14,17 @@ public class Person implements Writeable{
         this.contactInfo = contactInfo;
     }
 
+    @Override
+    public void write() {
+        PersistenceHandler.getInstance().createPerson(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.name + "," + this.id + "," + this.contactInfo;
+    }
+
+    //Get and set attributes
     public String getName() {
         return name;
     }
@@ -37,15 +47,5 @@ public class Person implements Writeable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return this.name + "," + this.id + "," + this.contactInfo;
-    }
-
-    @Override
-    public void write() {
-        PersistenceHandler.getInstance().createPerson(this);
     }
 }

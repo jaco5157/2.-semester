@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.*;
 
 import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,12 +25,12 @@ public class SecondaryController implements Initializable {
     @FXML private TabPane mainTab;
     @FXML private TextField searchField;
 
-    @FXML private ListView<Production> resultList;
+    @FXML private ListView<ObservableObject> resultList;
     @FXML private TextField productionNameTextField;
     @FXML private TextField productionIDTextField;
     @FXML private TextField thisProducerTextField;
     @FXML private TextField thisProducerIDTextField;
-    @FXML private ListView<Credit> productionCreditList;
+    @FXML private ListView<ObservableObject> productionCreditList;
 
     //TextFields
     @FXML private TextField createProducerUsername;
@@ -105,15 +106,11 @@ public class SecondaryController implements Initializable {
     }
 
     public void getSelectedItem () {
-        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
-        productionNameTextField.setText(selectedProduction.getProductionName());
+        Production selectedProduction = PersistenceHandler.getInstance().getProduction(resultList.getSelectionModel().getSelectedItem().getId());
+        productionNameTextField.setText(selectedProduction.getName());
         productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
         thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
-        ObservableList<Credit> result = FXCollections.observableArrayList();
-        for (Credit credit : selectedProduction.getCredits()) {
-            result.add(credit);
-        }
         productionCreditList.setItems(result);
     }
 

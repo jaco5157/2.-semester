@@ -1,32 +1,14 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.ObjectWriter;
 import dk.sdu.tek.persistence.PersistenceHandler;
 import dk.sdu.tek.presentation.AdminMenu;
 import dk.sdu.tek.presentation.Menu;
-
-import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 public class Admin extends User {
 
-    public Admin() {}
     public Admin(int id, String username, String password) {
         super(id, username, password);
-    }
-
-    @Override
-    public Menu getMenu() {
-        return new AdminMenu();
-    }
-
-    @Override
-    public ArrayList<Production> getOwnedProductions() {
-        return CreditSystem.getInstance().getProductions();
-    }
-
-    @Override
-    public Production getOwnedProduction(int productionID) {
-        return CreditSystem.getInstance().getProduction(productionID);
     }
 
     public void createProducer (int id, String username, String password) {
@@ -52,4 +34,20 @@ public class Admin extends User {
     public String toString() {
         return this.getUsername() + "," + this.getPassword() + "," + this.getId();
     }
+
+    @Override
+    public Menu getMenu() {
+        return new AdminMenu();
+    }
+
+    @Override
+    public ObservableList<ObservableObject> getOwnedProductions() {
+        return CreditSystem.getInstance().getProductions();
+    }
+
+    @Override
+    public ObservableObject getOwnedProduction(int productionID) {
+        return CreditSystem.getInstance().getProduction(productionID);
+    }
+
 }
