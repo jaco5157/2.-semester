@@ -137,7 +137,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     public boolean createProduction(Production production) {
         MongoCollection productions = database.getCollection("Productions");
         Document document = new Document("_id", production.getId())
-                .append("name", production.getProductionName())
+                .append("name", production.getName())
                 .append("producer_ID", production.getProducerID());
         productions.insertOne(document);
         return true;

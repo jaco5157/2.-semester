@@ -62,7 +62,7 @@ public class CreditSystem {
 
     public Production getProduction(String name) {
         for(Production production : this.getProductions()) {
-            if(production.getProductionName() == name) {
+            if(production.getName() == name) {
                 return production;
             }
         }

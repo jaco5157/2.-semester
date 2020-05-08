@@ -106,7 +106,7 @@ public class SecondaryController implements Initializable {
 
     public void getSelectedItem () {
         Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
-        productionNameTextField.setText(selectedProduction.getProductionName());
+        productionNameTextField.setText(selectedProduction.getName());
         productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
         thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
         thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));

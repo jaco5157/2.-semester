@@ -9,24 +9,8 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 
-    public Admin() {}
     public Admin(int id, String username, String password) {
         super(id, username, password);
-    }
-
-    @Override
-    public Menu getMenu() {
-        return new AdminMenu();
-    }
-
-    @Override
-    public ArrayList<Production> getOwnedProductions() {
-        return CreditSystem.getInstance().getProductions();
-    }
-
-    @Override
-    public Production getOwnedProduction(int productionID) {
-        return CreditSystem.getInstance().getProduction(productionID);
     }
 
     public void createProducer (int id, String username, String password) {
@@ -51,5 +35,20 @@ public class Admin extends User {
     @Override
     public String toString() {
         return this.getUsername() + "," + this.getPassword() + "," + this.getId();
+    }
+
+    @Override
+    public Menu getMenu() {
+        return new AdminMenu();
+    }
+
+    @Override
+    public ArrayList<Production> getOwnedProductions() {
+        return CreditSystem.getInstance().getProductions();
+    }
+
+    @Override
+    public Production getOwnedProduction(int productionID) {
+        return CreditSystem.getInstance().getProduction(productionID);
     }
 }

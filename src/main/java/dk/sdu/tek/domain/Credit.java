@@ -17,6 +17,17 @@ public class Credit implements Writeable{
         this.role = role;
     }
 
+    @Override
+    public void write() {
+        PersistenceHandler.getInstance().createCredit(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.personID + "," + this.productionID + "," + this.role;
+    }
+
+    //Get and set attributes
     public String getRole() {
         return role;
     }
@@ -47,15 +58,5 @@ public class Credit implements Writeable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return this.personID + "," + this.productionID + "," + this.role;
-    }
-
-    @Override
-    public void write() {
-        PersistenceHandler.getInstance().createCredit(this);
     }
 }
