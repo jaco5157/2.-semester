@@ -30,39 +30,24 @@ public class PrimaryController implements Initializable {
 
     private Stage stage;
     private double x = 0, y = 0;
-    private Admin admin = null;
-    private Producer producer = null;
-    private Visitor visitor = null;
+    private boolean isAdmin;
 
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
-        try {
-            if (adminbutton.isSelected() && CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected())) {
-                admin = (Admin)CreditSystem.getInstance().getCurrentUser();
-                AdminMenu menu = (AdminMenu)admin.getMenu();
-                menu.show();
-            } else if(!adminbutton.isSelected() && CreditSystem.getInstance().authenticate(username.getText(), password.getText())) {
-                producer = (Producer) CreditSystem.getInstance().getCurrentUser();
-                ProducerMenu menu = (ProducerMenu)producer.getMenu();
-                menu.show();
-            }
-            else {
-                errorlabel.setText("Login Error");
-            }
-        }
-        catch (ClassCastException ex) {
+        boolean hasCredentials = CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected());
+        isAdmin = adminbutton.isSelected();
+        if (isAdmin && hasCredentials) {
+            AdminMenu.getMenu().show();
+        } else if (!isAdmin && hasCredentials) {
+            ProducerMenu.getMenu().show();
+        } else {
             errorlabel.setText("Login Error");
         }
-
     }
 
     @FXML
     public void visitorLogin(ActionEvent actionEvent) throws IOException {
-        visitor = new Visitor();
-
-        CreditSystem.getInstance().setCurrentUser(visitor);
-        VisitorMenu menu = (VisitorMenu)visitor.getMenu();
-        menu.show();
+        VisitorMenu.getMenu().show();
     }
 
     @FXML
