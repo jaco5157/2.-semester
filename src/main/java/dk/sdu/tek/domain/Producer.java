@@ -32,10 +32,9 @@ public class Producer extends User {
     @Override
     public ObservableList<ObservableObject> getOwnedProductions() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
-
         for (Production production : PersistenceHandler.getInstance().getProductions()) {
             if(production.getProducerID() == this.getId()) {
-                result.add(new ObservableObject(production.getId(), production.toString()));
+                result.add(new ObservableObject(production.getId(),production.getName(), production.toString()));
             }
         }
 
@@ -47,7 +46,7 @@ public class Producer extends User {
     public ObservableObject getOwnedProduction(int productionID) {
         Production production = PersistenceHandler.getInstance().getProduction(productionID);
         if(production.getProducerID() == this.getId()) {
-            return new ObservableObject(production.getId(), production.toString());
+            return new ObservableObject(production.getId(), production.getName(), production.toString());
         }
         return null;
     }

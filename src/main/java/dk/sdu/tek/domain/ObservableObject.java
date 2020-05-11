@@ -17,4 +17,12 @@ public class ObservableObject {
         return id;
     }
 
+    public String toString() {
+        return this.name;
+    }
+
+    public String getObject(){
+        return this.object;
+    }
+
 }
