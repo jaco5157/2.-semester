@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dk.sdu.tek.domain.*;
+import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,15 +31,18 @@ public class PrimaryController implements Initializable {
 
     private Stage stage;
     private double x = 0, y = 0;
-    private boolean isAdmin;
+    private boolean isAdmin = false;
+    private int userId;
 
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
         boolean hasCredentials = CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected());
-        isAdmin = adminbutton.isSelected();
         if (isAdmin && hasCredentials) {
+            isAdmin = adminbutton.isSelected();
+            userId = PersistenceHandler.getInstance().getAdmin(username.getText()).getId();
             AdminMenu.getMenu().show();
         } else if (!isAdmin && hasCredentials) {
+            userId = PersistenceHandler.getInstance().getProducer(username.getText()).getId();
             ProducerMenu.getMenu().show();
         } else {
             errorlabel.setText("Login Error");
@@ -75,6 +79,10 @@ public class PrimaryController implements Initializable {
         App.setImageForImageView(largeLogo,"TV2_Denmark_logo_2017.png");
         App.setImageForImageView(smallLogo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
+    }
+
+    protected boolean isAdmin() {
+        return isAdmin;
     }
 
 }

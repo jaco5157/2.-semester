@@ -4,12 +4,12 @@ import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 
 public class CreditSystem {
-    private Visitor currentUser;
+    private Producer producer;
+    private Admin admin;
 
-    public static CreditSystem instance;
+    private static CreditSystem instance;
 
     public static CreditSystem getInstance() {
         if (instance == null) {
@@ -19,36 +19,42 @@ public class CreditSystem {
     }
 
     public boolean authenticate(String username, String password, Boolean isAdmin) {
-        ArrayList<Admin> userList = PersistenceHandler.getInstance().getAdmins();
-        System.out.println("Is admin: " + isAdmin);
-        System.out.println(userList);
-        for (Admin admin : userList) {
-            if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
-                setCurrentUser(admin);
-                return true;
+        if (isAdmin) {
+            for (Admin admin : PersistenceHandler.getInstance().getAdmins()) {
+                if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
+                    this.admin = admin;
+                    return true;
+                }
+            }
+        } else {
+            for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
+                if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
+                    this.producer = producer;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean authenticate(String username, String password) {
-        ArrayList<Producer> userList = PersistenceHandler.getInstance().getProducers();
-        System.out.println(userList);
-        for (Producer producer : userList) {
-            if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
-                setCurrentUser(producer);
-                return true;
-            }
-        }
-        return false;
+//    public Visitor getCurrentUser() {
+//        return currentUser;
+//    }
+
+    public boolean createProducer (int id, String username, String password) {
+        return PersistenceHandler.getInstance().createProducer(new Producer(id, username, password));
     }
 
-    public void setCurrentUser (Visitor currentUser) {
-        this.currentUser = currentUser;
+    public boolean createProduction (int id, String username, int proucerId) {
+        return PersistenceHandler.getInstance().createProduction(new Production(id, username, proucerId));
     }
 
-    public Visitor getCurrentUser() {
-        return currentUser;
+    public boolean createPerson (int id, String username, String email) {
+        return PersistenceHandler.getInstance().createPerson(new Person(id, username, email));
+    }
+
+    public boolean createCredit (int id, int productionId, int personId, String role) {
+        return PersistenceHandler.getInstance().createCredit(new Credit(id, productionId, personId, role));
     }
 
     public ObservableList<ObservableObject> getProducers() {
