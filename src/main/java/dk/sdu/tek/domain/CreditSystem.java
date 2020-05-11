@@ -19,32 +19,17 @@ public class CreditSystem {
     }
 
     public boolean authenticate(String username, String password, Boolean isAdmin) {
-<<<<<<< Updated upstream
-        if(isAdmin) {
+        if (isAdmin) {
             for (Admin admin : PersistenceHandler.getInstance().getAdmins()) {
                 if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
-                    setCurrentUser(admin);
-=======
-        if (isAdmin) {
-            ArrayList<Admin> userList = PersistenceHandler.getInstance().getAdmins();
-            for (Admin admin : userList) {
-                if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
                     this.admin = admin;
->>>>>>> Stashed changes
                     return true;
                 }
             }
         } else {
-<<<<<<< Updated upstream
             for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
                 if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
-                    setCurrentUser(producer);
-=======
-            ArrayList<Producer> userList = PersistenceHandler.getInstance().getProducers();
-            for (Producer producer : userList) {
-                if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
                     this.producer = producer;
->>>>>>> Stashed changes
                     return true;
                 }
             }
