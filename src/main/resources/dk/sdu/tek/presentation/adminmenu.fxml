@@ -28,15 +28,16 @@
                         <Label fx:id="creditLabel" layoutX="477.0" layoutY="253.0" text="Krediteringer" />
                         <ListView fx:id="creditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
                         <Button fx:id="adminDeleteButton" layoutX="787.0" layoutY="198.0" mnemonicParsing="false" onAction="#adminDeleteCredit" text="Delete" />
-                        <MenuButton fx:id="selectItem" layoutX="269.0" layoutY="43.0" mnemonicParsing="false" onAction="#setResultList" prefHeight="26.0" prefWidth="110.0" text="Vælg">
+                        <MenuButton fx:id="selectItem" layoutX="270.0" layoutY="43.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Vælg">
                            <items>
-                              <RadioMenuItem fx:id="selectProducers" mnemonicParsing="false" onAction="#setResultList" text="Producere">
+                              <RadioMenuItem fx:id="selectProducers" mnemonicParsing="false" onAction="#setResultList" text="Producenter">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="selectToggle" />
-                                 </toggleGroup></RadioMenuItem>
+                                 </toggleGroup>
+                              </RadioMenuItem>
                               <RadioMenuItem fx:id="selectProductions" mnemonicParsing="false" onAction="#setResultList" selected="true" text="Produktioner" toggleGroup="$selectToggle" />
-                              <RadioMenuItem fx:id="selectCredits" mnemonicParsing="false" onAction="#setResultList" text="Krediteringer" toggleGroup="$selectToggle" />
                               <RadioMenuItem fx:id="selectPeople" mnemonicParsing="false" onAction="#setResultList" text="Personer" toggleGroup="$selectToggle" />
+                              <RadioMenuItem fx:id="selectCredits" mnemonicParsing="false" onAction="#setResultList" text="Krediteringer" toggleGroup="$selectToggle" />
                            </items>
                         </MenuButton>
                         <TextArea fx:id="infoArea" editable="false" layoutX="477.0" layoutY="79.0" prefHeight="164.0" prefWidth="288.0" />
@@ -48,26 +49,27 @@
                <content>
                   <AnchorPane fx:id="anchorpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <children>
-                        <TextField fx:id="createProducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Username" />
-                        <Text layoutX="90.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret producer" wrappingWidth="117.13671875" />
+                        <TextField fx:id="createProducerUsername" layoutX="73.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Brugernavn" />
+                        <Text layoutX="73.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret producer" wrappingWidth="117.13671875" />
                         <TextField fx:id="createProducerPassword" layoutX="73.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Password" />
                         <Text layoutX="293.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
                         <Text layoutX="525.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
                         <Text layoutX="756.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
                         <TextField fx:id="createProductionName" layoutX="293.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
                         <TextField fx:id="createPersonName" layoutX="525.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
-                        <TextField fx:id="createCreditID" layoutX="756.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
-                        <TextField fx:id="createProducerID" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
-                        <Button fx:id="createProducerButton" layoutX="73.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProducer" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <TextField fx:id="createProductionID" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                        <TextField fx:id="createProductionProdID" layoutX="293.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
+                        <TextField fx:id="createCreditId" layoutX="756.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Kreditering ID" />
+                        <TextField fx:id="createProducerId" layoutX="73.0" layoutY="173.0" prefHeight="25.0" prefWidth="144.0" promptText="unikt ID" />
+                        <Button fx:id="createProducerButton" layoutX="73.0" layoutY="250.0" mnemonicParsing="false" onAction="#createProducer" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <TextField fx:id="createProductionId" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
+                        <TextField fx:id="createProductionProdId" layoutX="293.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
                         <TextField fx:id="createPersonInfo" layoutX="525.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
-                        <TextField fx:id="createPersonID" layoutX="525.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
-                        <TextField fx:id="createCreditRole" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
-                        <TextField fx:id="createCreditProductionID" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                        <Button fx:id="createCreditButton" layoutX="754.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <Button fx:id="createPersonButton" layoutX="525.0" layoutY="237.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <Button fx:id="adminCreateProductionButton" layoutX="292.0" layoutY="237.0" mnemonicParsing="false" onAction="#adminCreateProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <TextField fx:id="createPersonId" layoutX="525.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
+                        <TextField fx:id="createCreditPersonId" layoutX="756.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
+                        <TextField fx:id="createCreditProductionId" layoutX="756.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
+                        <Button fx:id="createCreditButton" layoutX="754.0" layoutY="250.0" mnemonicParsing="false" onAction="#createCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <Button fx:id="createPersonButton" layoutX="525.0" layoutY="250.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <Button fx:id="adminCreateProductionButton" layoutX="291.0" layoutY="250.0" mnemonicParsing="false" onAction="#createProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
+                        <TextField fx:id="createCreditRole" layoutX="756.0" layoutY="208.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
                      </children>
                   </AnchorPane>
                </content>
