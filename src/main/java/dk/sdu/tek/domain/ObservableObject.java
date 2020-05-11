@@ -1,7 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.PersistenceHandler;
-
 public class ObservableObject {
     private int id;
     private String name;

@@ -62,6 +62,16 @@ public class PersistenceHandler implements IPersistenceHandler {
     }
 
     @Override
+    public Admin getAdmin(String name) {
+        for (Admin admin : this.getAdmins()) {
+            if (admin.getUsername() == name) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean createAdmin(Admin admin) {
         MongoCollection admins = database.getCollection("Admins");
         Document document = new Document("_id", admin.getId())
@@ -91,6 +101,16 @@ public class PersistenceHandler implements IPersistenceHandler {
     public Producer getProducer(int id) {
         for (Producer producer : this.getProducers()) {
             if (producer.getId() == id) {
+                return producer;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Producer getProducer(String name) {
+        for (Producer producer : this.getProducers()) {
+            if (producer.getUsername() == name) {
                 return producer;
             }
         }
