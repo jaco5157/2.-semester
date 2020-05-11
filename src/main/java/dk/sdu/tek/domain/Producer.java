@@ -36,7 +36,6 @@ public class Producer extends User {
                 result.add(new ObservableObject(production.getId(), production.getName(), production.toString()));
             }
         }
-
         return result;
     }
 
