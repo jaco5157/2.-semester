@@ -9,6 +9,7 @@ import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,16 +22,19 @@ public class SecondaryController implements Initializable {
 
     @FXML private ImageView logo;
     @FXML private ImageView exit;
-    @FXML private AnchorPane wrapper;
     @FXML private TabPane mainTab;
     @FXML private TextField searchField;
+    @FXML private MenuButton selectItem;
+    @FXML private ToggleGroup selectToggle;
+    @FXML private RadioMenuItem selectProducers;
+    @FXML private RadioMenuItem selectProductions;
+    @FXML private RadioMenuItem selectCredits;
+    @FXML private RadioMenuItem selectPeople;
 
     @FXML private ListView<ObservableObject> resultList;
-    @FXML private TextField productionNameTextField;
-    @FXML private TextField productionIDTextField;
-    @FXML private TextField thisProducerTextField;
-    @FXML private TextField thisProducerIDTextField;
-    @FXML private ListView<ObservableObject> productionCreditList;
+    @FXML private TextArea infoArea;
+    @FXML private Label creditLabel;
+    @FXML private ListView<ObservableObject> creditList;
 
     //TextFields
     @FXML private TextField createProducerUsername;
@@ -85,33 +89,45 @@ public class SecondaryController implements Initializable {
         makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
-        //setResultList();
+        setResultList();
     }
 
     public void setResultList () {
-        ObservableList<Production> result = FXCollections.observableArrayList();
-        for (Production production : CreditSystem.getInstance().getProductions()) {
-            result.add(production);
+        creditLabel.setVisible(false);
+        creditList.setVisible(false);
+        if (selectProducers.isSelected()) {
+            resultList.setItems(search(CreditSystem.getInstance().getProducers()));
+            selectItem.setText(selectProducers.getText());
+        } else if (selectPeople.isSelected()) {
+            resultList.setItems(search(CreditSystem.getInstance().getPeople()));
+            selectItem.setText(selectPeople.getText());
+        } else if (selectCredits.isSelected()) {
+            resultList.setItems(search(CreditSystem.getInstance().getCredits()));
+            selectItem.setText(selectCredits.getText());
+        } else {
+            creditLabel.setVisible(true);
+            creditList.setVisible(true);
+            resultList.setItems(search(CreditSystem.getInstance().getProductions()));
+            selectItem.setText(selectProductions.getText());
         }
-        resultList.setItems(result);
     }
 
-    public void searchForProduction() {
-        ArrayList<Production> productionArrayList = CreditSystem.getInstance().getProductions();
-        for (Production production : productionArrayList) {
-            if (productionArrayList.toString().contains(searchField.getText())) {
-                resultList.getItems().add(production);
+    public ObservableList<ObservableObject> search(ObservableList<ObservableObject> objects) {
+        ObservableList<ObservableObject> searchResults = FXCollections.observableArrayList();
+        for (ObservableObject object : objects) {
+            if (object.getObject().toLowerCase().contains(searchField.getText().toLowerCase())) {
+                searchResults.add(object);
             }
         }
+        return searchResults;
     }
 
     public void getSelectedItem () {
-        Production selectedProduction = PersistenceHandler.getInstance().getProduction(resultList.getSelectionModel().getSelectedItem().getId());
-        productionNameTextField.setText(selectedProduction.getName());
-        productionIDTextField.setText(String.valueOf(selectedProduction.getId()));
-        thisProducerTextField.setText(selectedProduction.getProducer().getUsername());
-        thisProducerIDTextField.setText(String.valueOf(selectedProduction.getProducerID()));
-        productionCreditList.setItems(result);
+        ObservableObject selectedItem = resultList.getSelectionModel().getSelectedItem();
+        infoArea.setText(selectedItem.getObject());
+        if (selectToggle.getSelectedToggle() == selectProductions) {
+            creditList.setItems(PersistenceHandler.getInstance().getProduction(selectedItem.getId()).getCredits());
+        }
     }
 
     public void adminCreateProducer(ActionEvent event) {
@@ -130,12 +146,12 @@ public class SecondaryController implements Initializable {
     }
 
     public void adminDeleteCredit(ActionEvent event) {
-        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
-        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
-        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
-            productionCreditList.getItems().remove(selectedCredit);
-        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
-            resultList.getItems().remove(selectedProduction);
+//        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
+//        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
+//        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
+//            productionCreditList.getItems().remove(selectedCredit);
+//        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
+//            resultList.getItems().remove(selectedProduction);
     }
 
     public void producerCreateProduction() {
@@ -150,6 +166,6 @@ public class SecondaryController implements Initializable {
 
     public void createPerson(ActionEvent event) {
         User user = (User)CreditSystem.getInstance().getCurrentUser();
-        user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
+//        user.createPerson(createPersonName.getText(),Integer.parseInt(createPersonID.getText()),createPersonInfo.getText());
     }
 }

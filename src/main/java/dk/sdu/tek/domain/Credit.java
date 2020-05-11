@@ -23,7 +23,7 @@ public class Credit implements Writeable{
 
     @Override
     public String toString() {
-        return this.personID + "," + this.productionID + "," + this.role;
+        return "Navn: " + PersistenceHandler.getInstance().getPerson(this.personID).getName() + "\nProduktion: " + PersistenceHandler.getInstance().getProduction(this.productionID).getName() + "\nRolle: " + this.role;
     }
 
     //Get and set attributes

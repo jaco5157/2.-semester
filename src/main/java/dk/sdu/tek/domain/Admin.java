@@ -31,11 +31,6 @@ public class Admin extends User {
     }
 
     @Override
-    public String toString() {
-        return this.getUsername() + "," + this.getPassword() + "," + this.getId();
-    }
-
-    @Override
     public Menu getMenu() {
         return new AdminMenu();
     }

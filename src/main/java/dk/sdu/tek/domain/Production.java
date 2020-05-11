@@ -20,7 +20,7 @@ public class Production implements Writeable{
 
     @Override
     public String toString() {
-        return this.productionName + "," + this.getId() + "," + this.producerID;
+        return "Navn: " + this.productionName + "\nProduktions ID: " + this.getId() + "\nProducent: " + PersistenceHandler.getInstance().getProducer(this.producerID).getUsername();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Person implements Writeable{
 
     @Override
     public String toString() {
-        return this.name + "," + this.id + "," + this.contactInfo;
+        return "Navn: " + this.name + "\nPerson ID: " + this.id + "\nKontakt info: " + this.contactInfo;
     }
 
     //Get and set attributes
