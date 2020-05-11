@@ -17,8 +17,8 @@ public class Credit implements Writeable{
     }
 
     @Override
-    public void write() {
-        PersistenceHandler.getInstance().createCredit(this);
+    public boolean write() {
+        return PersistenceHandler.getInstance().createCredit(this);
     }
 
     @Override

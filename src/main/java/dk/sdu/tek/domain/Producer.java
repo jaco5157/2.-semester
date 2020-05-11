@@ -18,8 +18,8 @@ public class Producer extends User {
     }
 
     @Override
-    public void write() {
-        PersistenceHandler.getInstance().createProducer(this);
+    public boolean write() {
+        return PersistenceHandler.getInstance().createProducer(this);
     }
 
     @Override
@@ -42,8 +42,7 @@ public class Producer extends User {
         return null;
     }
 
-    public void createProduction(String productionName, int productionID) {
-        Production production = new Production(productionID, productionName, this.getId());
-        production.write();
+    public boolean createProduction(int productionID, String productionName) {
+        return new Production(productionID, productionName, this.getId()).write();
     }
 }

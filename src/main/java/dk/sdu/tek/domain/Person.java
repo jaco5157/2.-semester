@@ -15,8 +15,8 @@ public class Person implements Writeable{
     }
 
     @Override
-    public void write() {
-        PersistenceHandler.getInstance().createPerson(this);
+    public boolean write() {
+        return PersistenceHandler.getInstance().createPerson(this);
     }
 
     @Override

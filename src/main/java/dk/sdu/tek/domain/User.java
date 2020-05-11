@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
-public abstract class User extends Visitor implements Writeable {
+public abstract class User extends Visitor implements Writeable{
 
     private int id;
     private String username;
