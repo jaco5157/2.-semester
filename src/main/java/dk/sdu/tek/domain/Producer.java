@@ -6,8 +6,6 @@ import dk.sdu.tek.presentation.ProducerMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class Producer extends User {
 
     public Producer(int id, String username, String password){
@@ -29,13 +27,11 @@ public class Producer extends User {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for (Production production : PersistenceHandler.getInstance().getProductions()) {
             if(production.getProducerID() == this.getId()) {
-                result.add(new ObservableObject(production.getId(),production.getName(), production.toString()));
+                result.add(new ObservableObject(production.getId(), production.getName(), production.toString()));
             }
         }
-
         return result;
     }
-
 
     @Override
     public ObservableObject getOwnedProduction(int productionID) {
