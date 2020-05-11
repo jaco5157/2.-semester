@@ -25,11 +25,6 @@ public class Producer extends User {
     }
 
     @Override
-    public String toString() {
-        return this.getUsername() + "," + this.getPassword() + "," + this.getId();
-    }
-
-    @Override
     public ObservableList<ObservableObject> getOwnedProductions() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for (Production production : PersistenceHandler.getInstance().getProductions()) {

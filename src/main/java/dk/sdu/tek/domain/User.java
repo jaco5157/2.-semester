@@ -22,7 +22,8 @@ public abstract class User extends Visitor implements Writeable {
     }
 
     @Override
-    public String toString() { return this.username + "," + this.password;
+    public String toString() {
+        return "Bruger ID: " + this.getId() + "\nBrugernavn: " + this.getUsername();
     }
 
     public abstract ObservableList<ObservableObject> getOwnedProductions();
