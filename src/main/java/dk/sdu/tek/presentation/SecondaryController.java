@@ -24,6 +24,7 @@ public class SecondaryController implements Initializable {
     @FXML private ImageView exit;
     @FXML private TabPane mainTab;
     @FXML private TextField searchField;
+    @FXML private MenuButton selectItem;
     @FXML private ToggleGroup selectToggle;
     @FXML private RadioMenuItem selectProducers;
     @FXML private RadioMenuItem selectProductions;
@@ -94,16 +95,20 @@ public class SecondaryController implements Initializable {
     public void setResultList () {
         creditLabel.setVisible(false);
         creditList.setVisible(false);
-        if (selectToggle.getSelectedToggle() == selectProducers) {
+        if (selectProducers.isSelected()) {
             resultList.setItems(search(CreditSystem.getInstance().getProducers()));
-        } else if (selectToggle.getSelectedToggle() == selectPeople) {
+            selectItem.setText(selectProducers.getText());
+        } else if (selectPeople.isSelected()) {
             resultList.setItems(search(CreditSystem.getInstance().getPeople()));
-        } else if (selectToggle.getSelectedToggle() == selectCredits) {
+            selectItem.setText(selectPeople.getText());
+        } else if (selectCredits.isSelected()) {
             resultList.setItems(search(CreditSystem.getInstance().getCredits()));
+            selectItem.setText(selectCredits.getText());
         } else {
             creditLabel.setVisible(true);
             creditList.setVisible(true);
             resultList.setItems(search(CreditSystem.getInstance().getProductions()));
+            selectItem.setText(selectProductions.getText());
         }
     }
 
