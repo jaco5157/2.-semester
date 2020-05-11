@@ -51,6 +51,8 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditPersonId;
     @FXML private TextField createCreditProductionId;
     @FXML private TextField createCreditRole;
+
+    @FXML private Label successLabel;
     
     private Stage stage;
     private double x = 0, y = 0;
@@ -125,20 +127,36 @@ public class SecondaryController implements Initializable {
         }
     }
 
-    public void createProducer(ActionEvent event) {
-
+    public void createProducer() {
+        if (CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText())) {
+            successLabel.setText("Succes! Producenten er nu oprettet");
+        } else {
+            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
+        }
     }
 
-    public void createProduction(ActionEvent event) {
-
+    public void createProduction() {
+        if (CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText()))) {
+            successLabel.setText("Succes! Produktionen er nu oprettet");
+        } else {
+            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
+        }
     }
 
-    public void createCredit(ActionEvent event) {
-
+    public void createPerson() {
+        if (CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText())) {
+            successLabel.setText("Succes! Personen er nu oprettet");
+        } else {
+            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
+        }
     }
 
-    public void createPerson(ActionEvent event) {
-
+    public void createCredit() {
+        if (CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText())) {
+            successLabel.setText("Succes! Krediteringen er nu oprettet");
+        } else {
+            successLabel.setText("Noget gik galt! Tjek om de angive ID'er er unikke");
+        }
     }
 
     public void adminDeleteCredit(ActionEvent event) {

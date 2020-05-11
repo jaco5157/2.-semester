@@ -70,6 +70,7 @@
                         <Button fx:id="createPersonButton" layoutX="525.0" layoutY="250.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                         <Button fx:id="adminCreateProductionButton" layoutX="291.0" layoutY="250.0" mnemonicParsing="false" onAction="#createProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
                         <TextField fx:id="createCreditRole" layoutX="756.0" layoutY="208.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
+                        <Label fx:id="successLabel" layoutX="73.0" layoutY="333.0" prefHeight="18.0" prefWidth="569.0" />
                      </children>
                   </AnchorPane>
                </content>
