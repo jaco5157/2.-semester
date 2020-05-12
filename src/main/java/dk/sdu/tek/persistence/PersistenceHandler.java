@@ -64,11 +64,8 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public Admin getAdmin(String name) {
-        System.out.println("Searching for: " + name + " of " + name.getClass().toString());
         for (Admin admin : this.getAdmins()) {
-            System.out.println(admin.getUsername() + " of " + admin.getUsername().getClass().toString());
-            if (admin.getUsername().equals(name.trim())) {
-                System.out.println(admin.getUsername());
+            if (admin.getUsername().equals(name)) {
                 return admin;
             }
         }
@@ -118,7 +115,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     @Override
     public Producer getProducer(String name) {
         for (Producer producer : this.getProducers()) {
-            if (producer.getUsername() == name) {
+            if (producer.getUsername().equals(name)) {
                 return producer;
             }
         }
