@@ -26,8 +26,8 @@ public class Admin extends User {
     }
 
     @Override
-    public void write() {
-        PersistenceHandler.getInstance().createAdmin(this);
+    public boolean write() {
+        return PersistenceHandler.getInstance().createAdmin(this);
     }
 
     @Override

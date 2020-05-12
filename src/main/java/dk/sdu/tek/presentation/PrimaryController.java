@@ -37,8 +37,8 @@ public class PrimaryController implements Initializable {
     @FXML
     public void Login(ActionEvent actionEvent) throws IOException {
         boolean hasCredentials = CreditSystem.getInstance().authenticate(username.getText(), password.getText(), adminbutton.isSelected());
+        isAdmin = adminbutton.isSelected();
         if (isAdmin && hasCredentials) {
-            isAdmin = adminbutton.isSelected();
             userId = PersistenceHandler.getInstance().getAdmin(username.getText()).getId();
             AdminMenu.getMenu().show();
         } else if (!isAdmin && hasCredentials) {

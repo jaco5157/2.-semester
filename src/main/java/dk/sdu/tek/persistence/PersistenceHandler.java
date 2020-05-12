@@ -1,5 +1,6 @@
 package dk.sdu.tek.persistence;
 
+import com.mongodb.MongoWriteException;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import dk.sdu.tek.domain.*;
@@ -64,7 +65,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     @Override
     public Admin getAdmin(String name) {
         for (Admin admin : this.getAdmins()) {
-            if (admin.getUsername() == name) {
+            if (admin.getUsername().equals(name)) {
                 return admin;
             }
         }
@@ -73,12 +74,16 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean createAdmin(Admin admin) {
-        MongoCollection admins = database.getCollection("Admins");
-        Document document = new Document("_id", admin.getId())
-                .append("username", admin.getUsername())
-                .append("password", admin.getPassword());
-        admins.insertOne(document);
-        return true;
+        try {
+            MongoCollection admins = database.getCollection("Admins");
+            Document document = new Document("_id", admin.getId())
+                    .append("username", admin.getUsername())
+                    .append("password", admin.getPassword());
+            admins.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -110,7 +115,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     @Override
     public Producer getProducer(String name) {
         for (Producer producer : this.getProducers()) {
-            if (producer.getUsername() == name) {
+            if (producer.getUsername().equals(name)) {
                 return producer;
             }
         }
@@ -119,12 +124,16 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean createProducer(Producer producer) {
-        MongoCollection producers = database.getCollection("Producers");
-        Document document = new Document("_id", producer.getId())
-                .append("username", producer.getUsername())
-                .append("password", producer.getPassword());
-        producers.insertOne(document);
-        return true;
+        try {
+            MongoCollection producers = database.getCollection("Producers");
+            Document document = new Document("_id", producer.getId())
+                    .append("username", producer.getUsername())
+                    .append("password", producer.getPassword());
+            producers.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -155,12 +164,16 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean createProduction(Production production) {
-        MongoCollection productions = database.getCollection("Productions");
-        Document document = new Document("_id", production.getId())
-                .append("name", production.getName())
-                .append("producer_ID", production.getProducerID());
-        productions.insertOne(document);
-        return true;
+        try {
+            MongoCollection productions = database.getCollection("Productions");
+            Document document = new Document("_id", production.getId())
+                    .append("name", production.getName())
+                    .append("producer_ID", production.getProducerID());
+            productions.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -191,12 +204,16 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean createPerson(Person person) {
-        MongoCollection people = database.getCollection("People");
-        Document document = new Document("_id", person.getId())
-                .append("name", person.getName())
-                .append("contact_info", person.getContactInfo());
-        people.insertOne(document);
-        return true;
+        try {
+            MongoCollection people = database.getCollection("People");
+            Document document = new Document("_id", person.getId())
+                    .append("name", person.getName())
+                    .append("contact_info", person.getContactInfo());
+            people.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -227,13 +244,17 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean createCredit(Credit credit) {
-        MongoCollection credits = database.getCollection("Credits");
-        Document document = new Document("_id", credit.getId())
-                .append("production_ID", credit.getProductionID())
-                .append("person_ID", credit.getPersonID())
-                .append("role", credit.getRole());
-        credits.insertOne(document);
-        return true;
+        try {
+            MongoCollection credits = database.getCollection("Credits");
+            Document document = new Document("_id", credit.getId())
+                    .append("production_ID", credit.getProductionID())
+                    .append("person_ID", credit.getPersonID())
+                    .append("role", credit.getRole());
+            credits.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
     }
 
     @Override

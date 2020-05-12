@@ -9,49 +9,39 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TextArea?>
 <AnchorPane fx:id="wrapper" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.tek.presentation.SecondaryController">
    <children>
       <TabPane fx:id="mainTab">
          <tabs>
-            <Tab>
-               <content>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0">
-                      <children>
-                          <Label layoutX="33.0" layoutY="25.0" text="Søg efter indhold" />
-                          <TextField fx:id="searchField" layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
-                          <Button disable="true" layoutX="260.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
-                          <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
-                          <TextField fx:id="productionNameTextField" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="155.0" />
-                          <TextField fx:id="productionIDTextField" layoutX="663.0" layoutY="123.0" prefHeight="26.0" prefWidth="90.0" />
-                          <TextField fx:id="thisProducerTextField" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="155.0" />
-                          <Label layoutX="477.0" layoutY="105.0" text="Navn" />
-                          <Label layoutX="663.0" layoutY="105.0" text="ID" />
-                          <Label layoutX="477.0" layoutY="179.0" text="Producer" />
-                          <Label layoutX="663.0" layoutY="179.0" text="Producer ID" />
-                          <TextField fx:id="thisProducerIDTextField" layoutX="663.0" layoutY="197.0" prefHeight="26.0" prefWidth="90.0" />
-                          <Label layoutX="477.0" layoutY="253.0" text="Krediteringer" />
-                          <ListView fx:id="productionCreditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
-                      </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-             <Tab text="Personer">
+             <Tab text="Søg">
                  <content>
-                     <AnchorPane fx:id="anchorpanePersoner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                     <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                          <children>
-                             <Button layoutX="260.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
-                             <Label layoutX="33.0" layoutY="26.0" text="Søg efter person" />
-                             <TextField layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
-                             <ListView fx:id="resultPersonList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
-                             <TextField fx:id="productionNameTextField1" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="155.0" />
-                             <Label layoutX="477.0" layoutY="105.0" text="Navn" />
-                             <TextField fx:id="productionIDTextField1" layoutX="663.0" layoutY="123.0" prefHeight="26.0" prefWidth="90.0" />
-                             <Label layoutX="663.0" layoutY="105.0" text="ID" />
-                             <TextField fx:id="thisProducerTextField1" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="276.0" />
-                             <Label layoutX="477.0" layoutY="179.0" text="Kontakt oplysninger" />
-                             <ListView fx:id="productionCreditList1" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
-                             <Label layoutX="477.0" layoutY="253.0" text="Krediteringer" />
-                         </children></AnchorPane>
+                             <Label layoutX="33.0" layoutY="25.0" text="Søg efter indhold" />
+                             <TextField fx:id="searchField" layoutX="33.0" layoutY="43.0" onKeyReleased="#setResultList" prefHeight="26.0" prefWidth="230.0" />
+                             <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
+                             <Label fx:id="creditLabel" layoutX="477.0" layoutY="253.0" text="Krediteringer" />
+                             <ListView fx:id="creditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
+                             <Button fx:id="adminDeleteButton" layoutX="787.0" layoutY="198.0" mnemonicParsing="false" onAction="#adminDeleteCredit" text="Delete" />
+                             <MenuButton fx:id="selectItem" layoutX="270.0" layoutY="43.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Vælg">
+                                 <items>
+                                     <RadioMenuItem fx:id="selectProducers" mnemonicParsing="false" onAction="#setResultList" text="Producenter">
+                                         <toggleGroup>
+                                             <ToggleGroup fx:id="selectToggle" />
+                                         </toggleGroup>
+                                     </RadioMenuItem>
+                                     <RadioMenuItem fx:id="selectProductions" mnemonicParsing="false" onAction="#setResultList" selected="true" text="Produktioner" toggleGroup="$selectToggle" />
+                                     <RadioMenuItem fx:id="selectPeople" mnemonicParsing="false" onAction="#setResultList" text="Personer" toggleGroup="$selectToggle" />
+                                     <RadioMenuItem fx:id="selectCredits" mnemonicParsing="false" onAction="#setResultList" text="Krediteringer" toggleGroup="$selectToggle" />
+                                 </items>
+                             </MenuButton>
+                             <TextArea fx:id="infoArea" editable="false" layoutX="477.0" layoutY="79.0" prefHeight="164.0" prefWidth="288.0" />
+                         </children>
+                     </AnchorPane>
                  </content>
              </Tab>
          </tabs>

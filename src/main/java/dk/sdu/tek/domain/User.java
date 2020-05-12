@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
-public abstract class User extends Visitor implements Writeable {
+public abstract class User extends Visitor implements Writeable{
 
     private int id;
     private String username;
@@ -23,7 +23,7 @@ public abstract class User extends Visitor implements Writeable {
 
     @Override
     public String toString() {
-        return "Bruger ID: " + this.getId() + "\nBrugernavn: " + this.getUsername();
+        return "Brugernavn: " + this.getUsername() + "\nBruger ID: " + this.getId();
     }
 
     public abstract ObservableList<ObservableObject> getOwnedProductions();

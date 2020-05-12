@@ -26,35 +26,38 @@ public class CreditSystem {
                     return true;
                 }
             }
-        } else {
-            for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
-                if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
-                    this.producer = producer;
-                    return true;
-                }
+        }
+        for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
+            if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
+                this.producer = producer;
+                return true;
             }
         }
         return false;
     }
 
-//    public Visitor getCurrentUser() {
-//        return currentUser;
-//    }
-
     public boolean createProducer (int id, String username, String password) {
-        return PersistenceHandler.getInstance().createProducer(new Producer(id, username, password));
+        return new Producer(id, username, password).write();
     }
 
-    public boolean createProduction (int id, String username, int proucerId) {
-        return PersistenceHandler.getInstance().createProduction(new Production(id, username, proucerId));
+    public boolean createProduction (int id, String name, int producerId) {
+        try {
+            return PersistenceHandler.getInstance().getProducer(producerId).createProduction(id, name);
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     public boolean createPerson (int id, String username, String email) {
-        return PersistenceHandler.getInstance().createPerson(new Person(id, username, email));
+        return new Person(id, username, email).write();
     }
 
     public boolean createCredit (int id, int productionId, int personId, String role) {
-        return PersistenceHandler.getInstance().createCredit(new Credit(id, productionId, personId, role));
+        try {
+            return PersistenceHandler.getInstance().getProduction(productionId).addCredit(id, personId, role);
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     public ObservableList<ObservableObject> getProducers() {

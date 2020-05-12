@@ -4,8 +4,6 @@ import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class Production implements Writeable{
 
     private int id;
@@ -24,14 +22,15 @@ public class Production implements Writeable{
     }
 
     @Override
-    public void write() {
-        PersistenceHandler.getInstance().createProduction(this);
+    public boolean write() {
+        return PersistenceHandler.getInstance().createProduction(this);
     }
 
-
-    public void addCredit(int id, int personID, String role) {
-        Credit credit = new Credit(id, this.getId(), personID, role);
-        credit.write();
+    public boolean addCredit(int id, int personID, String role) {
+        if (PersistenceHandler.getInstance().getPerson(personID) == null){
+            return false;
+        }
+        return new Credit(id, this.getId(), personID, role).write();
     }
 
     public Producer getProducer() {
