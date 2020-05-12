@@ -10,8 +10,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class PersistenceHandler implements IPersistenceHandler {
-    private static final String URL = "localhost";
-    private static final int PORT = 27017;
+    private static final String URL = "mongodb+srv://user:unimongo1@creditmanagementsystem-hmkps.gcp.mongodb.net/test?retryWrites=true&w=majority";
+//    private static final int PORT = 27017;
     private static final String DATABASE_NAME = "CreditManagementSystem";
     private static PersistenceHandler instance;
     private MongoDatabase database;
@@ -29,7 +29,8 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     private void initializeDatabase() {
         try {
-            MongoClient client = MongoClients.create("mongodb://" + URL + ":" + PORT);
+            //MongoClient client = MongoClients.create("mongodb://" + URL + ":" + PORT);
+            MongoClient client = MongoClients.create(URL);
             database = client.getDatabase(DATABASE_NAME);
         } finally {
             if (database == null) System.exit(-1);
