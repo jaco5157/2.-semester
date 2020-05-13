@@ -9,7 +9,7 @@ public class Credit implements Writeable{
     private int personID;
     private int productionID;
 
-    public Credit (int id, int personID, int productionID, String role) {
+    public Credit (int id, int productionID, int personID, String role) {
         this.id = id;
         this.productionID = productionID;
         this.personID = personID;

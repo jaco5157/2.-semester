@@ -27,7 +27,6 @@
                         <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
                         <Label fx:id="creditLabel" layoutX="477.0" layoutY="253.0" text="Krediteringer" />
                         <ListView fx:id="creditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
-                        <Button fx:id="adminDeleteButton" layoutX="787.0" layoutY="198.0" mnemonicParsing="false" onAction="#adminDeleteCredit" text="Delete" />
                         <MenuButton fx:id="selectItem" layoutX="270.0" layoutY="43.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Vælg">
                            <items>
                               <RadioMenuItem fx:id="selectProducers" mnemonicParsing="false" onAction="#setResultList" text="Producenter">

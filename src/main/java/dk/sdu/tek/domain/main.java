@@ -91,6 +91,7 @@ public class main {
 //        new Person(3, "Name 3", "name3@person.dk").write();
 //        new Person(4, "Name 4", "name4@person.dk").write();
 //        new Credit(1, 1, 1, "Some role").write();
+//        new Credit(5, 2, 1, "Some role 2").write();
 //        new Credit(2, 2, 2, "Some role").write();
 //        new Credit(3, 3, 3, "Some role").write();
 //        new Credit(4, 4, 4, "Some role").write();
