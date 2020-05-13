@@ -96,6 +96,8 @@ public class SecondaryController implements Initializable {
             resultList.setItems(search(CreditSystem.getInstance().getProducers()));
             selectItem.setText(selectProducers.getText());
         } else if (selectPeople.isSelected()) {
+            creditLabel.setVisible(true);
+            creditList.setVisible(true);
             resultList.setItems(search(CreditSystem.getInstance().getPeople()));
             selectItem.setText(selectPeople.getText());
         } else if (selectCredits.isSelected()) {
@@ -124,47 +126,41 @@ public class SecondaryController implements Initializable {
         infoArea.setText(selectedItem.getObject());
         if (selectToggle.getSelectedToggle() == selectProductions) {
             creditList.setItems(PersistenceHandler.getInstance().getProduction(selectedItem.getId()).getCredits());
+        } else if (selectToggle.getSelectedToggle() == selectPeople) {
+            creditList.setItems(PersistenceHandler.getInstance().getPerson(selectedItem.getId()).getCredits());
         }
     }
 
     public void createProducer() {
-        if (CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText())) {
-            successLabel.setText("Succes! Producenten er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText()));
     }
 
     public void createProduction() {
-        if (CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText()))) {
-            successLabel.setText("Succes! Produktionen er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
     }
 
     public void createPerson() {
-        if (CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText())) {
-            successLabel.setText("Succes! Personen er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText()));
     }
 
     public void createCredit() {
-        if (CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText())) {
-            successLabel.setText("Succes! Krediteringen er nu oprettet");
+        printSuccess(CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText()));
+    }
+
+    public void printSuccess(boolean success) {
+        if (success) {
+            successLabel.setText("Succes! Objektet er nu oprettet");
         } else {
-            successLabel.setText("Noget gik galt! Tjek om de angive ID'er er unikke");
+            successLabel.setText("Noget gik galt! Tjek om de angivne ID'er er unikke");
         }
     }
 
-    public void adminDeleteCredit(ActionEvent event) {
+//    public void deleteCredit(ActionEvent event) {
 //        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
 //        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
 //        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
 //            productionCreditList.getItems().remove(selectedCredit);
 //        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
 //            resultList.getItems().remove(selectedProduction);
-    }
+//    }
 }
