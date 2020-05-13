@@ -30,6 +30,8 @@ public abstract class User extends Visitor implements Writeable{
 
     public abstract ObservableObject getOwnedProduction(int productionID);
 
+    public abstract ObservableList<ObservableObject> getOwnedCredits();
+
     //Get and set attributes
     public int getId () {return this.id;}
 

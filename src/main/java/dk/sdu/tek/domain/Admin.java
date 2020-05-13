@@ -45,4 +45,9 @@ public class Admin extends User {
         return CreditSystem.getInstance().getProduction(productionID);
     }
 
+    @Override
+    public ObservableList<ObservableObject> getOwnedCredits() {
+        return CreditSystem.getInstance().getCredits();
+    }
+
 }

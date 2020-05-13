@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="CreditManagementSystem@creditmanagementsystem-hmkps.gcp.mongodb.net">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.18">
+    <root id="1">
+      <ServerVersion>4.2.6</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="CreditManagementSystem">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="admin"/>
+    <schema id="4" parent="1" name="local"/>
+    <table id="5" parent="2" name="Admins"/>
+    <table id="6" parent="2" name="Credits"/>
+    <table id="7" parent="2" name="People"/>
+    <table id="8" parent="2" name="Producers"/>
+    <table id="9" parent="2" name="Productions"/>
+  </database-model>
+</dataSource>

@@ -22,12 +22,10 @@
                <content>
                   <AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <children>
-                        <Label layoutX="33.0" layoutY="25.0" text="Søg efter indhold" />
-                        <TextField fx:id="searchField" layoutX="33.0" layoutY="43.0" onKeyReleased="#setResultList" prefHeight="26.0" prefWidth="230.0" />
+                        <TextField fx:id="searchField" layoutX="33.0" layoutY="43.0" onKeyReleased="#setResultList" prefHeight="26.0" prefWidth="230.0" promptText="Søg efter indhold" />
                         <ListView fx:id="resultList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
                         <Label fx:id="creditLabel" layoutX="477.0" layoutY="253.0" text="Krediteringer" />
                         <ListView fx:id="creditList" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
-                        <Button fx:id="adminDeleteButton" layoutX="787.0" layoutY="198.0" mnemonicParsing="false" onAction="#adminDeleteCredit" text="Delete" />
                         <MenuButton fx:id="selectItem" layoutX="270.0" layoutY="43.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="Vælg">
                            <items>
                               <RadioMenuItem fx:id="selectProducers" mnemonicParsing="false" onAction="#setResultList" text="Producenter">
@@ -75,22 +73,27 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Personer">
+            <Tab text="Rediger krediteringer">
                <content>
                   <AnchorPane fx:id="anchorpanePersoner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <children>
-                        <Button layoutX="260.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Søg" />
-                        <Label layoutX="33.0" layoutY="26.0" text="Søg efter person" />
-                        <TextField layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" />
-                        <ListView fx:id="resultPersonList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedItem" prefHeight="507.0" prefWidth="346.0" />
-                        <TextField fx:id="productionNameTextField1" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="155.0" />
-                        <Label layoutX="477.0" layoutY="105.0" text="Navn" />
-                        <TextField fx:id="productionIDTextField1" layoutX="663.0" layoutY="123.0" prefHeight="26.0" prefWidth="90.0" />
-                        <Label layoutX="663.0" layoutY="105.0" text="ID" />
-                        <TextField fx:id="thisProducerTextField1" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="276.0" />
-                        <Label layoutX="477.0" layoutY="179.0" text="Kontakt oplysninger" />
-                        <ListView fx:id="productionCreditList1" layoutX="477.0" layoutY="271.0" prefHeight="315.0" prefWidth="288.0" />
-                        <Label layoutX="477.0" layoutY="253.0" text="Krediteringer" />
+                        <TextField fx:id="editCreditSearch" layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" promptText="Søg efter krediteringer" />
+                        <ListView fx:id="resultCreditList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedCredit" prefHeight="507.0" prefWidth="346.0" />
+                        <TextField fx:id="editCreditId" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="81.0" />
+                        <Label layoutX="477.0" layoutY="105.0" text="Krediterings ID" />
+                        <TextField fx:id="editCreditRole" layoutX="570.0" layoutY="123.0" prefHeight="26.0" prefWidth="267.0" />
+                        <Label layoutX="570.0" layoutY="105.0" text="Rolle" />
+                        <TextField fx:id="editCreditPersonId" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="81.0" />
+                        <Label layoutX="477.0" layoutY="179.0" text="Person ID" />
+                        <TextField fx:id="editCreditName" disable="true" editable="false" layoutX="570.0" layoutY="198.0" prefHeight="26.0" prefWidth="267.0" />
+                        <TextField fx:id="editCreditProdName" disable="true" editable="false" layoutX="570.0" layoutY="273.0" prefHeight="26.0" prefWidth="267.0" />
+                        <TextField fx:id="editCreditProdId" layoutX="477.0" layoutY="273.0" prefHeight="26.0" prefWidth="81.0" />
+                        <Label layoutX="477.0" layoutY="256.0" text="Produktions ID" />
+                        <Label layoutX="569.0" layoutY="179.0" text="Navn" />
+                        <Label layoutX="569.0" layoutY="256.0" text="Navn på prduktionen" />
+                        <Button fx:id="deleteCredit" layoutX="477.0" layoutY="333.0" mnemonicParsing="false" onAction="#deleteCredit" prefWidth="81.0" text="Slet" />
+                        <Button fx:id="editCredit" layoutX="570.0" layoutY="333.0" mnemonicParsing="false" onAction="#editCredit" prefWidth="81.0" text="Rediger" />
+                        <Label fx:id="editLabel" layoutX="477.0" layoutY="373.0" />
                      </children></AnchorPane>
                </content>
             </Tab>

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 public class SecondaryController implements Initializable {
 
+    //FXML for search page
     @FXML private ImageView logo;
     @FXML private ImageView exit;
     @FXML private TabPane mainTab;
@@ -34,7 +35,7 @@ public class SecondaryController implements Initializable {
     @FXML private Label creditLabel;
     @FXML private ListView<ObservableObject> creditList;
 
-    //TextFields
+    //FXML for creating new objects
     @FXML private TextField createProducerUsername;
     @FXML private TextField createProducerPassword;
     @FXML private TextField createProducerId;
@@ -53,7 +54,20 @@ public class SecondaryController implements Initializable {
     @FXML private TextField createCreditRole;
 
     @FXML private Label successLabel;
-    
+
+    //FXML for editing credits
+    @FXML private TextField editCreditSearch;
+    @FXML private ListView<ObservableObject> resultCreditList;
+    @FXML private TextField editCreditId;
+    @FXML private TextField editCreditRole;
+    @FXML private TextField editCreditPersonId;
+    @FXML private TextField editCreditName;
+    @FXML private TextField editCreditProdId;
+    @FXML private TextField editCreditProdName;
+    @FXML private Button deleteCredit;
+    @FXML private Button editCredit;
+    @FXML private Label editLabel;
+
     private Stage stage;
     private double x = 0, y = 0;
 
@@ -62,12 +76,10 @@ public class SecondaryController implements Initializable {
         App.setRoot("primary");
     }
 
-    @FXML
     public void exit() {
         System.exit(1);
     }
 
-    @FXML
     public void makeDraggable() {
         mainTab.setOnMousePressed(((mouseEvent) -> {
             x = mouseEvent.getSceneX();
@@ -87,32 +99,35 @@ public class SecondaryController implements Initializable {
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
         setResultList();
+        setCreditResultList();
     }
 
     public void setResultList () {
         creditLabel.setVisible(false);
         creditList.setVisible(false);
         if (selectProducers.isSelected()) {
-            resultList.setItems(search(CreditSystem.getInstance().getProducers()));
+            resultList.setItems(search(CreditSystem.getInstance().getProducers(), searchField.getText().toLowerCase()));
             selectItem.setText(selectProducers.getText());
         } else if (selectPeople.isSelected()) {
-            resultList.setItems(search(CreditSystem.getInstance().getPeople()));
+            creditLabel.setVisible(true);
+            creditList.setVisible(true);
+            resultList.setItems(search(CreditSystem.getInstance().getPeople(), searchField.getText().toLowerCase()));
             selectItem.setText(selectPeople.getText());
         } else if (selectCredits.isSelected()) {
-            resultList.setItems(search(CreditSystem.getInstance().getCredits()));
+            resultList.setItems(search(CreditSystem.getInstance().getCredits(), searchField.getText().toLowerCase()));
             selectItem.setText(selectCredits.getText());
         } else {
             creditLabel.setVisible(true);
             creditList.setVisible(true);
-            resultList.setItems(search(CreditSystem.getInstance().getProductions()));
+            resultList.setItems(search(CreditSystem.getInstance().getProductions(), searchField.getText().toLowerCase()));
             selectItem.setText(selectProductions.getText());
         }
     }
 
-    public ObservableList<ObservableObject> search(ObservableList<ObservableObject> objects) {
+    public ObservableList<ObservableObject> search(ObservableList<ObservableObject> objects, String query) {
         ObservableList<ObservableObject> searchResults = FXCollections.observableArrayList();
         for (ObservableObject object : objects) {
-            if (object.getObject().toLowerCase().contains(searchField.getText().toLowerCase())) {
+            if (object.getObject().toLowerCase().contains(query)) {
                 searchResults.add(object);
             }
         }
@@ -124,47 +139,65 @@ public class SecondaryController implements Initializable {
         infoArea.setText(selectedItem.getObject());
         if (selectToggle.getSelectedToggle() == selectProductions) {
             creditList.setItems(PersistenceHandler.getInstance().getProduction(selectedItem.getId()).getCredits());
+        } else if (selectToggle.getSelectedToggle() == selectPeople) {
+            creditList.setItems(PersistenceHandler.getInstance().getPerson(selectedItem.getId()).getCredits());
         }
     }
 
+    //Create new objects
     public void createProducer() {
-        if (CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText())) {
-            successLabel.setText("Succes! Producenten er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText()));
     }
 
     public void createProduction() {
-        if (CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText()))) {
-            successLabel.setText("Succes! Produktionen er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
     }
 
     public void createPerson() {
-        if (CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText())) {
-            successLabel.setText("Succes! Personen er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om det angivne ID er unikt");
-        }
+        printSuccess(CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText()));
     }
 
     public void createCredit() {
-        if (CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText())) {
-            successLabel.setText("Succes! Krediteringen er nu oprettet");
+        printSuccess(CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText()));
+    }
+
+    public void printSuccess(boolean success) {
+        if (success) {
+            successLabel.setText("Succes! Objektet er nu oprettet");
         } else {
-            successLabel.setText("Noget gik galt! Tjek om de angive ID'er er unikke");
+            successLabel.setText("Noget gik galt! Tjek om de angivne ID'er er unikke");
         }
     }
 
-    public void adminDeleteCredit(ActionEvent event) {
-//        Production selectedProduction = resultList.getSelectionModel().getSelectedItem();
-//        Credit selectedCredit = productionCreditList.getSelectionModel().getSelectedItem();
-//        if ((resultList.getSelectionModel().getSelectedItem() == selectedProduction) && (productionCreditList.getSelectionModel().getSelectedItem() == selectedCredit))
-//            productionCreditList.getItems().remove(selectedCredit);
-//        else if(resultList.getSelectionModel().getSelectedItem() == selectedProduction)
-//            resultList.getItems().remove(selectedProduction);
+    //Edit credits
+    public void setCreditResultList() {
+        if (CreditSystem.getInstance().getIsAdmin()) {
+            resultCreditList.setItems(search(PersistenceHandler.getInstance().getAdmin(CreditSystem.getInstance().getUserId()).getOwnedCredits(), searchField.getText().toLowerCase()));
+        } else {
+            resultCreditList.setItems(search(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedCredits(), searchField.getText().toLowerCase()));
+        }
+    }
+
+    public void getSelectedCredit () {
+        Credit selectedCredit = PersistenceHandler.getInstance().getCredit(resultCreditList.getSelectionModel().getSelectedItem().getId());
+        editCreditId.setText(String.valueOf(selectedCredit.getId()));
+        editCreditRole.setText(selectedCredit.getRole());
+        editCreditPersonId.setText(String.valueOf(selectedCredit.getPersonID()));
+        editCreditName.setText(PersistenceHandler.getInstance().getPerson(selectedCredit.getPersonID()).getName());
+        editCreditProdId.setText(String.valueOf(selectedCredit.getProductionID()));
+        editCreditProdName.setText(PersistenceHandler.getInstance().getProduction(selectedCredit.getProductionID()).getName());
+    }
+
+    public void deleteCredit() {
+        if(PersistenceHandler.getInstance().deleteCredit(resultCreditList.getSelectionModel().getSelectedItem().getId())) {
+            editLabel.setText("Succes! Kreditering er slettet");
+            setCreditResultList();
+        } else {
+            editLabel.setText("Noget gik galt");
+        }
+    }
+
+    public void editCredit() {
+
     }
 }

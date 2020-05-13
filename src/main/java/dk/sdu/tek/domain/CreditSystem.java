@@ -6,8 +6,8 @@ import javafx.collections.ObservableList;
 
 
 public class CreditSystem {
-    private Producer producer;
-    private Admin admin;
+    private boolean isAdmin;
+    private int userId;
 
     private static CreditSystem instance;
 
@@ -22,14 +22,16 @@ public class CreditSystem {
         if (isAdmin) {
             for (Admin admin : PersistenceHandler.getInstance().getAdmins()) {
                 if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
-                    this.admin = admin;
+                    this.isAdmin = isAdmin;
+                    this.userId = admin.getId();
                     return true;
                 }
             }
         }
         for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
             if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
-                this.producer = producer;
+                this.isAdmin = isAdmin;
+                this.userId = producer.getId();
                 return true;
             }
         }
@@ -106,4 +108,11 @@ public class CreditSystem {
         return null;
     }
 
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
 }

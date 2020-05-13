@@ -42,6 +42,16 @@ public class Producer extends User {
         return null;
     }
 
+    public ObservableList<ObservableObject> getOwnedCredits() {
+        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
+        for (Production production : PersistenceHandler.getInstance().getProductions()) {
+            if(production.getProducerID() == this.getId()) {
+                result.addAll(production.getCredits());
+            }
+        }
+        return result;
+    }
+
     public boolean createProduction(int productionID, String productionName) {
         return new Production(productionID, productionName, this.getId()).write();
     }

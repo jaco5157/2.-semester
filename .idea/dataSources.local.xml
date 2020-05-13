@@ -11,5 +11,13 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="CreditManagementSystem@creditmanagementsystem-hmkps.gcp.mongodb.net" uuid="b1090d13-2589-4f34-a858-cad2f841e03a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MONGO" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+    <data-source name="test@creditmanagementsystem-hmkps.gcp.mongodb.net [2]" uuid="b5a7cf3a-ba5a-43ae-83d3-f2e75f79ba8a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MONGO" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

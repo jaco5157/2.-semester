@@ -7,5 +7,17 @@
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
       <jdbc-url>mongodb://localhost:27017/CreditManagementSystem</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="CreditManagementSystem@creditmanagementsystem-hmkps.gcp.mongodb.net" uuid="b1090d13-2589-4f34-a858-cad2f841e03a">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://creditmanagementsystem-hmkps.gcp.mongodb.net/CreditManagementSystem?retryWrites=true&amp;w=majority</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="test@creditmanagementsystem-hmkps.gcp.mongodb.net [2]" uuid="b5a7cf3a-ba5a-43ae-83d3-f2e75f79ba8a">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://creditmanagementsystem-hmkps.gcp.mongodb.net/test?retryWrites=true&amp;w=majority</jdbc-url>
+    </data-source>
   </component>
 </project>

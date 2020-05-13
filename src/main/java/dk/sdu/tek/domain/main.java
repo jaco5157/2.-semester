@@ -1,7 +1,5 @@
 package dk.sdu.tek.domain;
 
-import dk.sdu.tek.persistence.PersistenceHandler;
-
 public class main {
     //Test class
     public static void main(String[] args) {
@@ -77,25 +75,26 @@ public class main {
 //        for (Person people : peoplesssss) {
 //            System.out.println(people);
 //        }
-//        Admin admin = new Admin(2,"2", "2");
+//        Admin admin = new Admin(1,"1", "1");
 //        PersistenceHandler.getInstance().createAdmin(admin);
-        System.out.println(PersistenceHandler.getInstance().getAdmins());
-        //Credit credit = new Credit();
-        new Producer(1, "producer1", "pw").write();
-        new Producer(2, "producer2", "pw").write();
-        new Producer(3, "producer3", "pw").write();
-        new Production(1, "Badehotellet", 1).write();
-        new Production(2, "X Factor", 1).write();
-        new Production(3, "Produktion 3", 2).write();
-        new Production(4, "Produktion 4", 3).write();
-        new Person(1, "Name 1", "name1@person.dk").write();
-        new Person(2, "Name 2", "name2@person.dk").write();
-        new Person(3, "Name 3", "name3@person.dk").write();
-        new Person(4, "Name 4", "name4@person.dk").write();
-        new Credit(1, 1, 1, "Some role").write();
-        new Credit(2, 2, 2, "Some role").write();
-        new Credit(3, 3, 3, "Some role").write();
-        new Credit(4, 4, 4, "Some role").write();
+//        System.out.println(PersistenceHandler.getInstance().getAdmins());
+//        Credit credit = new Credit();
+//        new Producer(1, "producer1", "pw").write();
+//        new Producer(2, "producer2", "pw").write();
+//        new Producer(3, "producer3", "pw").write();
+//        new Production(1, "Badehotellet", 1).write();
+//        new Production(2, "X Factor", 1).write();
+//        new Production(3, "Produktion 3", 2).write();
+//        new Production(4, "Produktion 4", 3).write();
+//        new Person(1, "Name 1", "name1@person.dk").write();
+//        new Person(2, "Name 2", "name2@person.dk").write();
+//        new Person(3, "Name 3", "name3@person.dk").write();
+//        new Person(4, "Name 4", "name4@person.dk").write();
+//        new Credit(1, 1, 1, "Some role").write();
+//        new Credit(5, 2, 1, "Some role 2").write();
+//        new Credit(2, 2, 2, "Some role").write();
+//        new Credit(3, 3, 3, "Some role").write();
+//        new Credit(4, 4, 4, "Some role").write();
 
     }
 }
