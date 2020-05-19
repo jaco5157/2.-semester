@@ -64,9 +64,9 @@ public class SecondaryController implements Initializable {
     @FXML private TextField editCreditName;
     @FXML private TextField editCreditProdId;
     @FXML private TextField editCreditProdName;
-    @FXML private Button deleteCredit;
-    @FXML private Button editCredit;
     @FXML private Label editLabel;
+
+    private int selectedCreditId;
 
     private Stage stage;
     private double x = 0, y = 0;
@@ -98,11 +98,15 @@ public class SecondaryController implements Initializable {
         makeDraggable();
         App.setImageForImageView(logo,"Danish_TV_2_logo.png");
         App.setImageForImageView(exit, "red-x-mark.png");
+        updateListViews();
+    }
+
+    public void updateListViews() {
         setResultList();
         setCreditResultList();
     }
 
-    public void setResultList () {
+    public void setResultList() {
         creditLabel.setVisible(false);
         creditList.setVisible(false);
         if (selectProducers.isSelected()) {
@@ -147,18 +151,22 @@ public class SecondaryController implements Initializable {
     //Create new objects
     public void createProducer() {
         printSuccess(CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText()));
+        updateListViews();
     }
 
     public void createProduction() {
         printSuccess(CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
+        updateListViews();
     }
 
     public void createPerson() {
         printSuccess(CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText()));
+        updateListViews();
     }
 
     public void createCredit() {
         printSuccess(CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText()));
+        updateListViews();
     }
 
     public void printSuccess(boolean success) {
@@ -172,15 +180,16 @@ public class SecondaryController implements Initializable {
     //Edit credits
     public void setCreditResultList() {
         if (CreditSystem.getInstance().getIsAdmin()) {
-            resultCreditList.setItems(search(PersistenceHandler.getInstance().getAdmin(CreditSystem.getInstance().getUserId()).getOwnedCredits(), searchField.getText().toLowerCase()));
+            resultCreditList.setItems(search(PersistenceHandler.getInstance().getAdmin(CreditSystem.getInstance().getUserId()).getOwnedCredits(), editCreditSearch.getText().toLowerCase()));
         } else {
-            resultCreditList.setItems(search(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedCredits(), searchField.getText().toLowerCase()));
+            resultCreditList.setItems(search(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedCredits(), editCreditSearch.getText().toLowerCase()));
         }
     }
 
     public void getSelectedCredit () {
         Credit selectedCredit = PersistenceHandler.getInstance().getCredit(resultCreditList.getSelectionModel().getSelectedItem().getId());
         editCreditId.setText(String.valueOf(selectedCredit.getId()));
+        selectedCreditId = selectedCredit.getId();
         editCreditRole.setText(selectedCredit.getRole());
         editCreditPersonId.setText(String.valueOf(selectedCredit.getPersonID()));
         editCreditName.setText(PersistenceHandler.getInstance().getPerson(selectedCredit.getPersonID()).getName());
@@ -191,13 +200,23 @@ public class SecondaryController implements Initializable {
     public void deleteCredit() {
         if(PersistenceHandler.getInstance().deleteCredit(resultCreditList.getSelectionModel().getSelectedItem().getId())) {
             editLabel.setText("Succes! Kreditering er slettet");
-            setCreditResultList();
+            updateListViews();
         } else {
             editLabel.setText("Noget gik galt");
         }
     }
 
     public void editCredit() {
-
+        if(PersistenceHandler.getInstance().getCredit(selectedCreditId)
+                .edit(
+                        Integer.parseInt(editCreditId.getText()),
+                        Integer.parseInt(editCreditProdId.getText()),
+                        Integer.parseInt(editCreditPersonId.getText()),
+                        editCreditRole.getText())) {
+            editLabel.setText("Krediteringen er nu redigeret");
+            updateListViews();
+        } else {
+            editLabel.setText("Noget gik galt! Tjek om de angivne ID'er er unikke");
+        }
     }
 }
