@@ -263,4 +263,23 @@ public class PersistenceHandler implements IPersistenceHandler {
         database.getCollection("Credits").findOneAndDelete(Filters.eq("_id", id));
         return true;
     }
+
+    public boolean editCredit(int id, Credit credit) {
+        try {
+            MongoCollection credits = database.getCollection("Credits");
+            Document document = new Document("_id", credit.getId())
+                    .append("production_ID", credit.getProductionID())
+                    .append("person_ID", credit.getPersonID())
+                    .append("role", credit.getRole());
+            if(credit.getId() != id && getCredit(id) != null) {
+                return false;
+            }
+            credits.findOneAndDelete(Filters.eq("_id", id));
+            credits.insertOne(document);
+            return true;
+        } catch (MongoWriteException ex) {
+            return false;
+        }
+
+    }
 }

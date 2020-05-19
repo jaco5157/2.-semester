@@ -77,7 +77,7 @@
                <content>
                   <AnchorPane fx:id="anchorpanePersoner" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <children>
-                        <TextField fx:id="editCreditSearch" layoutX="33.0" layoutY="43.0" prefHeight="25.0" prefWidth="219.0" promptText="Søg efter krediteringer" />
+                        <TextField fx:id="editCreditSearch" layoutX="33.0" layoutY="43.0" onKeyReleased="#setCreditResultList" prefHeight="25.0" prefWidth="219.0" promptText="Søg efter krediteringer" />
                         <ListView fx:id="resultCreditList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedCredit" prefHeight="507.0" prefWidth="346.0" />
                         <TextField fx:id="editCreditId" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="81.0" />
                         <Label layoutX="477.0" layoutY="105.0" text="Krediterings ID" />
