@@ -19,5 +19,11 @@
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
       <jdbc-url>mongodb+srv://creditmanagementsystem-hmkps.gcp.mongodb.net/test?retryWrites=true&amp;w=majority</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="creditSystem@localhost" uuid="85351f58-8af8-4cac-86c7-1fff72b749b5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/creditSystem</jdbc-url>
+    </data-source>
   </component>
 </project>
