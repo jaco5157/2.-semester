@@ -1,42 +1,35 @@
 package dk.sdu.tek.domain;
 
+import dk.sdu.tek.persistence.PersistenceHandler;
+
 import java.sql.*;
 
 public class main {
-    static Connection connection = null;
-    //Test class
+
     public static void main(String[] args) {
-        try {
-            DriverManager.registerDriver(new org.postgresql.Driver());
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/creditSystem",
-                    "postgres",
-                    "fawerSQL");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        PersistenceHandler.getInstance().createAdmin(new Admin(5,"andreas","andreaspw"));
 
-        // Indsæt data
-        try {
-            PreparedStatement insertStatement = connection.prepareStatement(
-                    "INSERT INTO admins (username, password) VALUES (?,?)");
-            insertStatement.setString(1, "anders");
-            insertStatement.setString(2, "123");
-            insertStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        //Hent data ud
-        try {
-            PreparedStatement queryStatement = connection.prepareStatement("SELECT * FROM admins");
-            ResultSet queryResultSet = queryStatement.executeQuery();
-            while (queryResultSet.next()){
-                System.out.println(queryResultSet.getString("username"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        // Indsæt data
+//        try {
+//            PreparedStatement insertStatement = connection.prepareStatement(
+//                    "INSERT INTO admins (username, password) VALUES (?,?)");
+//            insertStatement.setString(1, "anders");
+//            insertStatement.setString(2, "123");
+//            insertStatement.execute();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        //Hent data ud
+//        try {
+//            PreparedStatement queryStatement = connection.prepareStatement("SELECT * FROM admins");
+//            ResultSet queryResultSet = queryStatement.executeQuery();
+//            while (queryResultSet.next()){
+//                System.out.println(queryResultSet.getString("username"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        Admin admin1 = new Admin("Admin1", "Admin1Pass");

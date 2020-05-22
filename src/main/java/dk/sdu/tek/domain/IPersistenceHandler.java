@@ -39,4 +39,6 @@ public interface IPersistenceHandler {
     public boolean createCredit(Credit credit);
 
     public boolean deleteCredit(int id);
+
+    public boolean editCredit(int id, Credit credit);
 }
