@@ -11,7 +11,7 @@ public class main {
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/creditSystem",
                     "postgres",
-                    "adminSQL");
+                    "fawerSQL");
         } catch (SQLException e) {
             e.printStackTrace();
         }
