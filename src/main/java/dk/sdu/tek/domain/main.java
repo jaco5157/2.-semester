@@ -7,7 +7,11 @@ import java.sql.*;
 public class main {
 
     public static void main(String[] args) {
-        PersistenceHandler.getInstance().createAdmin(new Admin(5,"andreas","andreaspw"));
+//        PersistenceHandler.getInstance().createProducer(new Producer(1,"lort", "lort"));
+//        PersistenceHandler.getInstance().createProduction(new Production(10,"Badehotellet",1));
+//        PersistenceHandler.getInstance().createPerson(new Person(2,"Emil","nej"));
+//        PersistenceHandler.getInstance().createCredit(new Credit(55, 1,1,"Superman"));
+         PersistenceHandler.getInstance().editCredit(3, new Credit(3, 1,1,"awesome"));
 
 //        // Indsæt data
 //        try {

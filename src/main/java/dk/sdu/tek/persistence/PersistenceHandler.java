@@ -173,7 +173,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     public boolean createProduction(Production production) {
         try {
             PreparedStatement insertStatement = connection.prepareStatement(
-                    "INSERT INTO productions (name, production_id) VALUES (?,?)");
+                    "INSERT INTO productions (name, producer_id) VALUES (?,?)");
             insertStatement.setString(1, production.getName());
             insertStatement.setInt(2, production.getProducerID());
             insertStatement.execute();
@@ -269,12 +269,35 @@ public class PersistenceHandler implements IPersistenceHandler {
 
     @Override
     public boolean deleteCredit(int id) {
-        return false;
+        try {
+            PreparedStatement insertStatement = connection.prepareStatement(
+                    "DELETE from Credits where id = ?");
+                           // "INSERT INTO credits (production_id, person_id, role) VALUES (?,?,?)");
+            insertStatement.setInt(1, id);
+            insertStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean editCredit(int id, Credit credit) {
-        return false;
+        try {
+            PreparedStatement insertStatement = connection.prepareStatement(
+                    "UPDATE Credits SET production_id = ?, person_id = ?, role = ? WHERE id = ?");
+            // "INSERT INTO credits (production_id, person_id, role) VALUES (?,?,?)");
+            insertStatement.setInt(1, credit.getProductionID());
+            insertStatement.setInt(2, credit.getPersonID());
+            insertStatement.setString(3, credit.getRole());
+            insertStatement.setInt(4, credit.getId());
+            insertStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
