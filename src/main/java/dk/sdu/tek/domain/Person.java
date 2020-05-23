@@ -10,6 +10,11 @@ public class Person implements Writeable{
     private String name;
     private String contactInfo;
 
+    public Person(String name, String contactInfo){
+        this.name = name;
+        this.contactInfo = contactInfo;
+    }
+
     public Person(int id, String name, String contactInfo){
         this.id = id;
         this.name = name;

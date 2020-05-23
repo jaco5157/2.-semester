@@ -15,6 +15,11 @@ public abstract class User extends Visitor implements Writeable{
         return null;
     }
 
+    public User (String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User (int id, String username, String password) {
         this.id = id;
         this.username = username;
