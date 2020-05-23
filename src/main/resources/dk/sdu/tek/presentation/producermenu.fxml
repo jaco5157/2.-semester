@@ -47,23 +47,20 @@
                <content>
                   <AnchorPane fx:id="anchorpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <children>
-                        <Text layoutX="145.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
-                        <Text layoutX="414.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
-                        <Text layoutX="683.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
-                        <TextField fx:id="createProductionName" layoutX="145.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
-                        <TextField fx:id="createPersonName" layoutX="414.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
-                        <TextField fx:id="createCreditId" layoutX="683.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Kreditering ID" />
-                        <TextField fx:id="createProductionId" layoutX="145.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                        <TextField fx:id="createProductionProdId" layoutX="145.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
-                        <TextField fx:id="createPersonInfo" layoutX="414.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
-                        <TextField fx:id="createPersonId" layoutX="414.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="ID" />
-                        <TextField fx:id="createCreditPersonId" layoutX="683.0" layoutY="138.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
-                        <TextField fx:id="createCreditProductionId" layoutX="683.0" layoutY="173.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
-                        <Button fx:id="createCreditButton" layoutX="683.0" layoutY="250.0" mnemonicParsing="false" onAction="#createCredit" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <Button fx:id="createPersonButton" layoutX="414.0" layoutY="250.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <Button fx:id="adminCreateProductionButton" layoutX="145.0" layoutY="250.0" mnemonicParsing="false" onAction="#createProduction" prefHeight="25.0" prefWidth="95.0" text="Opret" />
-                        <TextField fx:id="createCreditRole" layoutX="683.0" layoutY="208.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
-                        <Label fx:id="successLabel" layoutX="171.0" layoutY="328.0" prefHeight="18.0" prefWidth="569.0" />
+                        <Text layoutX="181.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret produktion" />
+                        <Text layoutX="404.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret person" />
+                        <Text layoutX="643.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opret kreditering" />
+                        <TextField fx:id="createProductionName" layoutX="181.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
+                        <TextField fx:id="createPersonName" layoutX="404.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Navn" />
+                        <TextField fx:id="createProductionProdId" layoutX="181.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Producer ID" />
+                        <TextField fx:id="createPersonInfo" layoutX="404.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Kontakt info" />
+                        <TextField fx:id="createCreditPersonId" layoutX="643.0" layoutY="103.0" prefHeight="25.0" prefWidth="145.0" promptText="Person ID" />
+                        <TextField fx:id="createCreditProductionId" layoutX="643.0" layoutY="137.0" prefHeight="25.0" prefWidth="145.0" promptText="Produktions ID" />
+                        <Button fx:id="createCreditButton" layoutX="643.0" layoutY="236.0" mnemonicParsing="false" onAction="#createCredit" prefHeight="25.0" prefWidth="145.0" text="Opret" />
+                        <Button fx:id="createPersonButton" layoutX="404.0" layoutY="236.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="25.0" prefWidth="145.0" text="Opret" />
+                        <Button fx:id="adminCreateProductionButton" layoutX="181.0" layoutY="236.0" mnemonicParsing="false" onAction="#createProduction" prefHeight="25.0" prefWidth="145.0" text="Opret" />
+                        <TextField fx:id="createCreditRole" layoutX="643.0" layoutY="171.0" prefHeight="25.0" prefWidth="145.0" promptText="Rolle" />
+                        <Label fx:id="successLabel" layoutX="73.0" layoutY="333.0" prefHeight="18.0" prefWidth="569.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -74,15 +71,15 @@
                      <children>
                         <TextField fx:id="editCreditSearch" layoutX="33.0" layoutY="43.0" onKeyReleased="#setCreditResultList" prefHeight="25.0" prefWidth="219.0" promptText="Søg efter krediteringer" />
                         <ListView fx:id="resultCreditList" layoutX="33.0" layoutY="79.0" onMouseClicked="#getSelectedCredit" prefHeight="507.0" prefWidth="346.0" />
-                        <TextField fx:id="editCreditId" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="81.0" />
+                        <TextField fx:id="editCreditId" editable="false" layoutX="477.0" layoutY="123.0" prefHeight="26.0" prefWidth="81.0" style="-fx-font-style: italic;" />
                         <Label layoutX="477.0" layoutY="105.0" text="Krediterings ID" />
                         <TextField fx:id="editCreditRole" layoutX="570.0" layoutY="123.0" prefHeight="26.0" prefWidth="267.0" />
                         <Label layoutX="570.0" layoutY="105.0" text="Rolle" />
-                        <TextField fx:id="editCreditPersonId" layoutX="477.0" layoutY="197.0" prefHeight="26.0" prefWidth="81.0" />
+                        <TextField fx:id="editCreditPersonId" layoutX="477.0" layoutY="197.0" onKeyReleased="#getSelectedCreditPersonName" prefHeight="26.0" prefWidth="81.0" />
                         <Label layoutX="477.0" layoutY="179.0" text="Person ID" />
-                        <TextField fx:id="editCreditName" disable="true" editable="false" layoutX="570.0" layoutY="198.0" prefHeight="26.0" prefWidth="267.0" />
-                        <TextField fx:id="editCreditProdName" disable="true" editable="false" layoutX="570.0" layoutY="273.0" prefHeight="26.0" prefWidth="267.0" />
-                        <TextField fx:id="editCreditProdId" layoutX="477.0" layoutY="273.0" prefHeight="26.0" prefWidth="81.0" />
+                        <TextField fx:id="editCreditName" editable="false" layoutX="570.0" layoutY="198.0" prefHeight="26.0" prefWidth="267.0" style="-fx-font-style: italic;" />
+                        <TextField fx:id="editCreditProdName" editable="false" layoutX="570.0" layoutY="273.0" prefHeight="26.0" prefWidth="267.0" style="-fx-font-style: italic;" />
+                        <TextField fx:id="editCreditProdId" layoutX="477.0" layoutY="273.0" onKeyReleased="#getSelectedCreditProdName" prefHeight="26.0" prefWidth="81.0" />
                         <Label layoutX="477.0" layoutY="256.0" text="Produktions ID" />
                         <Label layoutX="569.0" layoutY="179.0" text="Navn" />
                         <Label layoutX="569.0" layoutY="256.0" text="Navn på prduktionen" />

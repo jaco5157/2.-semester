@@ -9,6 +9,12 @@ public class Credit implements Writeable{
     private int personID;
     private int productionID;
 
+    public Credit (int productionID, int personID, String role) {
+        this.productionID = productionID;
+        this.personID = personID;
+        this.role = role;
+    }
+
     public Credit (int id, int productionID, int personID, String role) {
         this.id = id;
         this.productionID = productionID;
@@ -25,8 +31,6 @@ public class Credit implements Writeable{
         if (PersistenceHandler.getInstance().getPerson(personID) == null || PersistenceHandler.getInstance().getProduction(productionID) == null){
             return false;
         }
-        int oldId = this.id;
-        this.id = id;
         if(CreditSystem.getInstance().getIsAdmin()) {
             this.productionID = productionID;
         } else if(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedProduction(productionID) != null){
@@ -34,7 +38,7 @@ public class Credit implements Writeable{
         }
         this.personID = personID;
         this.role = role;
-        return PersistenceHandler.getInstance().editCredit(oldId, this);
+        return PersistenceHandler.getInstance().editCredit(this);
     }
 
     @Override

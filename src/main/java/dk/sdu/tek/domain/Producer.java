@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 
 public class Producer extends User {
 
+    public Producer(String username, String password){
+        super(username, password);
+    }
+
     public Producer(int id, String username, String password){
         super(id, username, password);
     }
@@ -52,7 +56,7 @@ public class Producer extends User {
         return result;
     }
 
-    public boolean createProduction(int productionID, String productionName) {
-        return new Production(productionID, productionName, this.getId()).write();
+    public boolean createProduction(String productionName) {
+        return new Production(productionName, this.getId()).write();
     }
 }

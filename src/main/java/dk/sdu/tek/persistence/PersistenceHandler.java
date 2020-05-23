@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class PersistenceHandler implements IPersistenceHandler {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/creditSystem";
+    private static final String URL = "jdbc:postgresql://localhost:5432/CreditManagementSystem";
     private static PersistenceHandler instance;
     static Connection connection = null;
 
@@ -35,7 +35,7 @@ public class PersistenceHandler implements IPersistenceHandler {
             connection = DriverManager.getConnection(
                     URL,
                     "postgres",
-                    "fawerSQL");
+                    "jdk76wbq");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -283,7 +283,7 @@ public class PersistenceHandler implements IPersistenceHandler {
     }
 
     @Override
-    public boolean editCredit(int id, Credit credit) {
+    public boolean editCredit(Credit credit) {
         try {
             PreparedStatement insertStatement = connection.prepareStatement(
                     "UPDATE Credits SET production_id = ?, person_id = ?, role = ? WHERE id = ?");

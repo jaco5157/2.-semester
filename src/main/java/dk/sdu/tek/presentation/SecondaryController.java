@@ -150,22 +150,22 @@ public class SecondaryController implements Initializable {
 
     //Create new objects
     public void createProducer() {
-        printSuccess(CreditSystem.getInstance().createProducer(Integer.parseInt(createProducerId.getText()), createProducerUsername.getText(), createProducerPassword.getText()));
+        printSuccess(CreditSystem.getInstance().createProducer(createProducerUsername.getText(), createProducerPassword.getText()));
         updateListViews();
     }
 
     public void createProduction() {
-        printSuccess(CreditSystem.getInstance().createProduction(Integer.parseInt(createProductionId.getText()), createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
+        printSuccess(CreditSystem.getInstance().createProduction(createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
         updateListViews();
     }
 
     public void createPerson() {
-        printSuccess(CreditSystem.getInstance().createPerson(Integer.parseInt(createPersonId.getText()), createPersonName.getText(), createPersonInfo.getText()));
+        printSuccess(CreditSystem.getInstance().createPerson(createPersonName.getText(), createPersonInfo.getText()));
         updateListViews();
     }
 
     public void createCredit() {
-        printSuccess(CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditId.getText()), Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText()));
+        printSuccess(CreditSystem.getInstance().createCredit(Integer.parseInt(createCreditProductionId.getText()), Integer.parseInt(createCreditPersonId.getText()), createCreditRole.getText()));
         updateListViews();
     }
 
@@ -186,15 +186,31 @@ public class SecondaryController implements Initializable {
         }
     }
 
-    public void getSelectedCredit () {
+    public void getSelectedCredit() {
         Credit selectedCredit = PersistenceHandler.getInstance().getCredit(resultCreditList.getSelectionModel().getSelectedItem().getId());
         editCreditId.setText(String.valueOf(selectedCredit.getId()));
         selectedCreditId = selectedCredit.getId();
         editCreditRole.setText(selectedCredit.getRole());
         editCreditPersonId.setText(String.valueOf(selectedCredit.getPersonID()));
-        editCreditName.setText(PersistenceHandler.getInstance().getPerson(selectedCredit.getPersonID()).getName());
+        getSelectedCreditPersonName();
         editCreditProdId.setText(String.valueOf(selectedCredit.getProductionID()));
-        editCreditProdName.setText(PersistenceHandler.getInstance().getProduction(selectedCredit.getProductionID()).getName());
+        getSelectedCreditProdName();
+    }
+
+    public void getSelectedCreditPersonName() {
+        try {
+            editCreditName.setText(PersistenceHandler.getInstance().getPerson(Integer.parseInt(editCreditPersonId.getText())).getName());
+        } catch (NullPointerException ex) {
+            editCreditName.setText("En person med dette ID eksisterer ikke");
+        }
+    }
+
+    public void getSelectedCreditProdName() {
+        try {
+            editCreditProdName.setText(PersistenceHandler.getInstance().getProduction(Integer.parseInt(editCreditProdId.getText())).getName());
+        } catch (NullPointerException ex) {
+            editCreditProdName.setText("En produktion med dette ID eksisterer ikke");
+        }
     }
 
     public void deleteCredit() {

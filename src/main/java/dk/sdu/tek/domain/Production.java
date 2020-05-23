@@ -10,6 +10,11 @@ public class Production implements Writeable{
     private String productionName;
     private int producerID;
 
+    public Production(String productionName, int producerID){
+        this.productionName = productionName;
+        this.producerID = producerID;
+    }
+
     public Production(int id, String productionName, int producerID){
         this.id = id;
         this.productionName = productionName;
@@ -26,11 +31,11 @@ public class Production implements Writeable{
         return PersistenceHandler.getInstance().createProduction(this);
     }
 
-    public boolean addCredit(int id, int personID, String role) {
+    public boolean addCredit(int personID, String role) {
         if (PersistenceHandler.getInstance().getPerson(personID) == null){
             return false;
         }
-        return new Credit(id, this.getId(), personID, role).write();
+        return new Credit(this.getId(), personID, role).write();
     }
 
     public Producer getProducer() {

@@ -38,25 +38,25 @@ public class CreditSystem {
         return false;
     }
 
-    public boolean createProducer (int id, String username, String password) {
-        return new Producer(id, username, password).write();
+    public boolean createProducer (String username, String password) {
+        return new Producer(username, password).write();
     }
 
-    public boolean createProduction (int id, String name, int producerId) {
+    public boolean createProduction (String name, int producerId) {
         try {
-            return PersistenceHandler.getInstance().getProducer(producerId).createProduction(id, name);
+            return PersistenceHandler.getInstance().getProducer(producerId).createProduction(name);
         } catch (NullPointerException ex) {
             return false;
         }
     }
 
-    public boolean createPerson (int id, String username, String email) {
-        return new Person(id, username, email).write();
+    public boolean createPerson (String username, String email) {
+        return new Person(username, email).write();
     }
 
-    public boolean createCredit (int id, int productionId, int personId, String role) {
+    public boolean createCredit (int productionId, int personId, String role) {
         try {
-            return PersistenceHandler.getInstance().getProduction(productionId).addCredit(id, personId, role);
+            return PersistenceHandler.getInstance().getProduction(productionId).addCredit(personId, role);
         } catch (NullPointerException ex) {
             return false;
         }
