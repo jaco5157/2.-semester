@@ -86,7 +86,7 @@
                         <TextField fx:id="editCreditProdId" layoutX="477.0" layoutY="273.0" onKeyReleased="#getSelectedCreditProdName" prefHeight="26.0" prefWidth="81.0" />
                         <Label layoutX="477.0" layoutY="256.0" text="Produktions ID" />
                         <Label layoutX="569.0" layoutY="179.0" text="Navn" />
-                        <Label layoutX="569.0" layoutY="256.0" text="Navn på prduktionen" />
+                        <Label layoutX="569.0" layoutY="256.0" text="Navn på produktionen" />
                         <Button fx:id="deleteCredit" layoutX="477.0" layoutY="333.0" mnemonicParsing="false" onAction="#deleteCredit" prefWidth="81.0" text="Slet" />
                         <Button fx:id="editCredit" layoutX="570.0" layoutY="333.0" mnemonicParsing="false" onAction="#editCredit" prefWidth="81.0" text="Rediger" />
                         <Label fx:id="editLabel" layoutX="477.0" layoutY="373.0" />

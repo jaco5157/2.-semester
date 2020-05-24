@@ -28,14 +28,10 @@ public class Credit implements Writeable{
     }
 
     public boolean edit(int id, int productionID, int personID, String role) {
-        if (PersistenceHandler.getInstance().getPerson(personID) == null || PersistenceHandler.getInstance().getProduction(productionID) == null){
+        if (PersistenceHandler.getInstance().getPerson(personID) == null || PersistenceHandler.getInstance().getProduction(productionID) == null || !CreditSystem.getInstance().getIsAdmin() && PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedProduction(productionID) == null){
             return false;
         }
-        if(CreditSystem.getInstance().getIsAdmin()) {
-            this.productionID = productionID;
-        } else if(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedProduction(productionID) != null){
-            this.productionID = productionID;
-        }
+        this.productionID = productionID;
         this.personID = personID;
         this.role = role;
         return PersistenceHandler.getInstance().editCredit(this);

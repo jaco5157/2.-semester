@@ -46,7 +46,7 @@ public class Production implements Writeable{
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
             if (credit.getProductionID() == this.getId()) {
-                result.add(new ObservableObject(credit.getId(), credit.getRole(), credit.toString()));
+                result.add(new ObservableObject(credit.getId(), PersistenceHandler.getInstance().getPerson(credit.getPersonID()).getName() + ", " +credit.getRole(), credit.toString()));
             }
         }
         return result;
