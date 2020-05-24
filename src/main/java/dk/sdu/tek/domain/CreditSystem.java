@@ -21,7 +21,7 @@ public class CreditSystem {
     public boolean authenticate(String username, String password, Boolean isAdmin) {
         if (isAdmin) {
             for (Admin admin : PersistenceHandler.getInstance().getAdmins()) {
-                if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
+                if (username.toLowerCase().equals(admin.getUsername().toLowerCase()) && password.equals(admin.getPassword())) {
                     this.isAdmin = isAdmin;
                     this.userId = admin.getId();
                     return true;
@@ -29,7 +29,7 @@ public class CreditSystem {
             }
         }
         for (Producer producer : PersistenceHandler.getInstance().getProducers()) {
-            if (username.equals(producer.getUsername()) && password.equals(producer.getPassword())) {
+            if (username.toLowerCase().equals(producer.getUsername().toLowerCase()) && password.equals(producer.getPassword())) {
                 this.isAdmin = isAdmin;
                 this.userId = producer.getId();
                 return true;
@@ -56,7 +56,10 @@ public class CreditSystem {
 
     public boolean createCredit (int productionId, int personId, String role) {
         try {
-            return PersistenceHandler.getInstance().getProduction(productionId).addCredit(personId, role);
+            if (this.getIsAdmin()) {
+                return PersistenceHandler.getInstance().getAdmin(this.getUserId()).getOwnedProduction(productionId).addCredit(personId, role);
+            }
+            return PersistenceHandler.getInstance().getProducer(this.getUserId()).getOwnedProduction(productionId).addCredit(personId, role);
         } catch (NullPointerException ex) {
             return false;
         }
@@ -89,11 +92,12 @@ public class CreditSystem {
     public ObservableList<ObservableObject> getCredits() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
-            result.add(new ObservableObject(credit.getId(), credit.getRole(), credit.toString()));
+            result.add(new ObservableObject(credit.getId(), PersistenceHandler.getInstance().getPerson(credit.getPersonID()).getName() + ", " +credit.getRole() + " - " + PersistenceHandler.getInstance().getProduction(credit.getProductionID()).getName(), credit.toString()));
         }
         return result;
     }
 
+    //Slettes?
     public ObservableObject getProduction(int productionID) {
         Production production = PersistenceHandler.getInstance().getProduction(productionID);
         return new ObservableObject(production.getId(),production.getName(), production.toString());

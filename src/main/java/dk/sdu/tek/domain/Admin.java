@@ -45,8 +45,8 @@ public class Admin extends User {
     }
 
     @Override
-    public ObservableObject getOwnedProduction(int productionID) {
-        return CreditSystem.getInstance().getProduction(productionID);
+    public Production getOwnedProduction(int productionID) {
+        return PersistenceHandler.getInstance().getProduction(productionID);
     }
 
     @Override

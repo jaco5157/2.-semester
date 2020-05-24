@@ -26,6 +26,7 @@ public class Producer extends User {
         return PersistenceHandler.getInstance().createProducer(this);
     }
 
+    //Slettes?
     @Override
     public ObservableList<ObservableObject> getOwnedProductions() {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
@@ -38,10 +39,10 @@ public class Producer extends User {
     }
 
     @Override
-    public ObservableObject getOwnedProduction(int productionID) {
+    public Production getOwnedProduction(int productionID) {
         Production production = PersistenceHandler.getInstance().getProduction(productionID);
         if(production.getProducerID() == this.getId()) {
-            return new ObservableObject(production.getId(), production.getName(), production.toString());
+            return production;
         }
         return null;
     }

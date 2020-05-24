@@ -155,7 +155,11 @@ public class SecondaryController implements Initializable {
     }
 
     public void createProduction() {
-        printSuccess(CreditSystem.getInstance().createProduction(createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
+        if(CreditSystem.getInstance().getIsAdmin()) {
+            printSuccess(CreditSystem.getInstance().createProduction(createProductionName.getText(), Integer.parseInt(createProductionProdId.getText())));
+        } else {
+            printSuccess(CreditSystem.getInstance().createProduction(createProductionName.getText(), CreditSystem.getInstance().getUserId()));
+        }
         updateListViews();
     }
 
@@ -170,11 +174,16 @@ public class SecondaryController implements Initializable {
     }
 
     public void printSuccess(boolean success) {
-        if (success) {
-            successLabel.setText("Succes! Objektet er nu oprettet");
-        } else {
-            successLabel.setText("Noget gik galt! Tjek om de angivne ID'er er unikke");
+        try {
+            if (success) {
+                successLabel.setText("Succes! Objektet er nu oprettet");
+            } else {
+                successLabel.setText("Noget gik galt! Tjek om de angivne ID'er eksisterer");
+            }
+        } catch (NumberFormatException ex) {
+            successLabel.setText("Noget gik galt! Tjek om de angivne ID'er er gyldige");
         }
+
     }
 
     //Edit credits
@@ -202,6 +211,8 @@ public class SecondaryController implements Initializable {
             editCreditName.setText(PersistenceHandler.getInstance().getPerson(Integer.parseInt(editCreditPersonId.getText())).getName());
         } catch (NullPointerException ex) {
             editCreditName.setText("En person med dette ID eksisterer ikke");
+        } catch (NumberFormatException ex) {
+            editCreditName.setText("Ugyldigt ID!");
         }
     }
 
@@ -210,6 +221,8 @@ public class SecondaryController implements Initializable {
             editCreditProdName.setText(PersistenceHandler.getInstance().getProduction(Integer.parseInt(editCreditProdId.getText())).getName());
         } catch (NullPointerException ex) {
             editCreditProdName.setText("En produktion med dette ID eksisterer ikke");
+        } catch (NumberFormatException ex) {
+            editCreditName.setText("Ugyldigt ID!");
         }
     }
 
@@ -223,16 +236,21 @@ public class SecondaryController implements Initializable {
     }
 
     public void editCredit() {
-        if(PersistenceHandler.getInstance().getCredit(selectedCreditId)
-                .edit(
-                        Integer.parseInt(editCreditId.getText()),
-                        Integer.parseInt(editCreditProdId.getText()),
-                        Integer.parseInt(editCreditPersonId.getText()),
-                        editCreditRole.getText())) {
-            editLabel.setText("Krediteringen er nu redigeret");
-            updateListViews();
-        } else {
-            editLabel.setText("Noget gik galt! Tjek om de angivne ID'er er unikke");
+        try {
+            if(PersistenceHandler.getInstance().getCredit(selectedCreditId)
+                    .edit(
+                            Integer.parseInt(editCreditId.getText()),
+                            Integer.parseInt(editCreditProdId.getText()),
+                            Integer.parseInt(editCreditPersonId.getText()),
+                            editCreditRole.getText())) {
+                editLabel.setText("Krediteringen er nu redigeret");
+                updateListViews();
+            } else {
+                editLabel.setText("Noget gik galt! Tjek om produktionen ekstisterer og om du ejer rettighederne til den.");
+            }
+        } catch (NumberFormatException ex) {
+            editLabel.setText("Noget gik galt! Tjek om de angivne ID'er er gyldige");
         }
+
     }
 }

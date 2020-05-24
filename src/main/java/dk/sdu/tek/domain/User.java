@@ -33,7 +33,7 @@ public abstract class User extends Visitor implements Writeable{
 
     public abstract ObservableList<ObservableObject> getOwnedProductions();
 
-    public abstract ObservableObject getOwnedProduction(int productionID);
+    public abstract Production getOwnedProduction(int productionID);
 
     public abstract ObservableList<ObservableObject> getOwnedCredits();
 
