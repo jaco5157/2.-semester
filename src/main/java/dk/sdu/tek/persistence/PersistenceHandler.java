@@ -1,11 +1,6 @@
 package dk.sdu.tek.persistence;
 
-import com.mongodb.MongoWriteException;
-import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
 import dk.sdu.tek.domain.*;
-import org.bson.Document;
-import org.json.JSONObject;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +9,7 @@ import java.util.ArrayList;
 
 public class PersistenceHandler implements IPersistenceHandler {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/CreditManagementSystem";
+    private static final String URL = "jdbc:postgresql://localhost:5432/CreditManagementSystem"; //Edit if need be
     private static PersistenceHandler instance;
     static Connection connection = null;
 
@@ -35,7 +30,7 @@ public class PersistenceHandler implements IPersistenceHandler {
             connection = DriverManager.getConnection(
                     URL,
                     "postgres",
-                    "jdk76wbq");
+                    ""); //Insert password to database here
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,16 +107,6 @@ public class PersistenceHandler implements IPersistenceHandler {
     public Producer getProducer(int id) {
         for (Producer producer : this.getProducers()) {
             if (producer.getId() == id) {
-                return producer;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public Producer getProducer(String name) {
-        for (Producer producer : this.getProducers()) {
-            if (producer.getUsername().equals(name)) {
                 return producer;
             }
         }
@@ -299,7 +284,9 @@ public class PersistenceHandler implements IPersistenceHandler {
             return false;
         }
     }
-
+/*
+Old code from MongoDB implementation, kept for evaluative purposes
+ */
 
 //    private static final String URL = "mongodb+srv://user:unimongo1@creditmanagementsystem-hmkps.gcp.mongodb.net/test?retryWrites=true&w=majority";
 //    private static final int PORT = 27017;

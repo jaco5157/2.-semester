@@ -1,8 +1,6 @@
 package dk.sdu.tek.domain;
 
 import dk.sdu.tek.persistence.PersistenceHandler;
-import dk.sdu.tek.presentation.Menu;
-import dk.sdu.tek.presentation.ProducerMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,25 +15,8 @@ public class Producer extends User {
     }
 
     @Override
-    public Menu getMenu() {
-        return new ProducerMenu();
-    }
-
-    @Override
     public boolean write() {
         return PersistenceHandler.getInstance().createProducer(this);
-    }
-
-    //Slettes?
-    @Override
-    public ObservableList<ObservableObject> getOwnedProductions() {
-        ObservableList<ObservableObject> result = FXCollections.observableArrayList();
-        for (Production production : PersistenceHandler.getInstance().getProductions()) {
-            if(production.getProducerID() == this.getId()) {
-                result.add(new ObservableObject(production.getId(), production.getName(), production.toString()));
-            }
-        }
-        return result;
     }
 
     @Override

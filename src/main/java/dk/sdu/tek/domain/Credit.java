@@ -28,6 +28,7 @@ public class Credit implements Writeable{
     }
 
     public boolean edit(int id, int productionID, int personID, String role) {
+        //Check if person and production exists, if user trying to edit the credit is not an admin, check if they own the production
         if (PersistenceHandler.getInstance().getPerson(personID) == null || PersistenceHandler.getInstance().getProduction(productionID) == null || !CreditSystem.getInstance().getIsAdmin() && PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedProduction(productionID) == null){
             return false;
         }
@@ -42,36 +43,20 @@ public class Credit implements Writeable{
         return "Rolle: " + this.role + "\nKrediterings ID: " + this.id + "\nProduktion: " + PersistenceHandler.getInstance().getProduction(this.productionID).getName() + "\nNavn: " + PersistenceHandler.getInstance().getPerson(this.personID).getName();
     }
 
-    //Get and set attributes
+    //Getters
     public String getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public int getPersonID() {
         return this.personID;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
-    }
-
     public int getProductionID() {
         return this.productionID;
     }
 
-    public void setProductionID(int productionID) {
-        this.productionID = productionID;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

@@ -38,10 +38,6 @@ public class Production implements Writeable{
         return new Credit(this.getId(), personID, role).write();
     }
 
-    public Producer getProducer() {
-        return PersistenceHandler.getInstance().getProducer(this.getProducerID());
-    }
-
     public ObservableList<ObservableObject> getCredits () {
         ObservableList<ObservableObject> result = FXCollections.observableArrayList();
         for(Credit credit : PersistenceHandler.getInstance().getCredits()) {
@@ -52,29 +48,17 @@ public class Production implements Writeable{
         return result;
     }
 
-    //Get and set attributes
+    //Getters
     public int getId () {
         return this.id;
-    }
-
-    public void setId (int productionID) {
-        this.id = id;
     }
 
     public String getName() {
         return this.productionName;
     }
 
-    public void setName(String productionName) {
-        this.productionName = productionName;
-    }
-
     public int getProducerID () {
         return this.producerID;
-    }
-
-    public void setProducerID (int producerID) {
-        this.producerID = producerID;
     }
 
 }
