@@ -97,21 +97,6 @@ public class CreditSystem {
         return result;
     }
 
-    //Slettes?
-    public ObservableObject getProduction(int productionID) {
-        Production production = PersistenceHandler.getInstance().getProduction(productionID);
-        return new ObservableObject(production.getId(),production.getName(), production.toString());
-    }
-
-    public ObservableObject getProduction(String name) {
-        for(Production production : PersistenceHandler.getInstance().getProductions()) {
-            if(production.getName() == name) {
-                return new ObservableObject(production.getId(), production.getName(), production.toString());
-            }
-        }
-        return null;
-    }
-
     public boolean getIsAdmin() {
         return isAdmin;
     }

@@ -8,15 +8,11 @@ public interface IPersistenceHandler {
 
     public Admin getAdmin(int id);
 
-    public Admin getAdmin(String name);
-
     public boolean createAdmin(Admin admin);
 
     public ArrayList<Producer> getProducers();
 
     public Producer getProducer(int id);
-
-    public Producer getProducer(String name);
 
     public boolean createProducer(Producer producer);
 

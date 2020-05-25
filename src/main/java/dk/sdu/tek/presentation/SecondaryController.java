@@ -8,7 +8,6 @@ import dk.sdu.tek.domain.*;
 import dk.sdu.tek.persistence.PersistenceHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -38,17 +37,13 @@ public class SecondaryController implements Initializable {
     //FXML for creating new objects
     @FXML private TextField createProducerUsername;
     @FXML private TextField createProducerPassword;
-    @FXML private TextField createProducerId;
 
     @FXML private TextField createProductionName;
-    @FXML private TextField createProductionId;
     @FXML private TextField createProductionProdId;
 
     @FXML private TextField createPersonName;
     @FXML private TextField createPersonInfo;
-    @FXML private TextField createPersonId;
 
-    @FXML private TextField createCreditId;
     @FXML private TextField createCreditPersonId;
     @FXML private TextField createCreditProductionId;
     @FXML private TextField createCreditRole;
@@ -188,7 +183,9 @@ public class SecondaryController implements Initializable {
 
     //Edit credits
     public void setCreditResultList() {
-        if (CreditSystem.getInstance().getIsAdmin()) {
+        if(resultCreditList == null) {
+            return;
+        } else if (CreditSystem.getInstance().getIsAdmin()) {
             resultCreditList.setItems(search(PersistenceHandler.getInstance().getAdmin(CreditSystem.getInstance().getUserId()).getOwnedCredits(), editCreditSearch.getText().toLowerCase()));
         } else {
             resultCreditList.setItems(search(PersistenceHandler.getInstance().getProducer(CreditSystem.getInstance().getUserId()).getOwnedCredits(), editCreditSearch.getText().toLowerCase()));
