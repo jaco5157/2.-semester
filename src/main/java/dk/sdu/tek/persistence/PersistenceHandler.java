@@ -63,16 +63,6 @@ public class PersistenceHandler implements IPersistenceHandler {
     }
 
     @Override
-    public Admin getAdmin(String name) {
-        for (Admin admin : this.getAdmins()) {
-            if (admin.getUsername().equals(name)) {
-                return admin;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public boolean createAdmin(Admin admin) {
         try {
             PreparedStatement insertStatement = connection.prepareStatement(
